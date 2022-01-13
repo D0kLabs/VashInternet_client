@@ -7,4 +7,5 @@ Android 7.1.0
 - Android SDK Platform 25 (platforms;android-25)
 - Sources for Android 25 (sources;android-25)
 - Google APIs ARM 64 v8a System Image (system-images;android-25;google_apis;arm64-v8a)
+- Android SDK Build-Tools 25 (build-tools;25.0.0)
 
