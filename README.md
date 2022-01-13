@@ -3,3 +3,8 @@
 Android 7.1.0
 
 Завдання по #TODO
+
+- Android SDK Platform 25 (platforms;android-25)
+- Sources for Android 25 (sources;android-25)
+- Google APIs ARM 64 v8a System Image (system-images;android-25;google_apis;arm64-v8a)
+
