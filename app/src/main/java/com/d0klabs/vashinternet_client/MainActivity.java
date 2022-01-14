@@ -16,6 +16,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.d0klabs.vashinternet_client.databinding.ActivityMainBinding;
 
+//TODO: Зміни в strings.xml !!!
+
+//TODO: ЗМІНИ В nav_header_main.xml :
+//TODO: Змінити android:background="@drawable/side_nav_bar" на мотоцикл
+//TODO: Змінити app:srcCompat="@mipmap/ic_launcher_round" на фотку користувача
+
+//TODO: Змінити в fragment_home.xml на перелік тасків на тиждень
+//TODO: Змінити activity_main_drawer.xml меню до переліку пунктів
+//TODO: mtrl_calendar_frame не підходить бо це лише фрейм вибору дати. Писати свій календар!
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;

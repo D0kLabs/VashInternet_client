@@ -10,4 +10,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_home">Головна</string>
+    <string name="menu_calendar">Календар</string>
+    <string name="menu_box">Склад</string>
+    <string name="menu_instruments">Інструменти</string>
 </resources>
