@@ -2,20 +2,21 @@
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/motionLayout"
-    app:layoutDescription="@xml/content_calendar_scene"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     style="@android:style/Widget.Material.Light.ScrollView"
-    android:fillViewport="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:scrollbarSize="4dp"
     android:scrollbarStyle="insideOverlay"
-    android:scrollbars="vertical">
+    android:scrollbars="vertical"
+    app:layoutDescription="@xml/content_calendar_scene">
 
     <View
         android:id="@+id/motion_button1"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="@string/menu_calendar" />
+        android:text="@string/menu_calendar"
+        app:layout_constraintTop_toTopOf="@+id/motionLayout"
+        />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
