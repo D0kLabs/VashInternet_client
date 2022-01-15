@@ -17,5 +17,18 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/motionLayout"
+            app:layoutDescription="@xml/scene_01">
+
+            <View
+                android:id="@+id/motion_button"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:text="@string/menu_calendar" />
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
