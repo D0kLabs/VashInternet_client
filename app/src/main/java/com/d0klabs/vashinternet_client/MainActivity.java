@@ -24,7 +24,8 @@ import com.d0klabs.vashinternet_client.databinding.ActivityMainBinding;
 
 //TODO: Змінити в fragment_home.xml на перелік тасків на тиждень
 //TODO: Змінити activity_main_drawer.xml меню до переліку пунктів
-//TODO: mtrl_calendar_frame не підходить бо це лише фрейм вибору дати. Писати свій календар!
+//TODO: по натисканню на меню Календар має відкритися фрейм з календарем для вибору дат. В фреймі має бути кнопка потчної дати.
+//TODO: в content_calendar.xml писати плаваючі (згідно розміру екрану) плитки (дати) з скролем.
 
 public class MainActivity extends AppCompatActivity {
 
