@@ -1,34 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/CalendarConstraintLayout"
+    android:id="@+id/motionLayout"
+    app:layoutDescription="@xml/content_calendar_scene"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    style="@android:style/Widget.Material.Light.ScrollView"
+    android:fillViewport="true"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:scrollbarSize="4dp"
+    android:scrollbarStyle="insideOverlay"
+    android:scrollbars="vertical">
 
-    <ScrollView
-        style="@android:style/Widget.DeviceDefault.ScrollView"
-        android:id="@+id/CalendarScrollView"
-        app:layout_constraintTop_toTopOf="@+id/CalendarConstraintLayout"
-        app:layout_constraintBottom_toBottomOf="@+id/CalendarConstraintLayout"
-        app:layout_constraintLeft_toLeftOf="@+id/CalendarConstraintLayout"
-        app:layout_constraintRight_toRightOf="@+id/CalendarConstraintLayout"
-        android:scrollbarStyle="insideOverlay"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+    <View
+        android:id="@+id/motion_button1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/menu_calendar" />
 
-        <androidx.constraintlayout.motion.widget.MotionLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/motionLayout"
-            app:layoutDescription="@xml/scene_01">
-
-            <View
-                android:id="@+id/motion_button"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:text="@string/menu_calendar" />
-        </androidx.constraintlayout.motion.widget.MotionLayout>
-
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

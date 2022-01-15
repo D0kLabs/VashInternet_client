@@ -8,7 +8,7 @@
             android:id="@+id/nav_home"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/mtrl_calendar_frame"
+            android:id="@+id/CalendarConstraintLayout"
             android:title="@string/menu_calendar" />
         <item
             android:title="@string/menu_instruments" />
