@@ -8,11 +8,13 @@
             android:id="@+id/nav_home"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/app_bar_calendar"
+            android:id="@+id/nav_calendar"
             android:title="@string/menu_calendar" />
         <item
+            android:id="@+id/nav_instruments"
             android:title="@string/menu_instruments" />
         <item
+            android:id="@+id/nav_sklad"
             android:title="@string/menu_box" />
         <item
             android:id="@+id/nav_gallery"
