@@ -10,8 +10,51 @@
         <OnSwipe
             motion:touchAnchorId="@+id/motion_button1"
             motion:onTouchUp="stop"
-            motion:touchAnchorSide="right"
-            motion:dragDirection="dragRight" />
+            motion:touchAnchorSide="right"/>
+    </Transition>
+
+    <Transition
+        motion:constraintSetStart="@+id/start"
+        motion:constraintSetEnd="@+id/end"
+        motion:duration="1000"
+        motion:motionInterpolator="linear">
+        <OnSwipe
+            motion:touchAnchorId="@+id/motion_button2"
+            motion:onTouchUp="stop"
+            motion:touchAnchorSide="right"/>
+    </Transition>
+
+    <Transition
+        motion:constraintSetStart="@+id/start"
+        motion:constraintSetEnd="@+id/end"
+        motion:duration="1000"
+        motion:motionInterpolator="linear">
+        <OnSwipe
+            motion:touchAnchorId="@+id/motion_button3"
+            motion:onTouchUp="stop"
+            motion:touchAnchorSide="right"/>
+    </Transition>
+
+    <Transition
+        motion:constraintSetStart="@+id/start"
+        motion:constraintSetEnd="@+id/end"
+        motion:duration="1000"
+        motion:motionInterpolator="linear">
+        <OnSwipe
+            motion:touchAnchorId="@+id/motion_button4"
+            motion:onTouchUp="stop"
+            motion:touchAnchorSide="right"/>
+    </Transition>
+
+    <Transition
+        motion:constraintSetStart="@+id/start"
+        motion:constraintSetEnd="@+id/end"
+        motion:duration="1000"
+        motion:motionInterpolator="linear">
+        <OnSwipe
+            motion:touchAnchorId="@+id/motion_button5"
+            motion:onTouchUp="stop"
+            motion:touchAnchorSide="right"/>
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
@@ -19,11 +62,50 @@
             android:id="@+id/motion_button1"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginStart="8dp"
-            motion:layout_constraintTop_toTopOf="parent">
+            android:layout_marginStart="8dp">
             <CustomAttribute
                 motion:attributeName="BackgroundColor"
                 motion:customColorValue="#BC001D" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/motion_button2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp">
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="#0361AC" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/motion_button3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp">
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="#B8A500" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/motion_button4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp">
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="#FF5722" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/motion_button5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp">
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="#01BBD3" />
         </Constraint>
     </ConstraintSet>
 
@@ -33,8 +115,46 @@
             android:id="@+id/motion_button1"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginEnd="8dp"
-            motion:layout_constraintTop_toTopOf="parent">
+            android:layout_marginEnd="8dp">
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="#03A020" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/motion_button2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="8dp">
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="#03A020" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/motion_button3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="8dp">
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="#03A020" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/motion_button4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="8dp">
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="#03A020" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/motion_button5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="8dp">
             <CustomAttribute
                 motion:attributeName="BackgroundColor"
                 motion:customColorValue="#03A020" />
