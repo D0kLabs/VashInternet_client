@@ -1,8 +1,15 @@
 package com.d0klabs.vashinternet_client;
 
+import static com.d0klabs.vashinternet_client.R.id.motion_button1;
+import static com.d0klabs.vashinternet_client.R.id.motion_button2;
+import static com.d0klabs.vashinternet_client.R.id.motion_button3;
+import static com.d0klabs.vashinternet_client.R.id.motion_button4;
+import static com.d0klabs.vashinternet_client.R.id.motion_button5;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -10,10 +17,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.d0klabs.vashinternet_client.databinding.ActivityMainBinding;
-import com.d0klabs.vashinternet_client.ui.calendar.CalendarViewModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -32,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    ClientObserver clientObserver = new ClientObserver(getLifecycle(), ClientObserver.Owner.SERVICE);
+    private Button mot_button1 = findViewById(motion_button1);
+    private Button mot_button2 = findViewById(motion_button2);
+    private Button mot_button3 = findViewById(motion_button3);
+    private Button mot_button4 = findViewById(motion_button4);
+    private Button mot_button5 = findViewById(motion_button5);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        CalendarViewModel calendarViewModel = new ViewModelProvider(this).get(CalendarViewModel.class);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +71,38 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        findViewById(motion_button1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start button1 activity
+            }
+        });
+        findViewById(motion_button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start button2 activity
+            }
+        });
+        findViewById(motion_button3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start button3 activity
+            }
+        });
+        findViewById(motion_button4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start button4 activity
+            }
+        });
+        findViewById(motion_button5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start button5 activity
+            }
+        });
+
     }
 
     @Override
@@ -74,6 +117,10 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    protected void onStop(){
+        super.onStop();
     }
 
 }

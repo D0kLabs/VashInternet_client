@@ -1,7 +1,12 @@
 package com.d0klabs.vashinternet_client.ui.calendar;
 
-public class CalendarMotion {
-    private CalendarViewModel calendarViewModel;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
-    //TODO: А тут писати управління анімацією календаря
+public class CalendarMotion extends Fragment {
+    private CalendarViewModel calendarViewModel;
+    public void onStart() {
+        super.onStart();
+        calendarViewModel = new ViewModelProvider(requireActivity()).get(CalendarViewModel.class);
+    }
 }
