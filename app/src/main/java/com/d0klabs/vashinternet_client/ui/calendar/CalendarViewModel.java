@@ -4,16 +4,17 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class CalendarViewModel extends ViewModel {
-    private MutableLiveData<Boolean> showProgress = new MutableLiveData<>();
+    private MutableLiveData<Boolean> showCalendarBox = new MutableLiveData<>();
 
     //new thread
     public void doSomeThing(){
-        showProgress.postValue(true);
+        showCalendarBox.postValue(true);
     //  ...
-        showProgress.postValue(false);
+        showCalendarBox.postValue(false);
     }
 
     public MutableLiveData<Boolean> getProgressState(){
-        return showProgress;
+
+        return showCalendarBox;
     }
 }
