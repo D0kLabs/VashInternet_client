@@ -23,7 +23,6 @@ public class CalendarViewModel extends ViewModel {
     }
     
     void doAction() {
-        // depending on the action, do necessary business logic calls and update the
         // userLiveData.
     }
     

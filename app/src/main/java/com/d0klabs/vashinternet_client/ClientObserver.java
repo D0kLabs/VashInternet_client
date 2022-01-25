@@ -18,14 +18,19 @@ public class ClientObserver implements LifecycleObserver {
     }
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     void onCreate(){
-            final CalendarViewModel viewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(CalendarViewModel.class);
-            viewModel.getUser().observe((LifecycleOwner) this, new Observer() {
+            final CalendarViewModel calendarViewModel = new ViewModelProvider(ClientObserver.get(CalendarViewModel.class); //F@ #!
+            calendarViewModel.getUser().observe((LifecycleOwner) this, new Observer() {
                 @Override
                 public void onChanged(Object o) {
 
                 }
             });
     }
+
+    private static ViewModelStoreOwner get(Class<CalendarViewModel> calendarViewModelClass) {
+        return calendarViewModelClass;
+    }
+
     enum Owner {
         FRAGMENT, SERVICE
     }

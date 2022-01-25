@@ -1,15 +1,11 @@
 package com.d0klabs.vashinternet_client;
 
-import static com.d0klabs.vashinternet_client.R.id.motion_button1;
-import static com.d0klabs.vashinternet_client.R.id.motion_button2;
-import static com.d0klabs.vashinternet_client.R.id.motion_button3;
-import static com.d0klabs.vashinternet_client.R.id.motion_button4;
-import static com.d0klabs.vashinternet_client.R.id.motion_button5;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -38,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     ClientObserver clientObserver = new ClientObserver(getLifecycle(), ClientObserver.Owner.SERVICE);
-    private Button mot_button1 = findViewById(motion_button1);
-    private Button mot_button2 = findViewById(motion_button2);
-    private Button mot_button3 = findViewById(motion_button3);
-    private Button mot_button4 = findViewById(motion_button4);
-    private Button mot_button5 = findViewById(motion_button5);
+    private Button motion_button1;
+    private Button motion_button2;
+    private Button motion_button3;
+    private Button motion_button4;
+    private Button motion_button5;
 
 
     @Override
@@ -51,9 +47,10 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        findViewsByIds();
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+        binding.appBarMain.fab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Написати ШЕФУ", Snackbar.LENGTH_LONG)
@@ -65,43 +62,13 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_calendar, R.id.nav_instruments, R.id.nav_sklad, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_calendar, R.id.nav_instruments, R.id.nav_sklad)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        findViewById(motion_button1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start button1 activity
-            }
-        });
-        findViewById(motion_button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start button2 activity
-            }
-        });
-        findViewById(motion_button3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start button3 activity
-            }
-        });
-        findViewById(motion_button4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start button4 activity
-            }
-        });
-        findViewById(motion_button5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start button5 activity
-            }
-        });
 
     }
 
@@ -119,8 +86,57 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        motion_button1.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start button1 activity
+                Toast.makeText(getApplicationContext(), "Відкривається вікно понеділка", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        motion_button2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start button2 activity
+                Toast.makeText(getApplicationContext(), "Відкривається вікно вівторка", Toast.LENGTH_SHORT).show();
+            }
+        });
+        motion_button3.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start button3 activity
+                Toast.makeText(getApplicationContext(), "Відкривається вікно середи", Toast.LENGTH_SHORT).show();
+            }
+        });
+        motion_button4.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start button4 activity
+                Toast.makeText(getApplicationContext(), "Відкривається вікно четверга", Toast.LENGTH_SHORT).show();
+            }
+        });
+        motion_button5.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start button5 activity
+                Toast.makeText(getApplicationContext(), "Відкривається вікно дня випивки)", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     protected void onStop(){
         super.onStop();
+    }
+
+    private void findViewsByIds(){
+        motion_button1 = (Button) findViewById(R.id.motion_button1);
+        motion_button2 = (Button) findViewById(R.id.motion_button2);
+        motion_button3 = (Button) findViewById(R.id.motion_button3);
+        motion_button4 = (Button) findViewById(R.id.motion_button4);
+        motion_button5 = (Button) findViewById(R.id.motion_button5);
     }
 
 }
