@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.motion.widget.MotionLayout;
@@ -33,11 +31,6 @@ public class CalendarFragment extends Fragment implements LifecycleFragment {
     private String mParam2;
 
     public static MotionLayout calendarMotion;
-    public Button motion_button1;
-    public Button motion_button2;
-    public Button motion_button3;
-    public Button motion_button4;
-    public Button motion_button5;
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -68,8 +61,14 @@ public class CalendarFragment extends Fragment implements LifecycleFragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        findViewsByIds();
-        motion_button1.setOnClickListener(new View.OnClickListener() {
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+
+
+        /*mbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start button1 activity
@@ -77,40 +76,36 @@ public class CalendarFragment extends Fragment implements LifecycleFragment {
 
             }
         });
-        motion_button2.setOnClickListener(new View.OnClickListener() {
+        mbutton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start button2 activity
                 Toast.makeText(getContext(), "Відкривається вікно вівторка", Toast.LENGTH_SHORT).show();
             }
         });
-        motion_button3.setOnClickListener(new View.OnClickListener() {
+        mbutton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start button3 activity
                 Toast.makeText(getContext(), "Відкривається вікно середи", Toast.LENGTH_SHORT).show();
             }
         });
-        motion_button4.setOnClickListener(new View.OnClickListener() {
+        mbutton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start button4 activity
                 Toast.makeText(getContext(), "Відкривається вікно четверга", Toast.LENGTH_SHORT).show();
             }
         });
-        motion_button5.setOnClickListener(new View.OnClickListener() {
+        mbutton5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start button5 activity
                 Toast.makeText(getContext(), "Відкривається вікно дня випивки)", Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+         */
         return inflater.inflate(R.layout.content_calendar, container, false);
     }
 
@@ -138,12 +133,5 @@ public class CalendarFragment extends Fragment implements LifecycleFragment {
     public boolean isStarted() {
         return false;
     }
-    public void findViewsByIds(){
-        motion_button1 = (Button) motion_button1.findViewById(R.id.motion_button1);
-        motion_button2 = (Button) motion_button2.findViewById(R.id.motion_button2);
-        motion_button3 = (Button) motion_button3.findViewById(R.id.motion_button3);
-        motion_button4 = (Button) motion_button4.findViewById(R.id.motion_button4);
-        motion_button5 = (Button) motion_button5.findViewById(R.id.motion_button5);
 
-    }
 }

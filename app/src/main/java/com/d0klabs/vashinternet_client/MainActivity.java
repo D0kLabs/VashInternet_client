@@ -1,7 +1,6 @@
 package com.d0klabs.vashinternet_client;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -20,7 +19,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 //TODO: Зміни в strings.xml !!!
@@ -36,13 +34,13 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration mAppBarConfiguration;
-    private ActivityMainBinding binding;
-    private Button motion_button1;
-    private Button motion_button2;
-    private Button motion_button3;
-    private Button motion_button4;
-    private Button motion_button5;
+    public AppBarConfiguration mAppBarConfiguration;
+    public ActivityMainBinding binding;
+    public static Button mbutton1;
+    public static Button mbutton2;
+    public static Button mbutton3;
+    public static Button mbutton4;
+    public static Button mbutton5;
 
 
     @Override
@@ -51,18 +49,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
         Intent intent = getIntent();
-        if( intent.getExtras() != null)
-        {
-            String language = intent.getExtras().getString("language"); /*String형*/
 
-            if(language!=null){
-                Locale eg = Locale.ENGLISH;
-                Configuration config = new Configuration( );
-                config.locale = eg;
-                getResources( ).updateConfiguration( config, getResources( ).getDisplayMetrics( ) );
-
-            }
-        }
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
@@ -73,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        mbutton1 = (Button) findViewById(R.id.motion_button1);
+        mbutton2 = (Button) findViewById(R.id.motion_button2);
+        mbutton3 = (Button) findViewById(R.id.motion_button3);
+        mbutton4 = (Button) findViewById(R.id.motion_button4);
+        mbutton5 = (Button) findViewById(R.id.motion_button5);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
