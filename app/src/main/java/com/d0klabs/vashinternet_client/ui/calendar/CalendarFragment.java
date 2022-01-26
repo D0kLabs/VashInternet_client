@@ -84,46 +84,8 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
                 Toast.makeText(getContext(), "Ця херня без кнопки", Toast.LENGTH_SHORT).show();
             }
         });
-
-        /*mbutton1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start button1 activity
-                Toast.makeText(getContext(), "Відкривається вікно понеділка", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-        mbutton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start button2 activity
-                Toast.makeText(getContext(), "Відкривається вікно вівторка", Toast.LENGTH_SHORT).show();
-            }
-        });
-        mbutton3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start button3 activity
-                Toast.makeText(getContext(), "Відкривається вікно середи", Toast.LENGTH_SHORT).show();
-            }
-        });
-        mbutton4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start button4 activity
-                Toast.makeText(getContext(), "Відкривається вікно четверга", Toast.LENGTH_SHORT).show();
-            }
-        });
-        mbutton5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start button5 activity
-                Toast.makeText(getContext(), "Відкривається вікно дня випивки)", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-         */
-        return inflater.inflate(R.layout.content_calendar, container, false);
+        //return inflater.inflate(R.layout.content_calendar, container, false);
+        return root;
     }
 
     @Override
