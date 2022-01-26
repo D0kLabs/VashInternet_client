@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    ClientObserver clientObserver = new ClientObserver(getLifecycle(), ClientObserver.Owner.SERVICE);
     private Button motion_button1;
     private Button motion_button2;
     private Button motion_button3;
@@ -46,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+
         setContentView(binding.getRoot());
         findViewsByIds();
 

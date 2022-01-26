@@ -1,29 +1,41 @@
 package com.d0klabs.vashinternet_client.ui.calendar;
 
-import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ViewModel;
 
-import com.google.firebase.firestore.auth.User;
+import com.d0klabs.vashinternet_client.ClientObserver;
 
 public class CalendarViewModel extends ViewModel {
-    private final MutableLiveData<User> userLiveData = new MutableLiveData<>();
+    public static MutableLiveData<Object> calendarBox = new MutableLiveData<>();
+    public CalendarViewModel(){ //Clear CalendarMotion Fragment
 
-    public LiveData<User> getUser() {
-        return userLiveData;
-    }
-    public final MutableLiveData<Object> calendarBox;
-    public CalendarViewModel(Object a){
-        calendarBox = new MutableLiveData<>();
-        calendarBox.setValue(a);
+
+        calendarBox.setValue(ClientObserver.getData());
+        calendarBox.notify();
     }
 
-    public Object getState(){
+    public static Object getState(){
+
         return calendarBox.getValue();
     }
     
     void doAction() {
         // userLiveData.
+    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    void onCreate(){
+        final ViewModel calendarViewModel = new CalendarViewModel();
+
+        /*calendarViewModel.getData().observe((LifecycleOwner) this, new Observer() {
+            @Override
+            public void onChanged(Object o) {
+
+            }
+        });
+
+         */
     }
     
 }
