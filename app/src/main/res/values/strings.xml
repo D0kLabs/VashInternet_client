@@ -13,4 +13,9 @@
     <string name="menu_calendar">Календар</string>
     <string name="menu_box">Склад</string>
     <string name="menu_instruments">Інструменти</string>
+    <string name="calendar_pn">Понеділок</string>
+    <string name="calendar_vt">Вівторок</string>
+    <string name="calendar_cr">Середа</string>
+    <string name="calendar_cht">Четвер</string>
+    <string name="calendar_pt">П\'ятниця</string>
 </resources>
