@@ -3,23 +3,30 @@ package com.d0klabs.vashinternet_client.ui.calendar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.d0klabs.vashinternet_client.R;
+import com.d0klabs.vashinternet_client.databinding.FragmentHomeBinding;
 import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
+import com.d0klabs.vashinternet_client.databinding.ContentCalendarBinding;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CalendarFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CalendarFragment extends Fragment implements LifecycleFragment {
+public class CalendarFragment<FragmentCalendarBining> extends Fragment implements LifecycleFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,6 +36,8 @@ public class CalendarFragment extends Fragment implements LifecycleFragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private CalendarViewModel calendarViewModel;
+    public ContentCalendarBinding fragmentCalendarBinding;
 
     public static MotionLayout calendarMotion;
 
@@ -66,7 +75,15 @@ public class CalendarFragment extends Fragment implements LifecycleFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-
+       calendarViewModel = new ViewModelProvider(this).get(CalendarViewModel.class);
+        fragmentCalendarBinding = ContentCalendarBinding.inflate(inflater, container, false);
+        View root = fragmentCalendarBinding.getRoot();
+        calendarViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Toast.makeText(getContext(), "Ця херня без кнопки", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         /*mbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
