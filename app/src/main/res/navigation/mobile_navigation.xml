@@ -12,14 +12,19 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.d0klabs.vashinternet_client.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_calendar"
+        android:name="com.d0klabs.vashinternet_client.ui.calendar.CalendarFragment"
+        android:label="@string/menu_calendar"
+        tools:layout="@layout/app_bar_calendar" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.d0klabs.vashinternet_client.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_instruments"
+        android:name="com.d0klabs.vashinternet_client.ui.instruments.InstrumentsFragment"
+        android:label="@string/menu_instruments"
+        tools:layout="@layout/activity_instruments" />
+    <fragment
+        android:id="@+id/nav_sklad"
+        android:name="com.d0klabs.vashinternet_client.ui.sklad.SkladFragment"
+        android:label="@string/menu_box"
+        tools:layout="@layout/fragment_sklad" />
 </navigation>

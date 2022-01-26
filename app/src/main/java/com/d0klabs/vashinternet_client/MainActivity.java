@@ -1,5 +1,7 @@
 package com.d0klabs.vashinternet_client;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 //TODO: Зміни в strings.xml !!!
@@ -45,10 +48,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
+        Intent intent = getIntent();
+        if( intent.getExtras() != null)
+        {
+            String language = intent.getExtras().getString("language"); /*String형*/
 
+            if(language!=null){
+                Locale eg = Locale.ENGLISH;
+                Configuration config = new Configuration( );
+                config.locale = eg;
+                getResources( ).updateConfiguration( config, getResources( ).getDisplayMetrics( ) );
+
+            }
+        }
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
@@ -66,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
         Set<Integer> topLevelDestinations = new HashSet<>();
         topLevelDestinations.add(R.id.nav_home);
         topLevelDestinations.add(R.id.nav_calendar);
+        topLevelDestinations.add(R.id.nav_instruments);
+        topLevelDestinations.add(R.id.nav_sklad);
         mAppBarConfiguration = new AppBarConfiguration.Builder(topLevelDestinations).setDrawerLayout(drawer).build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);

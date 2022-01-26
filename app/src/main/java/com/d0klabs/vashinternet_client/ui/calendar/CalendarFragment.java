@@ -1,4 +1,4 @@
-package com.d0klabs.vashinternet_client;
+package com.d0klabs.vashinternet_client.ui.calendar;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.fragment.app.Fragment;
 
+import com.d0klabs.vashinternet_client.R;
 import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
 
