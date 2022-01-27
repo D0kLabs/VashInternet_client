@@ -3,10 +3,8 @@ package com.d0klabs.vashinternet_client.ui.calendar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,11 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.d0klabs.vashinternet_client.R;
-import com.d0klabs.vashinternet_client.databinding.FragmentHomeBinding;
+import com.d0klabs.vashinternet_client.databinding.ContentCalendarBinding;
 import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
-import com.d0klabs.vashinternet_client.databinding.ContentCalendarBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,6 +80,7 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
                 Toast.makeText(getContext(), "Ця херня без кнопки", Toast.LENGTH_SHORT).show();
             }
         });
+
         //return inflater.inflate(R.layout.content_calendar, container, false);
         return root;
     }

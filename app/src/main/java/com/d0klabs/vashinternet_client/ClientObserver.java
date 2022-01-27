@@ -1,9 +1,11 @@
 package com.d0klabs.vashinternet_client;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
 
@@ -25,12 +27,20 @@ public class ClientObserver implements LifecycleObserver {
 
 
     enum Owner implements ViewModelStoreOwner {
-        FRAGMENT, SERVICE;
+        ACTIVITY, FRAGMENT, PROCESS, SERVICE;
 
         @NonNull
         @Override
         public ViewModelStore getViewModelStore() {
             return null;
         }
+    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    void onCreate() {
+        //Log.d(«Observer», owner + «: onCreate»);
+    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    void onStop() {
+        //Log.d(«Observer», owner + «: onStop»);
     }
 }

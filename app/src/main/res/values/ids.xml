@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="login_uid" type="id" />
+    <item name="login_pwd" type="id" />
+    <item name="login_submit" type="id" />
+    <item name="clear_text_submit" type="id" />
+</resources>

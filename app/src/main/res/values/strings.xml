@@ -3,7 +3,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Ваш інтернет</string>
-    <string name="nav_header_subtitle">Ініціали користувача</string> // TODO: Змінити на змінну назви користувача
+    <string name="nav_header_subtitle">Ініціали користувача</string>
+    // TODO: Змінити на змінну назви користувача
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Налаштування</string>
 
@@ -18,4 +19,6 @@
     <string name="calendar_cr">Середа</string>
     <string name="calendar_cht">Четвер</string>
     <string name="calendar_pt">П\'ятниця</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

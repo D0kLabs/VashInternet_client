@@ -1,15 +1,8 @@
 package com.d0klabs.vashinternet_client.ui.calendar;
 
-import android.widget.Toast;
-
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ViewModel;
-
-import com.d0klabs.vashinternet_client.ClientObserver;
 
 public class CalendarViewModel extends ViewModel {
     public static MutableLiveData<String> calendarBox;
@@ -24,6 +17,9 @@ public class CalendarViewModel extends ViewModel {
     }
     public LiveData<String> getText()
     {
+        if (calendarBox == null){
+            calendarBox = new MutableLiveData<String>();
+        }
         return calendarBox;
     }
     void doAction() {
