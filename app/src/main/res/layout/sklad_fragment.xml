@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/nav_sklad"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.sklad.SkladFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/skladRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/skladSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</FrameLayout>
