@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_instrumentsCL"
+    android:id="@+id/nav_instruments"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -22,9 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/toolbarSklad"
-        app:layout_constraintBottom_toBottomOf="@id/activity_instrumentsCL"
-        app:layout_constraintRight_toRightOf="@id/activity_instrumentsCL"
-        app:layout_constraintLeft_toLeftOf="@id/activity_instrumentsCL"
+        app:layout_constraintBottom_toBottomOf="@id/nav_instruments"
+        app:layout_constraintRight_toRightOf="@id/nav_instruments"
+        app:layout_constraintLeft_toLeftOf="@id/nav_instruments"
         >
 
     </androidx.recyclerview.widget.RecyclerView>
