@@ -24,12 +24,12 @@ import com.google.android.gms.common.api.internal.LifecycleFragment;
  */
 public class CalendarFragment<FragmentCalendarBining> extends Fragment implements LifecycleFragment {
 
-    // TODO: Rename parameter arguments, choose names that match
+    // Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+    // Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private CalendarViewModel calendarViewModel;
@@ -49,7 +49,7 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
      * @param param2 Parameter 2.
      * @return A new instance of fragment CalendarFragment.
      */
-    // TODO: Rename and change types and number of parameters
+    // Rename and change types and number of parameters
     public static CalendarFragment newInstance(String param1, String param2) {
         CalendarFragment fragment = new CalendarFragment();
         Bundle args = new Bundle();

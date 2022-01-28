@@ -19,7 +19,6 @@
     <string name="calendar_cr">Середа</string>
     <string name="calendar_cht">Четвер</string>
     <string name="calendar_pt">П\'ятниця</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Тут має бути щоденний статус завдань</string>
     <string name="action_exit">Вихід</string>
 </resources>

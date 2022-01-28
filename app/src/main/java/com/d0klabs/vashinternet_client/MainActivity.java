@@ -22,16 +22,8 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.HashSet;
 import java.util.Set;
 
-//TODO: Зміни в strings.xml !!!
 
-//TODO: ЗМІНИ В nav_header_main.xml :
-//TODO: Змінити android:background="@drawable/side_nav_bar" на мотоцикл
-//TODO: Змінити app:srcCompat="@mipmap/ic_launcher_round" на фотку користувача
-
-//TODO: Змінити в fragment_home.xml на перелік тасків на тиждень
-//TODO: Змінити activity_main_drawer.xml меню до переліку пунктів
 //TODO: по натисканню на меню Календар має відкритися фрейм з календарем для вибору дат. В фреймі має бути кнопка потчної дати.
-//TODO: в content_calendar.xml відобразити набір даних на кнопках. Підписувати який це день тижня і дата. Час вказувати по тасках.
 
 public class MainActivity extends AppCompatActivity {
 
