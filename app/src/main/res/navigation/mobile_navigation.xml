@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/nav_instruments"
-        android:name="com.d0klabs.vashinternet_client.ui.instruments.InstrumentsFragment"
+        android:name="com.d0klabs.vashinternet_client.ui.instruments.instrumentsFragment"
         android:label="@string/menu_instruments"
-        tools:layout="@layout/activity_instruments" />
+        tools:layout="@layout/instruments_fragment" />
     <fragment
         android:id="@+id/nav_sklad"
         android:name="com.d0klabs.vashinternet_client.ui.sklad.SkladFragment"

@@ -19,10 +19,16 @@ public class Items {
     public static List<android.widget.Button> recyclerItemList = new List<Button>() {
         @Override
         public int size() {
-            if(!recyclerItemList.isEmpty()){
+            if (!recyclerItemList.isEmpty()) {
+                if (recyclerItemList == null) {
+                    recyclerItemList.add(0, SkladRecycler.zero);
+                    return 0;
+                }
+                recyclerItemList.add(0, SkladRecycler.zero);
+                return 0;
+            } else {
                 return recyclerItemList.size();
             }
-            else return 0;
         }
 
         @Override
