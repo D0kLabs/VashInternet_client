@@ -1,39 +1,17 @@
 package com.d0klabs.vashinternet_client.ui;
 
+import android.widget.Button;
 import android.widget.ListAdapter;
 
+import com.d0klabs.vashinternet_client.ui.sklad.Items;
+import com.d0klabs.vashinternet_client.ui.sklad.SkladRecycler;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import static com.d0klabs.vashinternet_client.ui.sklad.Items.recyclerItemList;
+
 public class ItemsBox {
-    public static List<ItemsBox> recyclerList;
     public ListAdapter listAdapter;
     public androidx.recyclerview.widget.ListAdapter recyclerListAdapter;
-
-    public static List<ItemsBox> getRecyclerList() {
-        return recyclerList;
-    }
-
-    public static void setRecyclerList(List<ItemsBox> recyclerList) {
-        ItemsBox.recyclerList = recyclerList;
-    }
-
-
-    public androidx.recyclerview.widget.ListAdapter getRecyclerListAdapter() {
-
-        return recyclerListAdapter;
-    }
-
-    public void setRecyclerListAdapter(androidx.recyclerview.widget.ListAdapter recyclerListAdapter) {
-        this.recyclerListAdapter = recyclerListAdapter;
-    }
-
-
-    public ItemsBox(int id, List<String> description ) {
-        recyclerList.add(id, (ItemsBox) description);
-
-    }
-
-
-
-
 }

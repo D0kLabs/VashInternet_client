@@ -46,7 +46,7 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
         mViewModel = new ViewModelProvider(this).get(SkladViewModel.class);
         skladFragmentBinding = SkladFragmentBinding.inflate(inflater, container,false);
         View root = skladFragmentBinding.getRoot();
-        skladContext = new SkladRecycler(ItemsBox.recyclerList,skladFragmentBinding.skladRecyclerView.getContext());
+        skladContext = new SkladRecycler(Items.recyclerItemList,skladFragmentBinding.skladRecyclerView.getContext());
 
         layoutManager = new LinearLayoutManager(getActivity());
         skladFragmentBinding.skladRecyclerView.setLayoutManager(layoutManager);
@@ -55,7 +55,6 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
         );
         skladFragmentBinding.skladRecyclerView.addItemDecoration(dividerItemDecoration);
         skladFragmentBinding.skladRecyclerView.setAdapter(skladContext);
-        //TODO: Need ViewHolder connection!
 
         //return inflater.inflate(R.layout.sklad_fragment, container, false);
         return root;
