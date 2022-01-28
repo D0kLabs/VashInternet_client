@@ -1,6 +1,5 @@
 package com.d0klabs.vashinternet_client.ui.sklad;
 
-import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
@@ -9,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.d0klabs.vashinternet_client.R;
 import com.d0klabs.vashinternet_client.databinding.SkladFragmentBinding;
 import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
@@ -27,8 +26,8 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
     private String[] item;
     private String text, name;
     private View view;
-    private RecyclerView skladRecView;
-    private RecyclerView.LayoutManager layoutManager;
+    public RecyclerView.Adapter skladContext;
+    private LinearLayoutManager layoutManager;
     private SkladFragmentBinding skladFragmentBinding;
 
     public static SkladFragment newInstance() {
@@ -43,10 +42,20 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         mViewModel = new ViewModelProvider(this).get(SkladViewModel.class);
         skladFragmentBinding = SkladFragmentBinding.inflate(inflater, container,false);
         View root = skladFragmentBinding.getRoot();
+        skladContext = new SkladRecycler(skladFragmentBinding.skladRecyclerView.getContext());
+
+        layoutManager = new LinearLayoutManager(getActivity());
+        skladFragmentBinding.skladRecyclerView.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
+                skladFragmentBinding.skladRecyclerView.getContext(), layoutManager.getOrientation()
+        );
+        skladFragmentBinding.skladRecyclerView.addItemDecoration(dividerItemDecoration);
+        skladFragmentBinding.skladRecyclerView.setAdapter(skladContext);
+        //TODO: Need ViewHolder connection!
+
         //return inflater.inflate(R.layout.sklad_fragment, container, false);
         return root;
     }

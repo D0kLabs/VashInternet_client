@@ -1,36 +1,28 @@
 package com.d0klabs.vashinternet_client.ui.sklad;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.d0klabs.vashinternet_client.R;
 
 public class SkladRecycler extends RecyclerView.Adapter<SkladRecycler.ViewHolder> {
 
-    private final LayoutInflater inflater;
+    private final Context context;
+    //ArrayList<Itm> receclerItems = new ArrayList<Itm>();
 
     public SkladRecycler(Context context) {
-        this.inflater = LayoutInflater.from(context);
+        this.context = context;
     }
     @Override
     public SkladRecycler.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.sklad_items, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sklad_items, parent, false);
         return new ViewHolder(view);
     }
 
@@ -49,13 +41,12 @@ public class SkladRecycler extends RecyclerView.Adapter<SkladRecycler.ViewHolder
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        //final ImageView flagView;
-        //final TextView nameView, capitalView;
-       public ViewHolder(View view){
-            super(view);
-            //flagView = view.findViewById(R.id.flag);
-           // nameView = view.findViewById(R.id.name);
-            //capitalView = view.findViewById(R.id.capital);
+        Button first;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            first = itemView.findViewById(R.id.recyclerItem1);
+
         }
     }
 }
+
