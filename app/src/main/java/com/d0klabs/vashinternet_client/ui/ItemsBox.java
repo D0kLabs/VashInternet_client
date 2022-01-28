@@ -2,9 +2,21 @@ package com.d0klabs.vashinternet_client.ui;
 
 import android.widget.ListAdapter;
 
+import java.util.List;
+
 public class ItemsBox {
+    public static List<ItemsBox> recyclerList;
     public ListAdapter listAdapter;
     public androidx.recyclerview.widget.ListAdapter recyclerListAdapter;
+
+    public static List<ItemsBox> getRecyclerList() {
+        return recyclerList;
+    }
+
+    public static void setRecyclerList(List<ItemsBox> recyclerList) {
+        ItemsBox.recyclerList = recyclerList;
+    }
+
 
     public androidx.recyclerview.widget.ListAdapter getRecyclerListAdapter() {
 
@@ -16,18 +28,10 @@ public class ItemsBox {
     }
 
 
-    public ItemsBox(ListAdapter listAdapter) {
-        this.listAdapter = listAdapter;
-    }
+    public ItemsBox(int id, List<String> description ) {
+        recyclerList.add(id, (ItemsBox) description);
 
-    public ListAdapter getListAdapter() {
-        return listAdapter;
     }
-
-    public void setListAdapter(ListAdapter listAdapter) {
-        this.listAdapter = listAdapter;
-    }
-
 
 
 

@@ -10,14 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.d0klabs.vashinternet_client.R;
+import com.d0klabs.vashinternet_client.ui.ItemsBox;
+
+import java.util.List;
 
 public class SkladRecycler extends RecyclerView.Adapter<SkladRecycler.ViewHolder> {
 
-    private final Context context;
+    Context context;
+    private final List<ItemsBox> list;
+    private final skladRecyclerPref pskladRecyclerPref;
     //ArrayList<Itm> receclerItems = new ArrayList<Itm>();
 
-    public SkladRecycler(Context context) {
+    public SkladRecycler(List<ItemsBox> list, Context context) {
         this.context = context;
+        pskladRecyclerPref = new skladRecyclerPref(context);
+        this.list = list;
     }
     @Override
     public SkladRecycler.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -28,6 +35,7 @@ public class SkladRecycler extends RecyclerView.Adapter<SkladRecycler.ViewHolder
 
     @Override
     public void onBindViewHolder(SkladRecycler.ViewHolder holder, int position) {
+        //holder.first.setText((CharSequence) list.get(list.size()));
 
         //holder.flagView.setImageResource(state.getFlagResource());
         //holder.nameView.setText(state.getName());
@@ -36,7 +44,7 @@ public class SkladRecycler extends RecyclerView.Adapter<SkladRecycler.ViewHolder
 
     @Override
     public int getItemCount() { //WHT #! there no adapters that calculate Items, so it will work by other fx. 3 ar s ItemCount 4 ItemAdapter!
-        return 0;
+        return list.size();
     }
 
 

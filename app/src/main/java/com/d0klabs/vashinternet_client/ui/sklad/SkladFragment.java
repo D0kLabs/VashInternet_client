@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.d0klabs.vashinternet_client.databinding.SkladFragmentBinding;
+import com.d0klabs.vashinternet_client.ui.ItemsBox;
 import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
 
@@ -45,7 +46,7 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
         mViewModel = new ViewModelProvider(this).get(SkladViewModel.class);
         skladFragmentBinding = SkladFragmentBinding.inflate(inflater, container,false);
         View root = skladFragmentBinding.getRoot();
-        skladContext = new SkladRecycler(skladFragmentBinding.skladRecyclerView.getContext());
+        skladContext = new SkladRecycler(ItemsBox.recyclerList,skladFragmentBinding.skladRecyclerView.getContext());
 
         layoutManager = new LinearLayoutManager(getActivity());
         skladFragmentBinding.skladRecyclerView.setLayoutManager(layoutManager);
