@@ -11,7 +11,7 @@
         android:id="@+id/skladRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="fill_vertical"
+        android:layout_gravity="center_vertical"
         android:clickable="true"
         android:contextClickable="true"
         android:isScrollContainer="true"
@@ -25,7 +25,8 @@
         android:scrollbarStyle="insideInset"
         android:scrollbars="vertical"
         android:verticalScrollbarPosition="right"
-        tools:listitem="@layout/sklad_items" />
+        android:visibility="visible"
+        tools:visibility="visible" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/skladSearch"

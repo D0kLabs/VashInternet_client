@@ -5,8 +5,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.d0klabs.vashinternet_client.R;
-import com.d0klabs.vashinternet_client.ui.ItemsBox;
+import com.d0klabs.vashinternet_client.MainActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -21,10 +20,10 @@ public class Items {
         public int size() {
             if (!recyclerItemList.isEmpty()) {
                 if (recyclerItemList == null) {
-                    recyclerItemList.add(0, SkladRecycler.zero);
+                    recyclerItemList.add(0, MainActivity.zero);
                     return 0;
                 }
-                recyclerItemList.add(0, SkladRecycler.zero);
+                recyclerItemList.add(0, MainActivity.zero);
                 return 0;
             } else {
                 return recyclerItemList.size();
@@ -34,7 +33,7 @@ public class Items {
         @Override
         public boolean isEmpty() {
             if(recyclerItemList == null){
-                recyclerItemList.add(SkladRecycler.zero);
+                recyclerItemList.add(MainActivity.zero);
                 return true;
             }
             else {
@@ -73,7 +72,10 @@ public class Items {
             //On click and by form ... or by webface
             //before add, review params of button!
             //there business constuctor must be!
-            return false;
+            if (recyclerItemList == null){
+                recyclerItemList.add(recyclerItemList.size()+1,button);
+                return true;
+            } else return  false;
         }
 
         @Override
@@ -172,7 +174,7 @@ public class Items {
 
     public static void initList(){
 
-            recyclerItemList.add(0, SkladRecycler.zero);
+            recyclerItemList.add(0, MainActivity.zero);
 
     }
 }

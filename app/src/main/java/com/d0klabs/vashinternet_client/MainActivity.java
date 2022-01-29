@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public static Button mbutton3;
     public static Button mbutton4;
     public static Button mbutton5;
+    public static android.widget.Button zero;
 
 
     @Override
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         mbutton3 = (Button) findViewById(R.id.motion_button3);
         mbutton4 = (Button) findViewById(R.id.motion_button4);
         mbutton5 = (Button) findViewById(R.id.motion_button5);
+        zero = findViewById(R.id.recyclerItem0);
         Items.initList(); //MOVE TO onCREATE on Main
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
