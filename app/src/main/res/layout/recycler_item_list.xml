@@ -4,6 +4,20 @@
     android:id="@+id/recycleritemlist"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
+    android:contextClickable="true"
+    android:isScrollContainer="true"
+    android:nestedScrollingEnabled="true"
+    android:overScrollMode="always"
+    android:persistentDrawingCache="all"
+    android:scrollIndicators="right"
+    android:scrollbarAlwaysDrawHorizontalTrack="false"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:scrollbarSize="10dp"
+    android:scrollbarStyle="insideInset"
+    android:scrollbars="vertical"
+    android:verticalScrollbarPosition="right"
+    android:visibility="visible"
     android:orientation="vertical">
 
 </LinearLayout>

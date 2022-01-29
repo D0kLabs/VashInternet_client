@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,18 +25,13 @@ import java.util.ArrayList;
 public class SkladFragment extends Fragment implements LifecycleFragment {
 
     private SkladViewModel mViewModel;
-    public static RecyclerView.Adapter skladAdapter;
     public static LinearLayoutManager layoutManager;
     public static SkladFragmentBinding skladFragmentBinding;
-    public static RecyclerView.LayoutManager skladRecycleLayoutManager;
-    public static RecyclerView.ViewHolder viewHolder;
     ArrayList<Button> recyclerItemList;
     public static RecyclerView recyclerView;
     //From simple android ...
-    protected RecyclerView mRecyclerView;
     protected CustomAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
-    private static final String TAG = "RecyclerViewFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
     private static final int DATASET_COUNT = 60;
@@ -49,9 +43,6 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
     }
 
     protected LayoutManagerType mCurrentLayoutManagerType;
-
-    protected RadioButton mLinearLayoutRadioButton;
-    protected RadioButton mGridLayoutRadioButton;
 
 
     public static SkladFragment newInstance() {
@@ -69,18 +60,11 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
                              @Nullable Bundle savedInstanceState) {
         mViewModel = new ViewModelProvider(this).get(SkladViewModel.class);
         View rootView = inflater.inflate(R.layout.sklad_fragment, container, false);
-        rootView.setTag(TAG);
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.skladRecyclerView);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.skladRecyclerView);
         //skladFragmentBinding = SkladFragmentBinding.inflate(inflater,container,false);
-        //skladAdapter = new Adapter(Items.recyclerItemList);
         mLayoutManager = new LinearLayoutManager(getActivity());
 
         mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-
-        //SkladFragment.recyclerView.setAdapter(skladAdapter);
-
-        //SkladFragment.layoutManager = new LinearLayoutManager(requireContext());
-        //SkladFragment.recyclerView.setLayoutManager(layoutManager);
         if (savedInstanceState != null) {
             // Restore saved layout manager type.
             mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
@@ -89,16 +73,10 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
         mAdapter = new CustomAdapter(recyclerItemList);
-        // Set CustomAdapter as the adapter for RecyclerView.
-        mRecyclerView.setAdapter(mAdapter);
-        // END_INCLUDE(initializeRecyclerView)
-
-
+        recyclerView.setAdapter(mAdapter);
 
         return rootView;
-        //return inflater.inflate(R.layout.sklad_fragment, container, false);
     }
-
 
     @Override
     public <T extends LifecycleCallback> T getCallbackOrNull(String s, Class<T> aClass) {
@@ -125,20 +103,12 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
         return false;
     }
 
-    /*public static class itemHolder extends RecyclerView.ViewHolder {
-        public itemHolder(View fragmentView) {
-            super(fragmentView);
-            Items.initList(fragmentView.getContext());
-        }
-    }
-
-     */
     public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
         int scrollPosition = 0;
 
         // If a layout manager has already been set, get current scroll position.
-        if (mRecyclerView.getLayoutManager() != null) {
-            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
+        if (recyclerView.getLayoutManager() != null) {
+            scrollPosition = ((LinearLayoutManager) recyclerView.getLayoutManager())
                     .findFirstCompletelyVisibleItemPosition();
         }
 
@@ -156,8 +126,8 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
                 mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
         }
 
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.scrollToPosition(scrollPosition);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.scrollToPosition(scrollPosition);
     }
 
     @Override
