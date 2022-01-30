@@ -111,7 +111,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public int getItemCount() {
 
         if (hasLoadButton) {
-            return mDataSet.size();
+            return mDataSet.size(); //+1
         } else {
             return mDataSet.size();
         }
