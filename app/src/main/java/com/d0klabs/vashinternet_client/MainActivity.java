@@ -15,6 +15,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.d0klabs.vashinternet_client.databinding.ActivityMainBinding;
+import com.d0klabs.vashinternet_client.ui.sklad.Items;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public static Button mbutton4;
     public static Button mbutton5;
     public static android.widget.Button zero;
+    public static FloatingActionButton skladAddButton;
 
 
     @Override
@@ -59,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         mbutton4 = (Button) findViewById(R.id.motion_button4);
         mbutton5 = (Button) findViewById(R.id.motion_button5);
         zero = findViewById(R.id.recyclerItem0);
+        //skladAddButton = (FloatingActionButton) findViewById(R.id.floatingRecycleAddButton);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each

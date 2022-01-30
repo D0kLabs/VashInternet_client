@@ -21,4 +21,6 @@
     <string name="calendar_pt">П\'ятниця</string>
     <string name="hello_blank_fragment">Тут має бути щоденний статус завдань</string>
     <string name="action_exit">Вихід</string>
+    <string name="t0button">0 button set ... OK</string>
+    <string name="mAddBtn">manuallyAddedButton</string>
 </resources>

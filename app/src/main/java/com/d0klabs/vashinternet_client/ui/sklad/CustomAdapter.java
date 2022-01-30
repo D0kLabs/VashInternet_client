@@ -1,5 +1,6 @@
 package com.d0klabs.vashinternet_client.ui.sklad;
 
+import android.content.ClipData;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,6 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
 
-    private ArrayList<Button> mDataSet;
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
     /**
@@ -49,7 +49,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
     public CustomAdapter(ArrayList<Button> dataSet) {
-        mDataSet = dataSet;
+        Items.recyclerItemList = dataSet;
     }
 
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
@@ -72,7 +72,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getLinearLayout().setId(mDataSet.get(0).getId());
+        viewHolder.getLinearLayout().setId(Items.recyclerItemList.get(0).getId());
                 //setText(mDataSet[position]);
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
@@ -80,12 +80,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        if (mDataSet == null) {
+        if (Items.recyclerItemList == null) {
             //called on creation Recycler. STAY WARNING meaning !!!
             return 0;
         } else {
-            mDataSet = Items.recyclerItemList;
-            return mDataSet.size();
+            return Items.recyclerItemList.size();
         }
     }
 }

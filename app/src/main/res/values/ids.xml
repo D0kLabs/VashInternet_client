@@ -4,5 +4,4 @@
     <item name="login_pwd" type="id" />
     <item name="login_submit" type="id" />
     <item name="clear_text_submit" type="id" />
-    <item name="recyclerItem0" type="id" />
 </resources>

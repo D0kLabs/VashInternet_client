@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,10 +16,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.d0klabs.vashinternet_client.MainActivity;
 import com.d0klabs.vashinternet_client.R;
 import com.d0klabs.vashinternet_client.databinding.SkladFragmentBinding;
 import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -30,12 +33,13 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
     ArrayList<Button> recyclerItemList;
     public static RecyclerView recyclerView;
     //From simple android ...
-    protected CustomAdapter mAdapter;
+    public static CustomAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
     private static final int DATASET_COUNT = 60;
     protected String[] mDataset;
+
 
     private enum LayoutManagerType {
         GRID_LAYOUT_MANAGER,
@@ -74,7 +78,15 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
 
         mAdapter = new CustomAdapter(recyclerItemList);
         recyclerView.setAdapter(mAdapter);
+        MainActivity.skladAddButton = rootView.findViewById(R.id.floatingRecycleAddButton);
 
+        MainActivity.skladAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Items.createAndAddNewButton(getContext());
+                Toast.makeText(getContext(), "Додано новий елемент списку", Toast.LENGTH_SHORT).show();
+            }
+        });
         return rootView;
     }
 
@@ -117,10 +129,6 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
                 mLayoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);
                 mCurrentLayoutManagerType = LayoutManagerType.GRID_LAYOUT_MANAGER;
                 break;
-            case LINEAR_LAYOUT_MANAGER:
-                mLayoutManager = new LinearLayoutManager(getActivity());
-                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-                break;
             default:
                 mLayoutManager = new LinearLayoutManager(getActivity());
                 mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
@@ -142,7 +150,8 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
      * from a local content provider or remote server.
      */
     private void initDataset() {
-        Items.initList(getContext());
+        Items.initList(requireContext());
+        Toast.makeText(getContext(), "Ініціалізовано кнопки", Toast.LENGTH_SHORT).show();
         mDataset = new String[DATASET_COUNT];
         for (int i = 0; i < DATASET_COUNT; i++) {
 
