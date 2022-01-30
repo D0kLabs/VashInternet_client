@@ -148,7 +148,6 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
      */
     private void initDataset() {
         Items.recyclerItemList = new ArrayList<Button>();
-        Items.initList();
         Toast.makeText(getContext(), "Ініціалізовано кнопки", Toast.LENGTH_SHORT).show();
     }
 }

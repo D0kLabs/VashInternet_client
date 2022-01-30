@@ -5,6 +5,7 @@
     android:id="@id/nav_sklad"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.sklad.SkladFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -17,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/recycler_item_list"
-        tools:visibility="visible" >
+        tools:visibility="visible">
 
     </androidx.recyclerview.widget.RecyclerView>
 
