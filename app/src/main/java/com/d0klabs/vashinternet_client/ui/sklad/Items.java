@@ -1,16 +1,19 @@
 package com.d0klabs.vashinternet_client.ui.sklad;
 
 import android.content.Context;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.d0klabs.vashinternet_client.MainActivity;
 import com.d0klabs.vashinternet_client.R;
 
 import java.util.ArrayList;
 
 public class Items {
     public static ArrayList<Button> recyclerItemList;
+    public static ArrayAdapter recyclerItemAdapter;
     public static int index;
     public String name;
     public Context context;
@@ -18,17 +21,17 @@ public class Items {
 
     public Items(Context context) {
         recyclerItemList = new ArrayList<Button>();
+        //TODO: adapter impl!!!
 
     }
 
-    public static void initList(Context context){
-        initButton = new Button(context);
+    public static void initList(){
+        initButton = MainActivity.zero;
         index=0;
-        initButton.setId(R.id.recyclerItem0);
-        initButton.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
 
         recyclerItemList = new ArrayList<Button>();
-        recyclerItemList.add(0,initButton); //<
+        recyclerItemList.add(0,initButton);
+        //SkladFragment.mAdapter.notifyItemInserted(0);//<
 
     }
     public static void createAndAddNewButton(Context context){
@@ -47,5 +50,7 @@ public class Items {
         int insertIndex = index;
         SkladFragment.mAdapter.notifyItemInserted(insertIndex);
     }
+
+
 }
 

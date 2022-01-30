@@ -148,7 +148,7 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
      * from a local content provider or remote server.
      */
     private void initDataset() {
-        mViewModel.init();
+        Items.initList();
         Toast.makeText(getContext(), "Ініціалізовано кнопки", Toast.LENGTH_SHORT).show();
     }
 }
