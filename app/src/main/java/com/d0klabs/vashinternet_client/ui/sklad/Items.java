@@ -28,10 +28,7 @@ public class Items {
     public static void initList(){
         initButton = MainActivity.zero;
         index=0;
-
-        recyclerItemList = new ArrayList<Button>();
         recyclerItemList.add(0,initButton);
-        //SkladFragment.mAdapter.notifyItemInserted(0);//<
 
     }
     public static void createAndAddNewButton(Context context){

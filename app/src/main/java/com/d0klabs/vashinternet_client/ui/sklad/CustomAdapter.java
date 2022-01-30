@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +14,7 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
+    private final ArrayList<Button> mDataSet;
 
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
@@ -22,7 +22,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final LinearLayout linearLayout;
+        private final android.widget.Button recycleButton;
 
         public ViewHolder(View v) {
             super(v);
@@ -33,11 +33,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
                 }
             });
-            linearLayout = (LinearLayout) v.findViewById(R.id.recycleritemlist);
+            recycleButton = (Button) v.findViewById(R.id.recyclerItem0);
         }
 
-        public LinearLayout getLinearLayout() {
-            return linearLayout;
+        public Button getButton(int pos) {
+
+            return recycleButton;
         }
     }
     // END_INCLUDE(recyclerViewSampleViewHolder)
@@ -48,7 +49,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
     public CustomAdapter(ArrayList<Button> dataSet) {
-        Items.recyclerItemList = dataSet;
+        mDataSet = dataSet;
     }
 
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
@@ -71,7 +72,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getLinearLayout().setId(Items.recyclerItemList.get(position).getId());
+        //viewHolder.getLinearLayout().setId(Items.recyclerItemList.get(position).getId());
+        viewHolder.getButton(position);
+        //viewHolder.itemView.setId(Items.recyclerItemList.get(position).getId());
+
 
                 //setText(mDataSet[position]);
     }
@@ -80,11 +84,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        if (Items.recyclerItemList == null) {
-            //called on creation Recycler. STAY WARNING meaning !!!
-            return 0; //TODO: need init recyclerItemList
-        } else {
-            return Items.recyclerItemList.size();
-        }
+        return mDataSet.size();
     }
 }

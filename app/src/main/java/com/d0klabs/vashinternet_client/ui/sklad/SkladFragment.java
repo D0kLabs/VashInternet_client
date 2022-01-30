@@ -29,7 +29,6 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
     private SkladViewModel mViewModel;
     public static LinearLayoutManager layoutManager;
     public static SkladFragmentBinding skladFragmentBinding;
-    ArrayList<Button> recyclerItemList;
     public static RecyclerView recyclerView;
     //From simple android ...
     public static CustomAdapter mAdapter;
@@ -73,8 +72,8 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
                     .getSerializable(KEY_LAYOUT_MANAGER);
         }
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
-
-        mAdapter = new CustomAdapter(recyclerItemList);
+        Items.initList();
+        mAdapter = new CustomAdapter(Items.recyclerItemList);
         recyclerView.setAdapter(mAdapter);
         MainActivity.skladAddButton = rootView.findViewById(R.id.floatingRecycleAddButton);
 
@@ -148,6 +147,7 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
      * from a local content provider or remote server.
      */
     private void initDataset() {
+        Items.recyclerItemList = new ArrayList<Button>();
         Items.initList();
         Toast.makeText(getContext(), "Ініціалізовано кнопки", Toast.LENGTH_SHORT).show();
     }
