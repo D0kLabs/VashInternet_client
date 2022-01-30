@@ -21,7 +21,6 @@ import com.d0klabs.vashinternet_client.R;
 import com.d0klabs.vashinternet_client.databinding.SkladFragmentBinding;
 import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -38,7 +37,6 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
     private static final int DATASET_COUNT = 60;
-    protected String[] mDataset;
 
 
     private enum LayoutManagerType {
@@ -150,12 +148,7 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
      * from a local content provider or remote server.
      */
     private void initDataset() {
-        Items.initList(requireContext());
+        mViewModel.init();
         Toast.makeText(getContext(), "Ініціалізовано кнопки", Toast.LENGTH_SHORT).show();
-        mDataset = new String[DATASET_COUNT];
-        for (int i = 0; i < DATASET_COUNT; i++) {
-
-            mDataset[i] = "This is element #" + i;
-        }
     }
 }

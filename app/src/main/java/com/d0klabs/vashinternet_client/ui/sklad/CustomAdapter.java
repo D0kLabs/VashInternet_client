@@ -1,6 +1,5 @@
 package com.d0klabs.vashinternet_client.ui.sklad;
 
-import android.content.ClipData;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +15,7 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
+    public static ViewHolder holder;
 
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
@@ -72,7 +72,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getLinearLayout().setId(Items.recyclerItemList.get(0).getId());
+        viewHolder.getLinearLayout().setId(Items.recyclerItemList.get(position).getId());
+        holder = viewHolder;
                 //setText(mDataSet[position]);
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
@@ -82,7 +83,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public int getItemCount() {
         if (Items.recyclerItemList == null) {
             //called on creation Recycler. STAY WARNING meaning !!!
-            return 0;
+            return 0; //TODO: need init recyclerItemList
         } else {
             return Items.recyclerItemList.size();
         }

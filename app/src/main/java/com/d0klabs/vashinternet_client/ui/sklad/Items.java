@@ -16,30 +16,28 @@ public class Items {
     public Context context;
     public static android.widget.Button initButton;
 
-    public Items(String sysname, Context context) {
+    public Items(Context context) {
         recyclerItemList = new ArrayList<Button>();
 
     }
 
-    public static Button initList(Context context){
+    public static void initList(Context context){
         initButton = new Button(context);
         index=0;
         initButton.setId(R.id.recyclerItem0);
-        initButton.setText(R.string.t0button);
         initButton.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
-        initButton.setEnabled(true);
 
         recyclerItemList = new ArrayList<Button>();
-        recyclerItemList.add(initButton); //<
-        return initButton;
+        recyclerItemList.add(0,initButton); //<
 
     }
     public static void createAndAddNewButton(Context context){
-        android.widget.Button addButton = initList(context);
+        android.widget.Button addButton = new Button(context);
         addButton.setId(Button.generateViewId());
         addButton.setText(R.string.mAddBtn);
         index++;
         addButton.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
+
         recyclerItemList.add(index, addButton);
         SkladFragment.mAdapter.notifyItemInserted(index);
 
