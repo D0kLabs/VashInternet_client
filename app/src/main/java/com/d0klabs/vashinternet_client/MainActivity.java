@@ -1,6 +1,7 @@
 package com.d0klabs.vashinternet_client;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static Button mbutton5;
     public static android.widget.Button zero;
     public static FloatingActionButton skladAddButton;
+    public static SQLiteDatabase myDB;
 
 
     @Override
@@ -77,7 +79,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
+        myDB = openOrCreateDatabase("itemsVashInternet.db", MODE_PRIVATE, null);
+        myDB.execSQL("CREATE TABLE IF NOT EXISTS items (idex INT, name VARCHAR(200), description VARCHAR(1000), crtIN TIME, crtEXPR TIME, inputIN TIME)");
+        Items.initmyDB();
     }
 
     @Override
