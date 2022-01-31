@@ -9,11 +9,12 @@ import com.d0klabs.vashinternet_client.R;
 
 
 public class SkladViewModel extends ViewModel {
-
-
     public static void initButtonList() {
         CustomAdapter.buttons = new Button[60];
-        CustomAdapter.buttons[0] = (CustomAdapter.ViewHolder.recycleButton);
+        for (int i = 0; i < CustomAdapter.buttons.length; i++) {
+            CustomAdapter.buttons[i] = (CustomAdapter.ViewHolder.recycleButton);
+            //CustomAdapter.buttons[i].setText(Items.recyclerItemList[i]); // не працює бо ще не створено кнопки
+        }
     }
 
     public static void createAndAddNewButton(){

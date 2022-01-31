@@ -23,8 +23,10 @@ public class Items {
 
     public static void initList(){
         recyclerItemList = new String[60];
-        index=0;
         recyclerItemList[0] = "zero button";
+        for (int i = 1; i < recyclerItemList.length; i++) {
+            recyclerItemList[i] = String.valueOf("Найменування " + i);
+        }
 
     }
     public static void createAndAddNewItem(Context context){

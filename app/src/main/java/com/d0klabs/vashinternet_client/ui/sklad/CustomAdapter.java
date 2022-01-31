@@ -18,6 +18,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public static final int LOAD_MORE = 1;
     public static Button[] buttons;
     private boolean hasLoadButton = true;
+    public static int btnIDs[] = new int[60];
 
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
@@ -41,6 +42,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         public Button getRecycleButton(){
             return recycleButton;
+        }
+        public Button getButton(int pos){
+            return buttons[pos];
         }
 
     }
@@ -87,8 +91,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             //load more)
 
         //} else {
-            viewHolder.setIsRecyclable(true);
-            viewHolder.getRecycleButton();
+            //viewHolder.setIsRecyclable(true);
+            //viewHolder.getRecycleButton();
+            viewHolder.getButton(position);
+
+
         //}
 
         //viewHolder.itemView.setId(Items.recyclerItemList.get(position).getId());
@@ -113,7 +120,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public int getItemCount() {
 
         if (hasLoadButton) {
-            return buttons.length +1; //+1
+            return buttons.length; //+1
         } else {
             return buttons.length;
         }
