@@ -14,6 +14,9 @@
             android:id="@+id/nav_instruments"
             android:title="@string/menu_instruments" />
         <item
+            android:id="@+id/nav_maps"
+            android:title="@string/nav_navig" />
+        <item
             android:id="@+id/nav_sklad"
             android:title="@string/menu_box" />
     </group>

@@ -23,4 +23,5 @@
     <string name="action_exit">Вихід</string>
     <string name="t0button">0 button set ... OK</string>
     <string name="mAddBtn">manuallyAddedButton</string>
+    <string name="nav_navig">Навігація</string>
 </resources>
