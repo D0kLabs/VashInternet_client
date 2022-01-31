@@ -1,29 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/recycleritemlist"
+    android:id="@+id/recycleritemlayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:contextClickable="true"
-    android:isScrollContainer="true"
-    android:nestedScrollingEnabled="true"
-    android:overScrollMode="always"
-    android:persistentDrawingCache="all"
-    android:scrollIndicators="right"
-    android:scrollbarAlwaysDrawHorizontalTrack="false"
-    android:scrollbarAlwaysDrawVerticalTrack="true"
-    android:scrollbarSize="10dp"
-    android:scrollbarStyle="insideInset"
-    android:scrollbars="vertical"
-    android:verticalScrollbarPosition="right"
-    android:visibility="visible"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    >
 
 
     <Button
         android:id="@+id/recyclerItem0"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:visibility="visible" />
-</LinearLayout>
+        />
+</FrameLayout>

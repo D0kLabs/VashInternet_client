@@ -14,9 +14,10 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
-    private final ArrayList<Button> mDataSet;
     public static final int TITLE = 0;
     public static final int LOAD_MORE = 1;
+    public static Button[] buttons;
+    private boolean hasLoadButton = true;
 
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
@@ -24,7 +25,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final android.widget.Button recycleButton;
+        public static android.widget.Button recycleButton;
 
         public ViewHolder(View v) {
             super(v);
@@ -38,19 +39,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             recycleButton = (Button) v.findViewById(R.id.recyclerItem0);
         }
 
-        public Button getButton(int pos) {
-            return Items.recyclerItemList.get(pos);
+        public Button getRecycleButton(){
+            return recycleButton;
         }
+
     }
     // END_INCLUDE(recyclerViewSampleViewHolder)
 
     /**
      * Initialize the dataset of the Adapter.
      *
-     * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
+     * @param dataSet Button[] containing the data to populate views to be used by RecyclerView.
      */
-    public CustomAdapter(ArrayList<Button> dataSet) {
-        mDataSet = dataSet;
+    public CustomAdapter(Button[] dataSet) {
+        buttons = dataSet;
     }
 
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
@@ -81,12 +83,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
         //viewHolder.getLinearLayout().setId(Items.recyclerItemList.get(position).getId());
-        if (position >= getItemCount()){
+        //if (position >= getItemCount()){
             //load more)
 
-        } else {
-            viewHolder.getButton(position);
-        }
+        //} else {
+            viewHolder.setIsRecyclable(true);
+            viewHolder.getRecycleButton();
+        //}
 
         //viewHolder.itemView.setId(Items.recyclerItemList.get(position).getId());
 
@@ -96,7 +99,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 
     // Return the size of your dataset (invoked by the layout manager)
-    private boolean hasLoadButton = true;
 
     public boolean isHasLoadButton() {
         return hasLoadButton;
@@ -111,12 +113,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public int getItemCount() {
 
         if (hasLoadButton) {
-            return mDataSet.size(); //+1
+            return buttons.length +1; //+1
         } else {
-            return mDataSet.size();
+            return buttons.length;
         }
 
-        //return mDataSet.size();
     }
 
     @Override

@@ -18,7 +18,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/recycler_item_list"
-        tools:visibility="visible">
+        android:contextClickable="true"
+        android:isScrollContainer="true"
+        android:nestedScrollingEnabled="true"
+        android:overScrollMode="always"
+        android:persistentDrawingCache="all"
+        android:scrollIndicators="right"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarSize="10dp"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical"
+        android:verticalScrollbarPosition="right"
+        android:visibility="visible"
+        android:orientation="vertical">
 
     </androidx.recyclerview.widget.RecyclerView>
 

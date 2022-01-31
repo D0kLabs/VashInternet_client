@@ -9,26 +9,25 @@ import com.d0klabs.vashinternet_client.MainActivity;
 import java.util.ArrayList;
 
 public class Items {
-    public static ArrayList<Button> recyclerItemList;
-    public static ArrayAdapter recyclerItemAdapter;
+    public static String[] recyclerItemList;
     public static int index;
     public String name;
     public Context context;
     public static android.widget.Button initButton;
 
     public Items(Context context) {
-        recyclerItemList = new ArrayList<Button>();
+        recyclerItemList = new String[60];
         //TODO: adapter impl!!!
 
     }
 
     public static void initList(){
-        initButton = MainActivity.zero;
+        recyclerItemList = new String[60];
         index=0;
-        recyclerItemList.add(0,initButton);
+        recyclerItemList[0] = "zero button";
 
     }
-    public static void createAndAddNewButton(Context context){
+    public static void createAndAddNewItem(Context context){
 
         //android.widget.Button addButton = new Button(context);
         //addButton.setText(R.string.mAddBtn);

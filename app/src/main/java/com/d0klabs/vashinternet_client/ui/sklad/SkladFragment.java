@@ -30,6 +30,7 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
     public static LinearLayoutManager layoutManager;
     public static SkladFragmentBinding skladFragmentBinding;
     public static RecyclerView recyclerView;
+    public  static Button[] buttonList ;
     //From simple android ...
     public static CustomAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
@@ -53,7 +54,6 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initDataset();
     }
 
     @Override
@@ -72,15 +72,15 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
                     .getSerializable(KEY_LAYOUT_MANAGER);
         }
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
-        Items.initList();
-        mAdapter = new CustomAdapter(Items.recyclerItemList);
+        initDataset();
+        mAdapter = new CustomAdapter(buttonList);
         recyclerView.setAdapter(mAdapter);
         MainActivity.skladAddButton = rootView.findViewById(R.id.floatingRecycleAddButton);
 
         MainActivity.skladAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Items.createAndAddNewButton(getContext());
+                SkladViewModel.createAndAddNewButton();
                 Toast.makeText(getContext(), "Додано новий елемент списку", Toast.LENGTH_SHORT).show();
             }
         });
@@ -147,7 +147,10 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
      * from a local content provider or remote server.
      */
     private void initDataset() {
-        Items.recyclerItemList = new ArrayList<Button>();
+        Items.initList();
+        buttonList = new Button[DATASET_COUNT];
+        SkladViewModel.initButtonList();
         Toast.makeText(getContext(), "Ініціалізовано кнопки", Toast.LENGTH_SHORT).show();
     }
+
 }
