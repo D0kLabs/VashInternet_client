@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        myDB = openOrCreateDatabase("itemsVashInternet.db", MODE_PRIVATE, null);
-        myDB.execSQL("CREATE TABLE IF NOT EXISTS items (idex INT, name VARCHAR(200), description VARCHAR(1000), crtIN TIME, crtEXPR TIME, inputIN TIME)");
+        myDB = getBaseContext().openOrCreateDatabase("itemsVashInternet.db", MODE_PRIVATE, null);
+        myDB.execSQL("CREATE TABLE IF NOT EXISTS items (idex INTEGER, name TEXT, description TEXT, crtIN TEXT, crtEXPR TEXT, inputIN TEXT)");
         Items.initmyDB();
     }
 
