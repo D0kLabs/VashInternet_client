@@ -55,7 +55,7 @@ public class dbSkladHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase itemsVI) {
-        String query = "CREATE TABLE " + TABLE_NAME + " (" + IDEX + " INTEGER PRIMARY KEY AUTOINCREMENT " + NAME + " TEXT" + DESCRIPTION + " TEXT" + CRTIN + " TEXT" + CRTEXPR + " TEXT" + INPUTIN + "TEXT)";
+        String query = "CREATE TABLE" + TABLE_NAME + " (" + IDEX + "INTEGER PRIMARY KEY AUTOINCREMENT" + NAME + "TEXT" + DESCRIPTION + "TEXT" + CRTIN + "TEXT" + CRTEXPR + "TEXT" + INPUTIN + "TEXT)";
 
         itemsVI.execSQL(query);
     }
@@ -70,15 +70,27 @@ public class dbSkladHandler extends SQLiteOpenHelper {
         currTime.setTime(new Date().getTime());
         //crtIN = String.valueOf(currTime); //current time as some to init crtIN  TODO: convert to String
         CRTIN = "23:59:59";
-        CRTEXPR = String.valueOf("00:00:00");
-        INPUTIN = String.valueOf("00:00:00");
+        CRTEXPR = "00:00:00";
+        INPUTIN = "00:00:00";
         row1.put("IDEX", IDEX);
         row1.put("NAME", NAME);
         row1.put("DESCRIPTION", DESCRIPTION);
         row1.put("CRTIN", CRTIN);
-        row1.put("crtEXPR", CRTEXPR);
-        row1.put("inputIN", INPUTIN);
+        row1.put("CRTEXPR", CRTEXPR);
+        row1.put("INPUTIN", INPUTIN);
         itemsVI.insert("items",null, row1);
+    }
+
+    public void clearSQL() {
+
+        // on below line we are creating
+        // a variable to write our database.
+        SQLiteDatabase itemsVI = this.getWritableDatabase();
+
+        // on below line we are calling a method to delete our
+        // course and we are comparing it with our course name.
+        itemsVI.delete(TABLE_NAME, "name=?", new String[]{"items"});
+        itemsVI.close();
     }
 
 

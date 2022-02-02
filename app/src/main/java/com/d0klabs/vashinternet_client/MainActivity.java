@@ -57,15 +57,14 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        dbHandler = new dbSkladHandler(MainActivity.this);
-        dbHandler.initItemsVI();
+
         mbutton1 = (Button) findViewById(R.id.motion_button1);
         mbutton2 = (Button) findViewById(R.id.motion_button2);
         mbutton3 = (Button) findViewById(R.id.motion_button3);
         mbutton4 = (Button) findViewById(R.id.motion_button4);
         mbutton5 = (Button) findViewById(R.id.motion_button5);
         zero = findViewById(R.id.recyclerItem0);
-        //skladAddButton = (FloatingActionButton) findViewById(R.id.floatingRecycleAddButton);
+        skladAddButton = (FloatingActionButton) findViewById(R.id.floatingRecycleAddButton);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -80,9 +79,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //myDB = getBaseContext().openOrCreateDatabase("itemsVashInternet.db", MODE_PRIVATE, null);
-
-        //Items.initmyDB();
+        dbHandler = new dbSkladHandler(MainActivity.this);
 
 
     }
@@ -104,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        dbHandler.initItemsVI();
 
     }
 
