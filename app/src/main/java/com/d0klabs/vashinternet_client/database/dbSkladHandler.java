@@ -18,7 +18,7 @@ public class dbSkladHandler extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
 
     // below variable is for our table name.
-    private static final String TABLE_NAME = "items";
+    private static final String TABLE_NAME = "itemsVI";
 
 
     // creating a constructor for our database handler.
@@ -45,25 +45,30 @@ public class dbSkladHandler extends SQLiteOpenHelper {
      *
      */
     //START OF SQL USING
-    public static int IDEX; //index of itemList
-    public static String NAME; //text for button
-    public static String DESCRIPTION; // text for inside view
-    public static String CRTIN; // time of input at @sklad
-    public static String CRTEXPR; // time of expiration (00:00 if none) TODO: test time 00:00
-    public static String INPUTIN; // time of adding to sql
+    public static String IDEX = "id"; //index of itemList
+    public static String NAME = "name"; //text for button
+    public static String DESCRIPTION = "description"; // text for inside view
+    public static String CRTIN = "crtin"; // time of input at @sklad
+    public static String CRTEXPR = "crtexpr"; // time of expiration (00:00 if none) TODO: test time 00:00
+    public static String INPUTIN = "inputin"; // time of adding to sql
     // END SQL USING
 
     @Override
     public void onCreate(SQLiteDatabase itemsVI) {
-        String query = "CREATE TABLE" + TABLE_NAME + " (" + IDEX + "INTEGER PRIMARY KEY AUTOINCREMENT" + NAME + "TEXT" + DESCRIPTION + "TEXT" + CRTIN + "TEXT" + CRTEXPR + "TEXT" + INPUTIN + "TEXT)";
 
-        itemsVI.execSQL(query);
+        itemsVI.execSQL("CREATE TABLE " + TABLE_NAME
+                + " (" + IDEX + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + NAME + " TEXT NOT NULL,"
+                + DESCRIPTION + " TEXT NOT NULL,"
+                + CRTIN + " TEXT NOT NULL,"
+                + CRTEXPR + " TEXT NOT NULL,"
+                + INPUTIN + " TEXT NOT NULL);");
     }
 
     public void initItemsVI(){
         SQLiteDatabase itemsVI = this.getWritableDatabase();
         ContentValues row1 = new ContentValues();
-        IDEX = 0;
+        //IDEX = "0";
         NAME = "zerobutton";
         DESCRIPTION = "Therearenodescriptionfound.PleasecallCHIEF";
         Time currTime = new Time(0L);
@@ -78,7 +83,7 @@ public class dbSkladHandler extends SQLiteOpenHelper {
         row1.put("CRTIN", CRTIN);
         row1.put("CRTEXPR", CRTEXPR);
         row1.put("INPUTIN", INPUTIN);
-        itemsVI.insert("items",null, row1);
+        itemsVI.insert("itemsVI",null, row1);
     }
 
     public void clearSQL() {
