@@ -45,12 +45,12 @@ public class dbSkladHandler extends SQLiteOpenHelper {
      *
      */
     //START OF SQL USING
-    public static String IDEX = "id"; //index of itemList
-    public static String NAME = "name"; //text for button
-    public static String DESCRIPTION = "description"; // text for inside view
-    public static String CRTIN = "crtin"; // time of input at @sklad
-    public static String CRTEXPR = "crtexpr"; // time of expiration (00:00 if none) TODO: test time 00:00
-    public static String INPUTIN = "inputin"; // time of adding to sql
+    public static String IDEX = "IDEX"; //index of itemList
+    public static String NAME = "NAME"; //text for button
+    public static String DESCRIPTION = "DESCRIPTION"; // text for inside view
+    public static String CRTIN = "CRTIN"; // time of input at @sklad
+    public static String CRTEXPR = "CRTEXPR"; // time of expiration (00:00 if none) TODO: test time 00:00
+    public static String INPUTIN = "INPUTIN"; // time of adding to sql
     // END SQL USING
 
     @Override
@@ -68,7 +68,7 @@ public class dbSkladHandler extends SQLiteOpenHelper {
     public void initItemsVI(){
         SQLiteDatabase itemsVI = this.getWritableDatabase();
         ContentValues row1 = new ContentValues();
-        //IDEX = "0";
+        IDEX = "0";
         NAME = "zerobutton";
         DESCRIPTION = "Therearenodescriptionfound.PleasecallCHIEF";
         Time currTime = new Time(0L);
