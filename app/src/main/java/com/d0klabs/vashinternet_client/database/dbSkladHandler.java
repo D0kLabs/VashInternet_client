@@ -2,7 +2,9 @@ package com.d0klabs.vashinternet_client.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.sql.Time;
@@ -10,15 +12,19 @@ import java.util.Date;
 
 public class dbSkladHandler extends SQLiteOpenHelper {
 
+    public static final String DB_PATH = "/data/data/com.d0klabs.vashinternet_client/databases/";
+
     // creating a constant variables for our database.
     // below variable is for our database name.
-    private static final String DB_NAME = "itemsVashInternet";
+    private static final String DB_NAME = "itemsVashInternet.db";
 
     // below int is our database version
     private static final int DB_VERSION = 1;
 
     // below variable is for our table name.
     private static final String TABLE_NAME = "itemsVI";
+
+    public static SQLiteDatabase itemsVI = null;
 
 
     // creating a constructor for our database handler.
@@ -58,15 +64,55 @@ public class dbSkladHandler extends SQLiteOpenHelper {
 
         itemsVI.execSQL("CREATE TABLE " + TABLE_NAME
                 + " (" + IDEX + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + NAME + " TEXT NOT NULL,"
-                + DESCRIPTION + " TEXT NOT NULL,"
-                + CRTIN + " TEXT NOT NULL,"
-                + CRTEXPR + " TEXT NOT NULL,"
-                + INPUTIN + " TEXT NOT NULL);");
+                + NAME + " TEXT,"
+                + DESCRIPTION + " TEXT,"
+                + CRTIN + " TEXT,"
+                + CRTEXPR + " TEXT,"
+                + INPUTIN + " TEXT);");
     }
 
-    public void initItemsVI(){
-        SQLiteDatabase itemsVI = this.getWritableDatabase();
+    public static boolean checkDataBase(){
+
+        try{
+            String myPath = DB_PATH + DB_NAME;
+            itemsVI = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+
+        }catch(SQLiteException e){
+
+
+        }
+
+        if(itemsVI != null){
+
+            itemsVI.close();
+
+        }
+
+        return itemsVI != null ? true : false;
+    }
+
+    public static boolean checkDataBaseTable(){
+        boolean clear = true;
+        String[] col= { "IDEX" };
+        IDEX = "0";
+
+        Cursor clearCheck = itemsVI.query(TABLE_NAME,col, null, null,null,null,null);
+
+       int checkCount = clearCheck.getCount();
+
+        for (int i = 1; i < checkCount; i++) { //для SQLite3 перше _rowid_ це 1 а не 0
+            int s = clearCheck.getInt(i);
+            if (s == 0){
+                clear = false;
+            }
+        }
+        clearCheck.close();
+
+        return clear;
+    }
+
+    public static void initItemsVI(){
+
         ContentValues row1 = new ContentValues();
         IDEX = "0";
         NAME = "zerobutton";
@@ -84,6 +130,12 @@ public class dbSkladHandler extends SQLiteOpenHelper {
         row1.put("CRTEXPR", CRTEXPR);
         row1.put("INPUTIN", INPUTIN);
         itemsVI.insert("itemsVI",null, row1);
+    }
+
+    public static void getDB(){
+        checkDataBase();
+        checkDataBaseTable();
+        initItemsVI();
     }
 
     public void clearSQL() {

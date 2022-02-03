@@ -102,8 +102,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        dbHandler.initItemsVI();
-
     }
 
     protected void onStop(){
