@@ -24,6 +24,7 @@ public class dbSkladHandler extends SQLiteOpenHelper {
     // below variable is for our table name.
     private static final String TABLE_NAME = "itemsVI";
 
+
     //public static SQLiteDatabase itemsVI = null;
 
 
@@ -51,25 +52,45 @@ public class dbSkladHandler extends SQLiteOpenHelper {
      *
      */
     //START OF SQL USING
-    public static String IDEX = "IDEX"; //index of itemList
-    public static String NAME = "NAME"; //text for button
-    public static String DESCRIPTION = "DESCRIPTION"; // text for inside view
-    public static String CRTIN = "CRTIN"; // time of input at @sklad
-    public static String CRTEXPR = "CRTEXPR"; // time of expiration (00:00 if none) TODO: test time 00:00
-    public static String INPUTIN = "INPUTIN"; // time of adding to sql
+    public static String COL_IDEX = "IDEX"; //index of itemList
+    public static String COL_NAME = "NAME"; //text for button
+    public static String COL_DESCRIPTION = "DESCRIPTION"; // text for inside view
+    public static String COL_CRTIN = "CRTIN"; // time of input at @sklad
+    public static String COL_CRTEXPR = "CRTEXPR"; // time of expiration (00:00 if none) TODO: test time 00:00
+    public static String COL_INPUTIN = "INPUTIN"; // time of adding to sql
+    public static int IDEX = 0;
+    public static String NAME;
+    public static String DESCRIPTION;
+    public static Time currTime;
+    public static String CRTIN;
+    public static String CRTEXPR;
+    public static String INPUTIN;
     // END SQL USING
 
     @Override
     public void onCreate(SQLiteDatabase itemsVI) {
 
         String q = "CREATE TABLE " + TABLE_NAME
-                    + " (" + IDEX + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + NAME + " TEXT,"
-                    + DESCRIPTION + " TEXT,"
-                    + CRTIN + " TEXT,"
-                    + CRTEXPR + " TEXT,"
-                    + INPUTIN + " TEXT)";
+                    + " (" + COL_IDEX + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + COL_NAME + " TEXT,"
+                    + COL_DESCRIPTION + " TEXT,"
+                    + COL_CRTIN + " TEXT,"
+                    + COL_CRTEXPR + " TEXT,"
+                    + COL_INPUTIN + " TEXT)";
         itemsVI.execSQL(q);
+
+        ContentValues row1 = new ContentValues();
+        DESCRIPTION = ""; //paste here initCypherBlock
+        currTime = new Time(0L);
+        currTime.setTime(new Date().getTime());
+        CRTIN = String.valueOf(currTime); //current time as some to init crtIN  TODO: convert to String
+        row1.put("IDEX", 0);
+        row1.put("NAME", "firstrun");
+        row1.put("DESCRIPTION", DESCRIPTION);
+        row1.put("CRTIN", CRTIN);
+        row1.put("CRTEXPR", "00:00:00");
+        row1.put("INPUTIN", "00:00:00");
+        itemsVI.insert("itemsVI",null, row1);
 
     }
 
