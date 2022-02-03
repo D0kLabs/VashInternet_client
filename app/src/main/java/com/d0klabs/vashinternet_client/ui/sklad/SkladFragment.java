@@ -22,8 +22,6 @@ import com.d0klabs.vashinternet_client.databinding.SkladFragmentBinding;
 import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
 
-import java.util.ArrayList;
-
 public class SkladFragment extends Fragment implements LifecycleFragment {
 
     private SkladViewModel mViewModel;
@@ -75,6 +73,7 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
         initDataset();
         mAdapter = new CustomAdapter(buttonList);
         recyclerView.setAdapter(mAdapter);
+
         MainActivity.skladAddButton = rootView.findViewById(R.id.floatingRecycleAddButton);
 
         MainActivity.skladAddButton.setOnClickListener(new View.OnClickListener() {

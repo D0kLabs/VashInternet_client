@@ -1,6 +1,7 @@
 package com.d0klabs.vashinternet_client;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public static android.widget.Button zero;
     public static FloatingActionButton skladAddButton;
     public static dbSkladHandler dbHandler;
+    public static SQLiteDatabase itemsVI;
 
 
     @Override
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        dbHandler.getDB();
     }
 
     protected void onStop(){

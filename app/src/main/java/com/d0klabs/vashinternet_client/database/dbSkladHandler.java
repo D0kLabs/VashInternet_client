@@ -24,7 +24,7 @@ public class dbSkladHandler extends SQLiteOpenHelper {
     // below variable is for our table name.
     private static final String TABLE_NAME = "itemsVI";
 
-    public static SQLiteDatabase itemsVI = null;
+    //public static SQLiteDatabase itemsVI = null;
 
 
     // creating a constructor for our database handler.
@@ -62,16 +62,20 @@ public class dbSkladHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase itemsVI) {
 
-        itemsVI.execSQL("CREATE TABLE " + TABLE_NAME
-                + " (" + IDEX + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + NAME + " TEXT,"
-                + DESCRIPTION + " TEXT,"
-                + CRTIN + " TEXT,"
-                + CRTEXPR + " TEXT,"
-                + INPUTIN + " TEXT);");
+        String q = "CREATE TABLE " + TABLE_NAME
+                    + " (" + IDEX + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + NAME + " TEXT,"
+                    + DESCRIPTION + " TEXT,"
+                    + CRTIN + " TEXT,"
+                    + CRTEXPR + " TEXT,"
+                    + INPUTIN + " TEXT)";
+        itemsVI.execSQL(q);
+
     }
 
-    public static boolean checkDataBase(){
+    public boolean checkDataBase(){
+
+        SQLiteDatabase itemsVI = this.getWritableDatabase();
 
         try{
             String myPath = DB_PATH + DB_NAME;
@@ -91,30 +95,30 @@ public class dbSkladHandler extends SQLiteOpenHelper {
         return itemsVI != null ? true : false;
     }
 
-    public static boolean checkDataBaseTable(){
+    public boolean checkDataBaseTable(){
         boolean clear = true;
         String[] col= { "IDEX" };
-        IDEX = "0";
+        //IDEX = "0";
+        SQLiteDatabase itemsVI = this.getWritableDatabase();
+        Cursor clearCheck = itemsVI.query(TABLE_NAME, col, null, null, null, null, null);
 
-        Cursor clearCheck = itemsVI.query(TABLE_NAME,col, null, null,null,null,null);
+            int checkCount = clearCheck.getCount();
 
-       int checkCount = clearCheck.getCount();
-
-        for (int i = 1; i < checkCount; i++) { //для SQLite3 перше _rowid_ це 1 а не 0
-            int s = clearCheck.getInt(i);
-            if (s == 0){
-                clear = false;
+            for (int i = 1; i < checkCount; i++) { //для SQLite3 перше _rowid_ це 1 а не 0
+                int s = clearCheck.getInt(i);
+                if (s == 0) {
+                    clear = false;
+                }
             }
-        }
-        clearCheck.close();
+            clearCheck.close();
 
         return clear;
     }
 
-    public static void initItemsVI(){
-
+    public void initItemsVI(){
+        SQLiteDatabase itemsVI = this.getWritableDatabase();
         ContentValues row1 = new ContentValues();
-        IDEX = "0";
+        //IDEX = "0";
         NAME = "zerobutton";
         DESCRIPTION = "Therearenodescriptionfound.PleasecallCHIEF";
         Time currTime = new Time(0L);
@@ -132,10 +136,12 @@ public class dbSkladHandler extends SQLiteOpenHelper {
         itemsVI.insert("itemsVI",null, row1);
     }
 
-    public static void getDB(){
-        checkDataBase();
-        checkDataBaseTable();
-        initItemsVI();
+    public void getDB(){
+        //checkDataBase();
+       if (!checkDataBaseTable()){
+           initItemsVI();
+       };
+
     }
 
     public void clearSQL() {
@@ -146,7 +152,7 @@ public class dbSkladHandler extends SQLiteOpenHelper {
 
         // on below line we are calling a method to delete our
         // course and we are comparing it with our course name.
-        itemsVI.delete(TABLE_NAME, "name=?", new String[]{"items"});
+        itemsVI.delete(TABLE_NAME, "name=?", new String[]{"itemsIV"});
         itemsVI.close();
     }
 
