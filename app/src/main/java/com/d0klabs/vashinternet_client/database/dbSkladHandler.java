@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.d0klabs.vashinternet_client.MainActivity;
+
 import java.sql.Time;
 import java.util.Date;
 
@@ -92,6 +94,17 @@ public class dbSkladHandler extends SQLiteOpenHelper {
         row1.put("INPUTIN", "00:00:00");
         itemsVI.insert("itemsVI",null, row1);
 
+        for (int i = 1; i < 10; i++) { //FOR TESTING ONLY!
+            ContentValues rowfor = new ContentValues();
+            rowfor.put("IDEX", i);
+            rowfor.put("NAME", "item"+i);
+            rowfor.put("DESCRIPTION", DESCRIPTION);
+            rowfor.put("CRTIN", CRTIN);
+            rowfor.put("CRTEXPR", "00:00:00");
+            rowfor.put("INPUTIN", "00:00:00");
+            itemsVI.insert("itemsVI",null, rowfor);
+        }
+
     }
 
     public boolean checkDataBase(){
@@ -120,21 +133,20 @@ public class dbSkladHandler extends SQLiteOpenHelper {
         boolean clear = true;
         String[] col= { "IDEX" };
         //IDEX = "0";
-        SQLiteDatabase itemsVI = this.getWritableDatabase();
+        SQLiteDatabase itemsVI = itemsVI = MainActivity.dbHandler.getWritableDatabase();
         Cursor clearCheck = itemsVI.query(TABLE_NAME, col, null, null, null, null, null);
-
-            int checkCount = clearCheck.getCount();
-
-            for (int i = 1; i < checkCount; i++) { //для SQLite3 перше _rowid_ це 1 а не 0
-                int s = clearCheck.getInt(i);
-                if (s == 0) {
+        if (!(clearCheck.moveToFirst()) || clearCheck.getCount() ==0) {
+            for (int i = 1; i < clearCheck.getColumnCount(); i++) { //для SQLite3 перше _rowid_ це 1 а не 0
+                if (clearCheck.getInt(i) == 0) {
                     clear = false;
                 }
             }
+        }
             clearCheck.close();
 
         return clear;
     }
+
 
     public void initItemsVI(){
         SQLiteDatabase itemsVI = this.getWritableDatabase();
@@ -158,12 +170,14 @@ public class dbSkladHandler extends SQLiteOpenHelper {
     }
 
     public void getDB(){
-        //checkDataBase();
-       if (!checkDataBaseTable()){
-           initItemsVI();
-       };
+        if(checkDataBase()) {
+            if (!checkDataBaseTable()) {
+                initItemsVI();
+            }
+        }
 
     }
+
 
     public void clearSQL() {
 

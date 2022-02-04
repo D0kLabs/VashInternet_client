@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         dbHandler = new dbSkladHandler(MainActivity.this);
-
+        dbHandler.setWriteAheadLoggingEnabled(true);
 
     }
 
@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        dbHandler.getDB();
     }
 
     protected void onStop(){

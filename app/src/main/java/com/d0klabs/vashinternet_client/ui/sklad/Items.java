@@ -1,6 +1,10 @@
 package com.d0klabs.vashinternet_client.ui.sklad;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.d0klabs.vashinternet_client.MainActivity;
 
 import java.sql.Array;
 
@@ -21,10 +25,14 @@ public class Items {
 
     public static void initList(){
         recyclerItemList = new String[60];
-        recyclerItemList[0] = "zero button";
-        for (int i = 1; i < recyclerItemList.length; i++) {
-            recyclerItemList[i] = String.valueOf("Найменування " + i);
+        SQLiteDatabase itemsDB = MainActivity.dbHandler.getWritableDatabase();
+        String[] column = {"NAME"};
+        Cursor itemFromDBList = itemsDB.query("itemsVI", column, null, null, null, null, null);
+        int c = itemFromDBList.getCount();
+        for (int i = 1; i < c; i++) {
+           recyclerItemList[i] = itemFromDBList.getString(i);
         }
+
 
     }
     public static void createAndAddNewItem(Context context){

@@ -22,6 +22,8 @@ import com.d0klabs.vashinternet_client.databinding.SkladFragmentBinding;
 import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
 
+import static com.d0klabs.vashinternet_client.MainActivity.dbHandler;
+
 public class SkladFragment extends Fragment implements LifecycleFragment {
 
     private SkladViewModel mViewModel;
@@ -73,7 +75,7 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
         initDataset();
         mAdapter = new CustomAdapter(buttonList);
         recyclerView.setAdapter(mAdapter);
-
+        dbHandler.getDB();
         MainActivity.skladAddButton = rootView.findViewById(R.id.floatingRecycleAddButton);
 
         MainActivity.skladAddButton.setOnClickListener(new View.OnClickListener() {
@@ -147,7 +149,11 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
      */
     private void initDataset() {
         Items.initList();
-        buttonList = new Button[DATASET_COUNT];
+        buttonList = new Button[Items.recyclerItemList.length];
+        for (int i = 0; i < Items.recyclerItemList.length; i++) {
+            buttonList[i] = new Button(this.requireContext());
+
+        }
         SkladViewModel.initButtonList();
         Toast.makeText(getContext(), "Ініціалізовано кнопки", Toast.LENGTH_SHORT).show();
     }
