@@ -15,6 +15,7 @@ import java.util.Date;
 public class dbSkladHandler extends SQLiteOpenHelper {
 
     public static final String DB_PATH = "/data/data/com.d0klabs.vashinternet_client/databases/";
+    public static final String DB_PATH2 = "/data/user/0/com.d0klabs.vashinternet_client/databases/";
 
     // creating a constant variables for our database.
     // below variable is for our database name.
@@ -81,30 +82,6 @@ public class dbSkladHandler extends SQLiteOpenHelper {
                     + COL_INPUTIN + " TEXT)";
         itemsVI.execSQL(q);
 
-        ContentValues row1 = new ContentValues();
-        DESCRIPTION = ""; //paste here initCypherBlock
-        currTime = new Time(0L);
-        currTime.setTime(new Date().getTime());
-        CRTIN = String.valueOf(currTime); //current time as some to init crtIN  TODO: convert to String
-        row1.put("IDEX", 0);
-        row1.put("NAME", "firstrun");
-        row1.put("DESCRIPTION", DESCRIPTION);
-        row1.put("CRTIN", CRTIN);
-        row1.put("CRTEXPR", "00:00:00");
-        row1.put("INPUTIN", "00:00:00");
-        itemsVI.insert("itemsVI",null, row1);
-
-        for (int i = 1; i < 10; i++) { //FOR TESTING ONLY!
-            ContentValues rowfor = new ContentValues();
-            rowfor.put("IDEX", i);
-            rowfor.put("NAME", "item"+i);
-            rowfor.put("DESCRIPTION", DESCRIPTION);
-            rowfor.put("CRTIN", CRTIN);
-            rowfor.put("CRTEXPR", "00:00:00");
-            rowfor.put("INPUTIN", "00:00:00");
-            itemsVI.insert("itemsVI",null, rowfor);
-        }
-
     }
 
     public boolean checkDataBase(){
@@ -113,27 +90,30 @@ public class dbSkladHandler extends SQLiteOpenHelper {
 
         try{
             String myPath = DB_PATH + DB_NAME;
-            itemsVI = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+            itemsVI = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
 
         }catch(SQLiteException e){
 
 
         }
 
-        if(itemsVI != null){
+        if(itemsVI == null){
 
-            itemsVI.close();
-
+            try{
+                String mPath = DB_PATH2 +DB_NAME;
+                itemsVI = SQLiteDatabase.openDatabase(mPath, null, SQLiteDatabase.OPEN_READWRITE);
+            } catch(SQLiteException e){
         }
-
-        return itemsVI != null ? true : false;
+            itemsVI.close();
+        }
+        return itemsVI != null ? false : true;
     }
 
     public boolean checkDataBaseTable(){
         boolean clear = true;
         String[] col= { "IDEX" };
         //IDEX = "0";
-        SQLiteDatabase itemsVI = itemsVI = MainActivity.dbHandler.getWritableDatabase();
+        SQLiteDatabase itemsVI = MainActivity.dbHandler.getWritableDatabase();
         Cursor clearCheck = itemsVI.query(TABLE_NAME, col, null, null, null, null, null);
         if (!(clearCheck.moveToFirst()) || clearCheck.getCount() ==0) {
             for (int i = 1; i < clearCheck.getColumnCount(); i++) { //для SQLite3 перше _rowid_ це 1 а не 0
@@ -148,8 +128,8 @@ public class dbSkladHandler extends SQLiteOpenHelper {
     }
 
 
-    public void initItemsVI(){
-        SQLiteDatabase itemsVI = this.getWritableDatabase();
+    public void initItemsVI() {
+        SQLiteDatabase itemsVI = MainActivity.dbHandler.getWritableDatabase();
         ContentValues row1 = new ContentValues();
         //IDEX = "0";
         NAME = "zerobutton";
@@ -166,7 +146,18 @@ public class dbSkladHandler extends SQLiteOpenHelper {
         row1.put("CRTIN", CRTIN);
         row1.put("CRTEXPR", CRTEXPR);
         row1.put("INPUTIN", INPUTIN);
-        itemsVI.insert("itemsVI",null, row1);
+        itemsVI.insert("itemsVI", null, row1);
+
+        for (int i = 1; i < 10; i++) { //FOR TESTING ONLY!
+            ContentValues rowfor = new ContentValues();
+            rowfor.put("IDEX", i);
+            rowfor.put("NAME", "item" + i);
+            rowfor.put("DESCRIPTION", DESCRIPTION);
+            rowfor.put("CRTIN", CRTIN);
+            rowfor.put("CRTEXPR", "00:00:00");
+            rowfor.put("INPUTIN", "00:00:00");
+            itemsVI.insert("itemsVI", null, rowfor);
+        }
     }
 
     public void getDB(){

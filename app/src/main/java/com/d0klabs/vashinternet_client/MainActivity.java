@@ -82,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         dbHandler = new dbSkladHandler(MainActivity.this);
-        dbHandler.setWriteAheadLoggingEnabled(true);
+        dbHandler.setWriteAheadLoggingEnabled(false);
+        dbHandler.getWritableDatabase();
 
     }
 

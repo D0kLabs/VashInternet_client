@@ -18,19 +18,21 @@ public class Items {
     public static android.widget.Button initButton;
 
     public Items(Context context) {
-        recyclerItemList = new String[60];
         //TODO: adapter impl!!!
 
     }
 
     public static void initList(){
-        recyclerItemList = new String[60];
-        SQLiteDatabase itemsDB = MainActivity.dbHandler.getWritableDatabase();
+        SQLiteDatabase itemsDB = MainActivity.dbHandler.getReadableDatabase();
         String[] column = {"NAME"};
         Cursor itemFromDBList = itemsDB.query("itemsVI", column, null, null, null, null, null);
         int c = itemFromDBList.getCount();
-        for (int i = 1; i < c; i++) {
-           recyclerItemList[i] = itemFromDBList.getString(i);
+        recyclerItemList = new String[c];
+        itemFromDBList.moveToFirst();
+
+        for (int i = 0; i < c; i++) {
+            recyclerItemList[i] = itemFromDBList.getString(itemFromDBList.getColumnIndex("NAME"));
+            itemFromDBList.moveToNext();
         }
 
 

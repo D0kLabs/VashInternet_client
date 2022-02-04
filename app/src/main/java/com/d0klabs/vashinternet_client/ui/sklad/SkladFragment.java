@@ -64,6 +64,8 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
         recyclerView = (RecyclerView) rootView.findViewById(R.id.skladRecyclerView);
         //skladFragmentBinding = SkladFragmentBinding.inflate(inflater,container,false);
         mLayoutManager = new LinearLayoutManager(getActivity());
+        dbHandler.getDB();
+        initDataset();
 
         mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
         if (savedInstanceState != null) {
@@ -72,10 +74,10 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
                     .getSerializable(KEY_LAYOUT_MANAGER);
         }
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
-        initDataset();
         mAdapter = new CustomAdapter(buttonList);
         recyclerView.setAdapter(mAdapter);
         dbHandler.getDB();
+        initDataset();
         MainActivity.skladAddButton = rootView.findViewById(R.id.floatingRecycleAddButton);
 
         MainActivity.skladAddButton.setOnClickListener(new View.OnClickListener() {
@@ -152,9 +154,9 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
         buttonList = new Button[Items.recyclerItemList.length];
         for (int i = 0; i < Items.recyclerItemList.length; i++) {
             buttonList[i] = new Button(this.requireContext());
+            buttonList[i].setText(Items.recyclerItemList[i]);
 
         }
-        SkladViewModel.initButtonList();
         Toast.makeText(getContext(), "Ініціалізовано кнопки", Toast.LENGTH_SHORT).show();
     }
 
