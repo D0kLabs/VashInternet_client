@@ -1,10 +1,7 @@
 package com.d0klabs.vashinternet_client.ui.sklad;
 
 import android.app.Activity;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,14 +80,8 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
         ItemTouchHelper.Callback callback = new ItemTouchHelperCallback(mAdapter);
         touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(recyclerView);
+        recyclerView.addItemDecoration(new ButtonDecor(this.requireContext(), R.drawable.building_g871b9c998_640));
 
-
-
-
-
-        recyclerView.addItemDecoration(new DismissDecoration(Color.rgb(10, 210, 25),
-                BitmapFactory.decodeResource(getResources(), R.drawable.common_google_signin_btn_text_dark_normal),
-                getResources().getDisplayMetrics().density));
         MainActivity.skladAddButton = rootView.findViewById(R.id.floatingRecycleAddButton);
 
         MainActivity.skladAddButton.setOnClickListener(new View.OnClickListener() {
