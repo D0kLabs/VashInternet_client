@@ -1,0 +1,78 @@
+Index: app/src/main/java/com/d0klabs/vashinternet_client/ui/sklad/SkladFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.d0klabs.vashinternet_client.ui.sklad;\n\nimport android.app.Activity;\nimport android.os.Bundle;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.Button;\nimport android.widget.Toast;\n\nimport androidx.annotation.NonNull;\nimport androidx.annotation.Nullable;\nimport androidx.fragment.app.Fragment;\nimport androidx.lifecycle.ViewModelProvider;\nimport androidx.recyclerview.widget.GridLayoutManager;\nimport androidx.recyclerview.widget.LinearLayoutManager;\nimport androidx.recyclerview.widget.RecyclerView;\n\nimport com.d0klabs.vashinternet_client.MainActivity;\nimport com.d0klabs.vashinternet_client.R;\nimport com.d0klabs.vashinternet_client.databinding.SkladFragmentBinding;\nimport com.google.android.gms.common.api.internal.LifecycleCallback;\nimport com.google.android.gms.common.api.internal.LifecycleFragment;\n\nimport static com.d0klabs.vashinternet_client.MainActivity.dbHandler;\n\npublic class SkladFragment extends Fragment implements LifecycleFragment {\n\n    private SkladViewModel mViewModel;\n    public static LinearLayoutManager layoutManager;\n    public static SkladFragmentBinding skladFragmentBinding;\n    public static RecyclerView recyclerView;\n    public  static Button[] buttonList ;\n    //From simple android ...\n    public static CustomAdapter mAdapter;\n    protected RecyclerView.LayoutManager mLayoutManager;\n    private static final String KEY_LAYOUT_MANAGER = \"layoutManager\";\n    private static final int SPAN_COUNT = 2;\n    private static final int DATASET_COUNT = 60;\n\n\n    private enum LayoutManagerType {\n        GRID_LAYOUT_MANAGER,\n        LINEAR_LAYOUT_MANAGER\n    }\n\n    protected LayoutManagerType mCurrentLayoutManagerType;\n\n\n    public static SkladFragment newInstance() {\n        return new SkladFragment();\n    }\n\n    @Override\n    public void onCreate(@Nullable Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n    }\n\n    @Override\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,\n                             @Nullable Bundle savedInstanceState) {\n        mViewModel = new ViewModelProvider(this).get(SkladViewModel.class);\n        View rootView = inflater.inflate(R.layout.sklad_fragment, container, false);\n        recyclerView = (RecyclerView) rootView.findViewById(R.id.skladRecyclerView);\n        //skladFragmentBinding = SkladFragmentBinding.inflate(inflater,container,false);\n        mLayoutManager = new LinearLayoutManager(getActivity());\n        dbHandler.getDB();\n        initDataset();\n\n        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;\n        if (savedInstanceState != null) {\n            // Restore saved layout manager type.\n            mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState\n                    .getSerializable(KEY_LAYOUT_MANAGER);\n        }\n        setRecyclerViewLayoutManager(mCurrentLayoutManagerType);\n        mAdapter = new CustomAdapter(buttonList);\n        recyclerView.setAdapter(mAdapter);\n        dbHandler.getDB();\n        initDataset();\n        MainActivity.skladAddButton = rootView.findViewById(R.id.floatingRecycleAddButton);\n\n        MainActivity.skladAddButton.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View view) {\n                SkladViewModel.createAndAddNewButton();\n                Toast.makeText(getContext(), \"Додано новий елемент списку\", Toast.LENGTH_SHORT).show();\n            }\n        });\n        return rootView;\n    }\n\n    @Override\n    public <T extends LifecycleCallback> T getCallbackOrNull(String s, Class<T> aClass) {\n        return null;\n    }\n\n    @Override\n    public void addCallback(String s, @NonNull LifecycleCallback lifecycleCallback) {\n\n    }\n\n    @Override\n    public Activity getLifecycleActivity() {\n        return null;\n    }\n\n    @Override\n    public boolean isCreated() {\n        return false;\n    }\n\n    @Override\n    public boolean isStarted() {\n        return false;\n    }\n\n    public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {\n        int scrollPosition = 0;\n\n        // If a layout manager has already been set, get current scroll position.\n        if (recyclerView.getLayoutManager() != null) {\n            scrollPosition = ((LinearLayoutManager) recyclerView.getLayoutManager())\n                    .findFirstCompletelyVisibleItemPosition();\n        }\n\n        switch (layoutManagerType) {\n            case GRID_LAYOUT_MANAGER:\n                mLayoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);\n                mCurrentLayoutManagerType = LayoutManagerType.GRID_LAYOUT_MANAGER;\n                break;\n            default:\n                mLayoutManager = new LinearLayoutManager(getActivity());\n                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;\n        }\n\n        recyclerView.setLayoutManager(mLayoutManager);\n        recyclerView.scrollToPosition(scrollPosition);\n    }\n\n    @Override\n    public void onSaveInstanceState(Bundle savedInstanceState) {\n        // Save currently selected layout manager.\n        savedInstanceState.putSerializable(KEY_LAYOUT_MANAGER, mCurrentLayoutManagerType);\n        super.onSaveInstanceState(savedInstanceState);\n    }\n\n    /**\n     * Generates Strings for RecyclerView's adapter. This data would usually come\n     * from a local content provider or remote server.\n     */\n    private void initDataset() {\n        Items.initList();\n        buttonList = new Button[Items.recyclerItemList.length];\n        for (int i = 0; i < Items.recyclerItemList.length; i++) {\n            buttonList[i] = new Button(this.requireContext());\n            buttonList[i].setText(Items.recyclerItemList[i]);\n\n        }\n        Toast.makeText(getContext(), \"Ініціалізовано кнопки\", Toast.LENGTH_SHORT).show();\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/d0klabs/vashinternet_client/ui/sklad/SkladFragment.java b/app/src/main/java/com/d0klabs/vashinternet_client/ui/sklad/SkladFragment.java
+--- a/app/src/main/java/com/d0klabs/vashinternet_client/ui/sklad/SkladFragment.java	(revision bcac11f18bc972f877c6d3d1c1e9ff428f232131)
++++ b/app/src/main/java/com/d0klabs/vashinternet_client/ui/sklad/SkladFragment.java	(date 1644051381479)
+@@ -54,26 +54,26 @@
+     @Override
+     public void onCreate(@Nullable Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
++        mViewModel = new ViewModelProvider(this).get(SkladViewModel.class);
++        mLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
+     }
+ 
+     @Override
+     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                              @Nullable Bundle savedInstanceState) {
+-        mViewModel = new ViewModelProvider(this).get(SkladViewModel.class);
+         View rootView = inflater.inflate(R.layout.sklad_fragment, container, false);
+         recyclerView = (RecyclerView) rootView.findViewById(R.id.skladRecyclerView);
+         //skladFragmentBinding = SkladFragmentBinding.inflate(inflater,container,false);
+-        mLayoutManager = new LinearLayoutManager(getActivity());
+         dbHandler.getDB();
+         initDataset();
+-
+-        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
++        /*mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
+         if (savedInstanceState != null) {
+             // Restore saved layout manager type.
+             mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
+                     .getSerializable(KEY_LAYOUT_MANAGER);
+         }
+         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
++         */
+         mAdapter = new CustomAdapter(buttonList);
+         recyclerView.setAdapter(mAdapter);
+         dbHandler.getDB();
+Index: .idea/runConfigurations.xml
+===================================================================
+diff --git a/.idea/runConfigurations.xml b/.idea/runConfigurations.xml
+deleted file mode 100644
+--- a/.idea/runConfigurations.xml	(revision bcac11f18bc972f877c6d3d1c1e9ff428f232131)
++++ /dev/null	(revision bcac11f18bc972f877c6d3d1c1e9ff428f232131)
+@@ -1,10 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RunConfigurationProducerService">
+-    <option name="ignoredProducers">
+-      <set>
+-        <option value="com.android.tools.idea.compose.preview.runconfiguration.ComposePreviewRunConfigurationProducer" />
+-      </set>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\n  <component name=\"GradleSettings\">\n    <option name=\"linkedExternalProjectsSettings\">\n      <GradleProjectSettings>\n        <option name=\"testRunner\" value=\"PLATFORM\" />\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"modules\">\n          <set>\n            <option value=\"$PROJECT_DIR$\" />\n            <option value=\"$PROJECT_DIR$/app\" />\n          </set>\n        </option>\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\n      </GradleProjectSettings>\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision bcac11f18bc972f877c6d3d1c1e9ff428f232131)
++++ b/.idea/gradle.xml	(date 1644050105093)
+@@ -4,7 +4,7 @@
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+-        <option name="testRunner" value="PLATFORM" />
++        <option name="testRunner" value="GRADLE" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+         <option name="modules">
