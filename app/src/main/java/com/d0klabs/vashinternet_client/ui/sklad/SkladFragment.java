@@ -80,7 +80,8 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
         ItemTouchHelper.Callback callback = new ItemTouchHelperCallback(mAdapter);
         touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(recyclerView);
-        recyclerView.addItemDecoration(new ButtonDecor(this.requireContext(), R.drawable.building_g871b9c998_640));
+        recyclerView.setBackgroundResource(R.drawable.building_g871b9c998_640);
+        recyclerView.addItemDecoration(new ButtonDecor());
 
         MainActivity.skladAddButton = rootView.findViewById(R.id.floatingRecycleAddButton);
 
