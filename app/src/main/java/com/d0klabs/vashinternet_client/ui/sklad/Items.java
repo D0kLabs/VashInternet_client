@@ -2,9 +2,9 @@ package com.d0klabs.vashinternet_client.ui.sklad;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.d0klabs.vashinternet_client.MainActivity;
+import com.d0klabs.vashinternet_client.database.dbSkladHandler;
 
 import java.sql.Array;
 
@@ -22,18 +22,20 @@ public class Items {
 
     }
 
-    public static void initList(){
-        SQLiteDatabase itemsDB = MainActivity.dbHandler.getReadableDatabase();
-        String[] column = {"NAME"};
-        Cursor itemFromDBList = itemsDB.query("itemsVI", column, null, null, null, null, null);
-        int c = itemFromDBList.getCount();
-        recyclerItemList = new String[c];
-        itemFromDBList.moveToFirst();
+    public static void initList() {
+        try (Cursor itemFromDBList = MainActivity.dbHandler.getWritableDatabase().query(dbSkladHandler.TABLE_NAME, new String[]{dbSkladHandler.COL_NAME}, null, null, null, null, null)) {
+            int c = itemFromDBList.getCount();
+            recyclerItemList = new String[c];
+            itemFromDBList.moveToFirst();
 
-        for (int i = 0; i < c; i++) {
-            recyclerItemList[i] = itemFromDBList.getString(itemFromDBList.getColumnIndex("NAME"));
-            itemFromDBList.moveToNext();
+            for (int i = 0; i < c; i++) {
+                recyclerItemList[i] = itemFromDBList.getString(itemFromDBList.getColumnIndex("NAME"));
+                itemFromDBList.moveToNext();
+            }
+            if (itemFromDBList != null) itemFromDBList.close();
         }
+
+
 
 
     }

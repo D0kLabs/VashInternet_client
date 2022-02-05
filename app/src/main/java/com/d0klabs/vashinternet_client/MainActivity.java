@@ -1,7 +1,6 @@
 package com.d0klabs.vashinternet_client;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -17,6 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.d0klabs.vashinternet_client.database.dbSkladHandler;
 import com.d0klabs.vashinternet_client.databinding.ActivityMainBinding;
+import com.d0klabs.vashinternet_client.ui.sklad.Items;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -36,11 +36,8 @@ public class MainActivity extends AppCompatActivity {
     public static Button mbutton3;
     public static Button mbutton4;
     public static Button mbutton5;
-    public static android.widget.Button zero;
     public static FloatingActionButton skladAddButton;
     public static dbSkladHandler dbHandler;
-    public static SQLiteDatabase itemsVI;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         mbutton3 = (Button) findViewById(R.id.motion_button3);
         mbutton4 = (Button) findViewById(R.id.motion_button4);
         mbutton5 = (Button) findViewById(R.id.motion_button5);
-        zero = findViewById(R.id.recyclerItem0);
         skladAddButton = (FloatingActionButton) findViewById(R.id.floatingRecycleAddButton);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -82,8 +78,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         dbHandler = new dbSkladHandler(MainActivity.this);
-        dbHandler.setWriteAheadLoggingEnabled(false);
-        dbHandler.getWritableDatabase();
+        dbHandler.setWriteAheadLoggingEnabled(true);
 
     }
 
@@ -104,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        dbHandler.setTestData_toDB();
+        Items.initList();
     }
 
     protected void onStop(){

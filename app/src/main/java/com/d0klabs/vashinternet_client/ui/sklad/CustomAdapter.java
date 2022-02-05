@@ -10,15 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.d0klabs.vashinternet_client.R;
 
-import java.util.ArrayList;
-
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
     public static final int TITLE = 0;
     public static final int LOAD_MORE = 1;
     public static Button[] buttons;
     private boolean hasLoadButton = true;
-    public static int btnIDs[] = new int[60];
 
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
@@ -26,7 +23,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public static android.widget.Button recycleButton;
 
         public ViewHolder(View v) {
             super(v);
@@ -37,12 +33,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
                 }
             });
-            recycleButton = (Button) v.findViewById(R.id.recyclerItem0);
+            //recycleButton = (Button) v.findViewById(R.id.recyclerItem0);
         }
 
-        public Button getRecycleButton(){
-            return recycleButton;
-        }
         public Button getButton(int pos){
             return buttons[pos];
         }
@@ -56,7 +49,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      * @param dataSet Button[] containing the data to populate views to be used by RecyclerView.
      */
     public CustomAdapter(Button[] dataSet) {
-        buttons = dataSet;
+        buttons = new Button[dataSet.length];
+        for (int i = 0; i < dataSet.length; i++) {
+            buttons[i] = dataSet[i];
+        }
     }
 
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
@@ -93,6 +89,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         //} else {
             //viewHolder.setIsRecyclable(true);
             //viewHolder.getRecycleButton();
+
             viewHolder.getButton(position);
 
 

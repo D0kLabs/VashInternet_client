@@ -1,7 +1,10 @@
 package com.d0klabs.vashinternet_client.ui.sklad;
 
 import android.app.Activity;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,21 +25,18 @@ import com.d0klabs.vashinternet_client.databinding.SkladFragmentBinding;
 import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
 
-import static com.d0klabs.vashinternet_client.MainActivity.dbHandler;
-
 public class SkladFragment extends Fragment implements LifecycleFragment {
 
     private SkladViewModel mViewModel;
     public static LinearLayoutManager layoutManager;
     public static SkladFragmentBinding skladFragmentBinding;
     public static RecyclerView recyclerView;
-    public  static Button[] buttonList ;
+    public static Button[] buttonList;
     //From simple android ...
     public static CustomAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
-    private static final int DATASET_COUNT = 60;
 
 
     private enum LayoutManagerType {
@@ -62,10 +62,8 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
         mViewModel = new ViewModelProvider(this).get(SkladViewModel.class);
         View rootView = inflater.inflate(R.layout.sklad_fragment, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.skladRecyclerView);
-        //skladFragmentBinding = SkladFragmentBinding.inflate(inflater,container,false);
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        dbHandler.getDB();
-        initDataset();
+        skladFragmentBinding = SkladFragmentBinding.inflate(inflater,container,false);
+
 
         mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
         if (savedInstanceState != null) {
@@ -73,10 +71,14 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
             mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
                     .getSerializable(KEY_LAYOUT_MANAGER);
         }
-        setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
+        //setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
+        recyclerView.setLayoutManager(mLayoutManager);
+        initDataset();
         mAdapter = new CustomAdapter(buttonList);
         recyclerView.setAdapter(mAdapter);
-        dbHandler.getDB();
+        recyclerView.addItemDecoration(new DismissDecoration(Color.rgb(10, 210, 25),
+                BitmapFactory.decodeResource(getResources(), R.drawable.common_google_signin_btn_text_dark_normal),
+                getResources().getDisplayMetrics().density));
         initDataset();
         MainActivity.skladAddButton = rootView.findViewById(R.id.floatingRecycleAddButton);
 
@@ -150,14 +152,17 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
      * from a local content provider or remote server.
      */
     private void initDataset() {
-        Items.initList();
         buttonList = new Button[Items.recyclerItemList.length];
-        for (int i = 0; i < Items.recyclerItemList.length; i++) {
-            buttonList[i] = new Button(this.requireContext());
+        for (int i = 0; i < buttonList.length; i++) {
+            buttonList[i] = new Button(requireContext());
+            buttonList[i].setId(Button.generateViewId());
             buttonList[i].setText(Items.recyclerItemList[i]);
-
+            buttonList[i].setGravity(Gravity.CENTER);
+            mLayoutManager.addView(buttonList[i].findViewById(buttonList[i].getId()));
+            //recyclerView.addView(buttonList[i].getRootView());
+            //recyclerView.getChildViewHolder(buttonList[i]);
         }
         Toast.makeText(getContext(), "Ініціалізовано кнопки", Toast.LENGTH_SHORT).show();
     }
-
 }
+
