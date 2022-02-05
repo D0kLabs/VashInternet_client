@@ -5,60 +5,39 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.d0klabs.vashinternet_client.R;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> implements ItemTouchHelperCallback.ItemTouchHelperAdapter {
     private static final String TAG = "CustomAdapter";
     public static final int TITLE = 0;
     public static final int LOAD_MORE = 1;
     public static Button[] buttons;
     private boolean hasLoadButton = true;
 
+    public static final int HEADER = 1;
+    private static final int ITEM = 2;
 
-    // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
-    /**
-     * Provide a reference to the type of views that you are using (custom ViewHolder)
-     */
+    @Override
+    public void onItemDismiss(int position) {
+
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ViewHolder(View v) {
-            super(v);
-            // Define click listener for the ViewHolder's View.
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
-                }
-            });
-            //recycleButton = (Button) v.findViewById(R.id.recyclerItem0);
-        }
+        TextView text;
 
-        public Button getButton(int pos){
-            return buttons[pos];
-        }
-
-    }
-    // END_INCLUDE(recyclerViewSampleViewHolder)
-
-    /**
-     * Initialize the dataset of the Adapter.
-     *
-     * @param dataSet Button[] containing the data to populate views to be used by RecyclerView.
-     */
-    public CustomAdapter(Button[] dataSet) {
-        buttons = new Button[dataSet.length];
-        for (int i = 0; i < dataSet.length; i++) {
-            buttons[i] = dataSet[i];
+        public ViewHolder(View itemView) {
+            super(itemView);
+            text = (TextView) itemView;
         }
     }
 
-    // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
-    // Create new views (invoked by the layout manager)
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public CustomAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         if (viewType == TITLE) {
             View v = LayoutInflater.from(viewGroup.getContext())
                     .inflate(R.layout.recycler_item_list, viewGroup, false);
@@ -72,37 +51,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             return null;
         }
     }
-    // END_INCLUDE(recyclerViewOnCreateViewHolder)
 
-    // BEGIN_INCLUDE(recyclerViewOnBindViewHolder)
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(CustomAdapter.ViewHolder viewHolder, int position) {
         Log.d(TAG, "Element " + position + " set.");
 
-        // Get element from your dataset at this position and replace the contents of the view
-        // with that element
-        //viewHolder.getLinearLayout().setId(Items.recyclerItemList.get(position).getId());
-        //if (position >= getItemCount()){
-            //load more)
-
-        //} else {
-            //viewHolder.setIsRecyclable(true);
-            //viewHolder.getRecycleButton();
-
-            viewHolder.getButton(position);
-
-
-        //}
-
-        //viewHolder.itemView.setId(Items.recyclerItemList.get(position).getId());
-
-
-                //setText(mDataSet[position]);
+            viewHolder.text.setText(Items.recyclerItemList[position]);
     }
-    // END_INCLUDE(recyclerViewOnBindViewHolder)
 
-    // Return the size of your dataset (invoked by the layout manager)
 
     public boolean isHasLoadButton() {
         return hasLoadButton;
@@ -115,13 +71,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-
+/*
         if (hasLoadButton) {
             return buttons.length; //+1
         } else {
             return buttons.length;
         }
 
+ */
+        return Items.recyclerItemList.length;
     }
 
     @Override

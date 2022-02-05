@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +32,7 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
     public static LinearLayoutManager layoutManager;
     public static SkladFragmentBinding skladFragmentBinding;
     public static RecyclerView recyclerView;
+    public static ItemTouchHelper touchHelper;
     public static Button[] buttonList;
     //From simple android ...
     public static CustomAdapter mAdapter;
@@ -54,32 +56,41 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mViewModel = new ViewModelProvider(this).get(SkladViewModel.class);
+
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = new ViewModelProvider(this).get(SkladViewModel.class);
+
         View rootView = inflater.inflate(R.layout.sklad_fragment, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.skladRecyclerView);
+        mLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(mLayoutManager);
         skladFragmentBinding = SkladFragmentBinding.inflate(inflater,container,false);
-
-
-        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
+        /*mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
         if (savedInstanceState != null) {
             // Restore saved layout manager type.
             mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
                     .getSerializable(KEY_LAYOUT_MANAGER);
         }
         //setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
-        recyclerView.setLayoutManager(mLayoutManager);
-        initDataset();
-        mAdapter = new CustomAdapter(buttonList);
+
+         */
+        mAdapter = new CustomAdapter();
         recyclerView.setAdapter(mAdapter);
+        ItemTouchHelper.Callback callback = new ItemTouchHelperCallback(mAdapter);
+        touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(recyclerView);
+
+
+
+
+
         recyclerView.addItemDecoration(new DismissDecoration(Color.rgb(10, 210, 25),
                 BitmapFactory.decodeResource(getResources(), R.drawable.common_google_signin_btn_text_dark_normal),
                 getResources().getDisplayMetrics().density));
-        initDataset();
         MainActivity.skladAddButton = rootView.findViewById(R.id.floatingRecycleAddButton);
 
         MainActivity.skladAddButton.setOnClickListener(new View.OnClickListener() {
@@ -151,18 +162,6 @@ public class SkladFragment extends Fragment implements LifecycleFragment {
      * Generates Strings for RecyclerView's adapter. This data would usually come
      * from a local content provider or remote server.
      */
-    private void initDataset() {
-        buttonList = new Button[Items.recyclerItemList.length];
-        for (int i = 0; i < buttonList.length; i++) {
-            buttonList[i] = new Button(requireContext());
-            buttonList[i].setId(Button.generateViewId());
-            buttonList[i].setText(Items.recyclerItemList[i]);
-            buttonList[i].setGravity(Gravity.CENTER);
-            mLayoutManager.addView(buttonList[i].findViewById(buttonList[i].getId()));
-            //recyclerView.addView(buttonList[i].getRootView());
-            //recyclerView.getChildViewHolder(buttonList[i]);
-        }
-        Toast.makeText(getContext(), "Ініціалізовано кнопки", Toast.LENGTH_SHORT).show();
-    }
+
 }
 
