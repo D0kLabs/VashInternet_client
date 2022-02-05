@@ -8,12 +8,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.d0klabs.vashinternet_client.R;
 import com.d0klabs.vashinternet_client.databinding.InstrumentsFragmentBinding;
+import com.d0klabs.vashinternet_client.ui.sklad.ItemTouchHelperCallback;
 import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
 import com.google.android.material.tabs.TabItem;
@@ -22,9 +24,10 @@ import com.google.android.material.tabs.TabLayout;
 import org.jetbrains.annotations.NotNull;
 
 public class instrumentsFragment extends Fragment implements LifecycleFragment{
-
+    public static TabLayout tabs;
     private InstrumentsViewModel mViewModel;
     private InstrumentsFragmentBinding instrumentsFragmentBinding;
+
 
     public static instrumentsFragment newInstance() {
         return new instrumentsFragment();
@@ -34,14 +37,29 @@ public class instrumentsFragment extends Fragment implements LifecycleFragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.instruments_fragment, container, false);
-        TabLayout tabs = (TabLayout) rootView.findViewById(R.id.tabs);
+        tabs = (TabLayout) rootView.findViewById(R.id.tabs);
         TabItem tabItem1 = (TabItem) rootView.findViewById(R.id.cardTab1);
         TabItem tabItem2 = (TabItem) rootView.findViewById(R.id.cardTab2);
         TabItem tabItem3 = (TabItem) rootView.findViewById(R.id.cardTab3);
         TabItem tabItem4 = (TabItem) rootView.findViewById(R.id.cardTab4);
-        CardView cardView = (CardView) rootView.findViewById(R.id.instrumentsCardView);
+        RecyclerView cardRecyclerView = (RecyclerView) rootView.findViewById(R.id.instrumentsRecyclerView);
+        RecyclerView.LayoutManager instrumLayoutManager = new RecyclerView.LayoutManager() {
 
-        return inflater.inflate(R.layout.instruments_fragment, container, false);
+            @Override
+            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
+                return null;
+            }
+
+
+        };
+        cardRecyclerView.setLayoutManager(instrumLayoutManager);
+        InstrumentsAdapter instrumentsAdapter = new InstrumentsAdapter();
+        cardRecyclerView.setAdapter(instrumentsAdapter);
+        ItemTouchHelper.Callback instrumentsTouchHelper = new ItemTouchHelperCallback(instrumentsAdapter);
+        instrumentsTouchHelper.attachToRecyclerView(cardRecyclerView);
+        //cardRecyclerView.setBackgroundResource(R.drawable.building_g871b9c998_640); //get custom b_ground
+        return rootView;
+        //return inflater.inflate(R.layout.instruments_fragment, container, false);
     }
 
     @Override
