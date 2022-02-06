@@ -23,10 +23,14 @@ import com.google.android.material.tabs.TabLayout;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class instrumentsFragment extends Fragment implements LifecycleFragment{
     public static TabLayout tabs;
     private InstrumentsViewModel mViewModel;
     private InstrumentsFragmentBinding instrumentsFragmentBinding;
+    public List<instruments> instruments = getListData();
 
 
     public static instrumentsFragment newInstance() {
@@ -53,9 +57,10 @@ public class instrumentsFragment extends Fragment implements LifecycleFragment{
 
         };
         cardRecyclerView.setLayoutManager(instrumLayoutManager);
-        InstrumentsAdapter instrumentsAdapter = new InstrumentsAdapter();
+        InstrumentsAdapter instrumentsAdapter = new InstrumentsAdapter(this.getContext(),instruments);
         cardRecyclerView.setAdapter(instrumentsAdapter);
-        ItemTouchHelper.Callback instrumentsTouchHelper = new ItemTouchHelperCallback(instrumentsAdapter);
+        ItemTouchHelper.Callback instrumentsCallback = new ItemTouchHelperCallback(instrumentsAdapter);
+        ItemTouchHelper instrumentsTouchHelper = new ItemTouchHelper(instrumentsCallback);
         instrumentsTouchHelper.attachToRecyclerView(cardRecyclerView);
         //cardRecyclerView.setBackgroundResource(R.drawable.building_g871b9c998_640); //get custom b_ground
         return rootView;
@@ -93,4 +98,22 @@ public class instrumentsFragment extends Fragment implements LifecycleFragment{
     public boolean isStarted() {
         return false;
     }
+
+    private  List<instruments> getListData() {
+        List<instruments> list = new ArrayList<instruments>();
+        Country vietnam = new Country("Vietnam", "vn", 98000000);
+        Country usa = new Country("United States", "us", 320000000);
+        Country russia = new Country("Russia", "ru", 142000000);
+        Country autraylia = new Country("Autraylia", "au", 25000000);
+        Country japan = new Country("Japan", "jp", 126000000);
+
+        list.add(vietnam);
+        list.add(usa);
+        list.add(russia);
+        list.add(autraylia);
+        list.add(japan);
+
+        return list;
+    }
+
 }
