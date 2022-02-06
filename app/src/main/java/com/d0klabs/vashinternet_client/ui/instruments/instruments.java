@@ -3,12 +3,13 @@ package com.d0klabs.vashinternet_client.ui.instruments;
 import android.database.Cursor;
 
 import com.d0klabs.vashinternet_client.MainActivity;
-import com.d0klabs.vashinternet_client.database.dbSkladHandler;
+import com.d0klabs.vashinternet_client.database.dbInstrumentsHandler;
 
 public class instruments {
-    private String Name;
+    public static String[] recyclerInstrumentsList;
+    private static String Name;
 
-    private String ResName;
+    private static String ResName;
 
     public instruments(String Name, String ResName) {
         this.Name= Name;
@@ -23,16 +24,16 @@ public class instruments {
         return ResName;
     }
     public static void initList() {
-        try (Cursor itemFromDBList = MainActivity.dbHandler.getWritableDatabase().query(dbSkladHandler.TABLE_NAME, new String[]{dbSkladHandler.COL_NAME}, null, null, null, null, null)) {
-            int c = itemFromDBList.getCount();
-            recyclerItemList = new String[c];
-            itemFromDBList.moveToFirst();
+        try (Cursor instrumentsFromDBList = MainActivity.dbInstrumentsHandler.getWritableDatabase().query(dbInstrumentsHandler.TABLE_NAME, new String[]{dbInstrumentsHandler.COL_INSTNAME}, null, null, null, null, null)) {
+            int c = instrumentsFromDBList.getCount();
+            recyclerInstrumentsList = new String[c];
+            instrumentsFromDBList.moveToFirst();
 
             for (int i = 0; i < c; i++) {
-                recyclerItemList[i] = itemFromDBList.getString(itemFromDBList.getColumnIndex("NAME"));
-                itemFromDBList.moveToNext();
+                recyclerInstrumentsList[i] = instrumentsFromDBList.getString(instrumentsFromDBList.getColumnIndex("INSTNAME"));
+                instrumentsFromDBList.moveToNext();
             }
-            if (itemFromDBList != null) itemFromDBList.close();
+            if (instrumentsFromDBList != null) instrumentsFromDBList.close();
         }
     }
 }

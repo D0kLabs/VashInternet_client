@@ -11,7 +11,7 @@ import com.d0klabs.vashinternet_client.R;
 
 public class InstrumentsViewHolder extends   RecyclerView.ViewHolder {
 
-    ImageView flagView;
+    ImageView imgView;
     TextView instrumentNameView;
 
 
@@ -19,7 +19,7 @@ public class InstrumentsViewHolder extends   RecyclerView.ViewHolder {
     public InstrumentsViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        this.flagView = (ImageView) itemView.findViewById(R.id.imageView_flag);
+        this.imgView = (ImageView) itemView.findViewById(R.id.imageView);
         this.instrumentNameView = (TextView) itemView.findViewById(R.id.textView_instrumentName);
     }
 }

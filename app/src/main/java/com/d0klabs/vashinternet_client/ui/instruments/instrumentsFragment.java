@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.d0klabs.vashinternet_client.R;
@@ -47,16 +48,7 @@ public class instrumentsFragment extends Fragment implements LifecycleFragment{
         TabItem tabItem3 = (TabItem) rootView.findViewById(R.id.cardTab3);
         TabItem tabItem4 = (TabItem) rootView.findViewById(R.id.cardTab4);
         RecyclerView cardRecyclerView = (RecyclerView) rootView.findViewById(R.id.instrumentsRecyclerView);
-        RecyclerView.LayoutManager instrumLayoutManager = new RecyclerView.LayoutManager() {
-
-            @Override
-            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
-                return null;
-            }
-
-
-        };
-        cardRecyclerView.setLayoutManager(instrumLayoutManager);
+        cardRecyclerView.setLayoutManager( new LinearLayoutManager(this.getContext()));
         InstrumentsAdapter instrumentsAdapter = new InstrumentsAdapter(this.getContext(),instruments);
         cardRecyclerView.setAdapter(instrumentsAdapter);
         ItemTouchHelper.Callback instrumentsCallback = new ItemTouchHelperCallback(instrumentsAdapter);
@@ -101,11 +93,11 @@ public class instrumentsFragment extends Fragment implements LifecycleFragment{
 
     private  List<instruments> getListData() {
         List<instruments> list = new ArrayList<instruments>();
-        Country vietnam = new Country("Vietnam", "vn", 98000000);
-        Country usa = new Country("United States", "us", 320000000);
-        Country russia = new Country("Russia", "ru", 142000000);
-        Country autraylia = new Country("Autraylia", "au", 25000000);
-        Country japan = new Country("Japan", "jp", 126000000);
+        instruments vietnam = new instruments("Vietnam", "vn");
+        instruments usa = new instruments("United States", "us");
+        instruments russia = new instruments("Russia", "ru");
+        instruments autraylia = new instruments("Autraylia", "au");
+        instruments japan = new instruments("Japan", "jp");
 
         list.add(vietnam);
         list.add(usa);

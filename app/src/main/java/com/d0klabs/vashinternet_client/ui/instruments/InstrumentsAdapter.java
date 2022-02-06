@@ -44,7 +44,7 @@ public class InstrumentsAdapter extends RecyclerView.Adapter<InstrumentsViewHold
     @Override
     public void onBindViewHolder(InstrumentsViewHolder holder, int position) {
         imagResId = this.getDrawableResIdByName(instruments.getResName());
-        holder.flagView.setImageResource(imagResId);
+        holder.imgView.setImageResource(imagResId);
         holder.instrumentNameView.setText(instruments.getName());
     }
 
