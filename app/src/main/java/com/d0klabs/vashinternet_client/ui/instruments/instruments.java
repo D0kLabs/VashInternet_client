@@ -11,6 +11,8 @@ public class instruments {
     public static String[][] recyclerInstrumentsList;
     private static String Name;
     private static String ResName;
+    private static int Price;
+    private static int repCost;
 
     public instruments(String Name, String ResName) {
         this.Name= Name;
@@ -23,6 +25,12 @@ public class instruments {
 
     public static String getResName() {
         return ResName;
+    }
+    public static int getPrice(){
+        return Price;
+    }
+    public static int getRepCost(){
+        return repCost;
     }
     public static void initList() {
         for (int j = 0; j < TableNames.length; j++) {
@@ -39,6 +47,5 @@ public class instruments {
                 if (instrumentsFromDBList != null) instrumentsFromDBList.close();
             }
         }
-
     }
 }
