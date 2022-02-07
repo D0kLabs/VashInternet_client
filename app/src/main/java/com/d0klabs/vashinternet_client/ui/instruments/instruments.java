@@ -5,6 +5,9 @@ import android.database.Cursor;
 import com.d0klabs.vashinternet_client.MainActivity;
 import com.d0klabs.vashinternet_client.database.dbInstrumentsHandler;
 
+import static com.d0klabs.vashinternet_client.database.dbInstrumentsHandler.TABLE_NAME;
+import static com.d0klabs.vashinternet_client.database.dbInstrumentsHandler.tabCount;
+
 public class instruments {
     public static String[] recyclerInstrumentsList;
     private static String Name;
@@ -24,16 +27,20 @@ public class instruments {
         return ResName;
     }
     public static void initList() {
-        try (Cursor instrumentsFromDBList = MainActivity.dbInstrumentsHandler.getWritableDatabase().query(dbInstrumentsHandler.TABLE_NAME, new String[]{dbInstrumentsHandler.COL_INSTNAME}, null, null, null, null, null)) {
-            int c = instrumentsFromDBList.getCount();
-            recyclerInstrumentsList = new String[c];
-            instrumentsFromDBList.moveToFirst();
+        for (int j = 0; j < tabCount; j++) {
+            String tablename = TABLE_NAME + j;
+            try (Cursor instrumentsFromDBList = MainActivity.dbInstrumentsHandler.getWritableDatabase().query(tablename, new String[]{dbInstrumentsHandler.COL_INSTNAME}, null, null, null, null, null)) {
+                int c = instrumentsFromDBList.getCount();
+                recyclerInstrumentsList = new String[c];
+                instrumentsFromDBList.moveToFirst();
 
-            for (int i = 0; i < c; i++) {
-                recyclerInstrumentsList[i] = instrumentsFromDBList.getString(instrumentsFromDBList.getColumnIndex("INSTNAME"));
-                instrumentsFromDBList.moveToNext();
+                for (int i = 0; i < c; i++) {
+                    recyclerInstrumentsList[i] = instrumentsFromDBList.getString(instrumentsFromDBList.getColumnIndex("INSTNAME"));
+                    instrumentsFromDBList.moveToNext();
+                }
+                if (instrumentsFromDBList != null) instrumentsFromDBList.close();
             }
-            if (instrumentsFromDBList != null) instrumentsFromDBList.close();
         }
+
     }
 }

@@ -46,6 +46,21 @@
                 app:layout_constraintTop_toBottomOf="@id/tabs"
                 app:layout_constraintEnd_toEndOf="@id/nav_instruments"
                 app:layout_constraintStart_toStartOf="@id/nav_instruments"
-                app:layout_constraintBottom_toBottomOf="@id/nav_instruments" />
+                app:layout_constraintBottom_toBottomOf="@id/nav_instruments"
+                android:layout_gravity="center_vertical"
+                android:contextClickable="true"
+                android:isScrollContainer="true"
+                android:nestedScrollingEnabled="true"
+                android:overScrollMode="always"
+                android:persistentDrawingCache="all"
+                android:scrollIndicators="right"
+                android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbarSize="10dp"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:verticalScrollbarPosition="right"
+                android:visibility="visible"
+                android:orientation="vertical"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

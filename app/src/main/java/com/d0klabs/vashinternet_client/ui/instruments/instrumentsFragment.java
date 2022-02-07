@@ -27,6 +27,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.d0klabs.vashinternet_client.ui.instruments.instruments.recyclerInstrumentsList;
+
 public class instrumentsFragment extends Fragment implements LifecycleFragment{
     public static TabLayout tabs;
     private InstrumentsViewModel mViewModel;
@@ -91,8 +93,12 @@ public class instrumentsFragment extends Fragment implements LifecycleFragment{
         return false;
     }
 
-    private  List<instruments> getListData() {
+    public  List<instruments> getListData() {
         List<instruments> list = new ArrayList<instruments>();
+        for (int i = 0; i < recyclerInstrumentsList.length; i++) {
+            list.add(new instruments(recyclerInstrumentsList[i],"res"));
+        }
+        /*
         instruments vietnam = new instruments("Vietnam", "vn");
         instruments usa = new instruments("United States", "us");
         instruments russia = new instruments("Russia", "ru");
@@ -104,6 +110,8 @@ public class instrumentsFragment extends Fragment implements LifecycleFragment{
         list.add(russia);
         list.add(autraylia);
         list.add(japan);
+
+         */
 
         return list;
     }

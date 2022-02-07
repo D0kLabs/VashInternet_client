@@ -17,6 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.d0klabs.vashinternet_client.database.dbInstrumentsHandler;
 import com.d0klabs.vashinternet_client.database.dbSkladHandler;
 import com.d0klabs.vashinternet_client.databinding.ActivityMainBinding;
+import com.d0klabs.vashinternet_client.ui.instruments.instruments;
 import com.d0klabs.vashinternet_client.ui.sklad.Items;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -104,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         dbHandler.setTestData_toDB();
+        dbInstrumentsHandler.setTestData_toDB();
         Items.initList();
+        instruments.initList();
     }
 
     protected void onStop(){
