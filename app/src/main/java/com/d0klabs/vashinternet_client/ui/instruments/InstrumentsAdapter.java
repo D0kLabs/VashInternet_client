@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,9 +19,9 @@ public class InstrumentsAdapter extends RecyclerView.Adapter<InstrumentsViewHold
     private int imagResId;
     private Context context;
     private LayoutInflater mLayoutInflater;
-    public InstrumentsAdapter(Context context, List<instruments> datas ) {
+    public int tab = 4;
+    public InstrumentsAdapter(Context context) {
         this.context = context;
-        this.instrumentsList = datas;
         this.mLayoutInflater = LayoutInflater.from(context);
     }
 
@@ -43,14 +42,16 @@ public class InstrumentsAdapter extends RecyclerView.Adapter<InstrumentsViewHold
 
     @Override
     public void onBindViewHolder(InstrumentsViewHolder holder, int position) {
-        imagResId = this.getDrawableResIdByName(instruments.getResName());
+        //imagResId = this.getDrawableResIdByName(instruments.getResName());
         holder.imgView.setImageResource(imagResId);
-        holder.instrumentNameView.setText(instruments.getName());
+        holder.instrumentNameView.setText(instruments.getName(tab, position));
+        holder.instrumentPrice.setText(instruments.getPrice(tab, position));
+        holder.instrumentRepairCost.setText(instruments.getRepCost(tab, position));
     }
 
     @Override
     public int getItemCount() {
-        return this.instrumentsList.size();
+        return this.instrumentsList[tab].length;
     }
 
     // Find Image ID corresponding to the name of the image (in the directory drawable).
@@ -65,7 +66,7 @@ public class InstrumentsAdapter extends RecyclerView.Adapter<InstrumentsViewHold
     private void handleRecyclerItemClick(RecyclerView recyclerView, View itemView) {
         int itemPosition = recyclerView.getChildLayoutPosition(itemView);
         // something todo on click! Maybe load other layout with it settings
-        Toast.makeText(this.context, instruments.getName(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this.context, instruments.getName(), Toast.LENGTH_LONG).show();
     }
 
     @Override

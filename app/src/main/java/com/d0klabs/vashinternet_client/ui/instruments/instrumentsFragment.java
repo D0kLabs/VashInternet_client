@@ -24,16 +24,14 @@ import com.google.android.material.tabs.TabLayout;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static com.d0klabs.vashinternet_client.ui.instruments.instruments.recyclerInstrumentsList;
 
 public class instrumentsFragment extends Fragment implements LifecycleFragment{
     public static TabLayout tabs;
     private InstrumentsViewModel mViewModel;
     private InstrumentsFragmentBinding instrumentsFragmentBinding;
-    public List<instruments> instruments = getListData();
+    public static List[][] instrumentsList;
+
 
 
     public static instrumentsFragment newInstance() {
@@ -51,7 +49,8 @@ public class instrumentsFragment extends Fragment implements LifecycleFragment{
         TabItem tabItem4 = (TabItem) rootView.findViewById(R.id.cardTab4);
         RecyclerView cardRecyclerView = (RecyclerView) rootView.findViewById(R.id.instrumentsRecyclerView);
         cardRecyclerView.setLayoutManager( new LinearLayoutManager(this.getContext()));
-        InstrumentsAdapter instrumentsAdapter = new InstrumentsAdapter(this.getContext(),instruments);
+        instruments.updateInfoFromList();
+        InstrumentsAdapter instrumentsAdapter = new InstrumentsAdapter(this.getContext());
         cardRecyclerView.setAdapter(instrumentsAdapter);
         ItemTouchHelper.Callback instrumentsCallback = new ItemTouchHelperCallback(instrumentsAdapter);
         ItemTouchHelper instrumentsTouchHelper = new ItemTouchHelper(instrumentsCallback);
@@ -93,15 +92,5 @@ public class instrumentsFragment extends Fragment implements LifecycleFragment{
         return false;
     }
 
-    public  List<instruments> getListData() {
-        List<instruments> list = new ArrayList<instruments>();
-        for (int b = 0; b <recyclerInstrumentsList.length ; b++) {
-            for (int i = 0; i < recyclerInstrumentsList[b].length; i++) {
-                list.add(new instruments(recyclerInstrumentsList[b][i], "res"));
-            }
-        }
-
-        return list;
-    }
 
 }

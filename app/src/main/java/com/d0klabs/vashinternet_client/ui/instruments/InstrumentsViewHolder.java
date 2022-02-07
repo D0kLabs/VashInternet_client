@@ -25,5 +25,6 @@ public class InstrumentsViewHolder extends   RecyclerView.ViewHolder {
         this.instrumentNameView = (TextView) itemView.findViewById(R.id.textView_instrumentName);
         this.instrumentPrice = (TextView) itemView.findViewById(R.id.textView_instrumentPrice);
         this.instrumentRepairCost = (TextView) itemView.findViewById(R.id.textView_instrumentRepair);
+
     }
 }
