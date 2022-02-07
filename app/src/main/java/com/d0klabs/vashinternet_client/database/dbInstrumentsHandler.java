@@ -20,7 +20,6 @@ public class dbInstrumentsHandler extends SQLiteOpenHelper {
     public static String COL_INSTNAME = "INSTNAME"; //text for button
     public static String COL_DESCRIPTION = "DESCRIPTION"; // text for inside view
     public static String COL_CRTIN = "CRTIN"; // time of input
-    public static String COL_REPR = "REPR"; // number of usage to expire
     public static String COL_CRTLUPD = "CRTLUPD"; // time of expiration (00:00 if none)
     public static String COL_INPUTIN = "INPUTIN"; // time of adding to sql
     public static int ID = 0;
@@ -28,27 +27,24 @@ public class dbInstrumentsHandler extends SQLiteOpenHelper {
     public static String DESCRIPTION;
     public static Time currTime;
     public static String CRTIN;
-    public static int REPR = 0;
     public static String CRTLUPD;
     public static String INPUTIN;
-    public static int tabCount = 4;
 
     public dbInstrumentsHandler(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
+    public static String TableNames[] = { new String("TAB1"), new String("TAB2"), new String("TAB3"), new String("TAB4") };
 
 
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        for (int i = 0; i < tabCount; i++) {
-            String tablename = TABLE_NAME + i;
-            String query = "CREATE TABLE " + tablename
-                    + " (" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+        for (int i = 0; i < TableNames.length; i++) {
+            String query = "CREATE TABLE " + TableNames[i]
+                    + " (" + COL_ID + " INTEGER, "
                     + COL_INSTNAME + " TEXT,"
                     + COL_DESCRIPTION + " TEXT,"
                     + COL_CRTIN + " TEXT,"
-                    + COL_REPR + "INTEGER,"
                     + COL_CRTLUPD + " TEXT,"
                     + COL_INPUTIN + " TEXT)";
             sqLiteDatabase.execSQL(query);
@@ -62,32 +58,27 @@ public class dbInstrumentsHandler extends SQLiteOpenHelper {
         Time currTime = new Time(0L);
         currTime.setTime(new Date().getTime());
         CRTIN = currTime.toString();
-        REPR = 0;
         CRTLUPD = "00:00:00";
         INPUTIN = "00:00:00";
 
-        for (int j = 0; j < tabCount; j++) {
-            String tablename = TABLE_NAME + j;
+        for (int j = 0; j < TableNames.length; j++) {
             for (int i = 1; i < 10; i++) { //FOR TESTING ONLY!
                 ContentValues rowfor = new ContentValues();
-                rowfor.put("ID", j);
-                rowfor.put("INSTNAME", "instrument" + j);
+                rowfor.put("ID", i);
+                rowfor.put("INSTNAME", INSTNAME);
                 rowfor.put("DESCRIPTION", DESCRIPTION);
                 rowfor.put("CRTIN", CRTIN);
-                rowfor.put("REPR", REPR);
                 rowfor.put("CRTLUPD", CRTLUPD);
                 rowfor.put("INPUTIN", CRTIN);
-                MainActivity.dbInstrumentsHandler.getWritableDatabase().insert(tablename, null, rowfor);
-                MainActivity.dbInstrumentsHandler.close();
+                MainActivity.dbInstrumentsHandler.getWritableDatabase().insert(TableNames[j], null, rowfor);
             }
         }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        for (int m= 0; m < tabCount; m++) {
-            String tablename = TABLE_NAME + m;
-            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + tablename);
+        for (int m= 0; m < TableNames.length; m++) {
+            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TableNames[m]);
         }
 
     }

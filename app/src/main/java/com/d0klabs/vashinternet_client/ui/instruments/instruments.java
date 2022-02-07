@@ -5,8 +5,7 @@ import android.database.Cursor;
 import com.d0klabs.vashinternet_client.MainActivity;
 import com.d0klabs.vashinternet_client.database.dbInstrumentsHandler;
 
-import static com.d0klabs.vashinternet_client.database.dbInstrumentsHandler.TABLE_NAME;
-import static com.d0klabs.vashinternet_client.database.dbInstrumentsHandler.tabCount;
+import static com.d0klabs.vashinternet_client.database.dbInstrumentsHandler.TableNames;
 
 public class instruments {
     public static String[] recyclerInstrumentsList;
@@ -27,9 +26,8 @@ public class instruments {
         return ResName;
     }
     public static void initList() {
-        for (int j = 0; j < tabCount; j++) {
-            String tablename = TABLE_NAME + j;
-            try (Cursor instrumentsFromDBList = MainActivity.dbInstrumentsHandler.getWritableDatabase().query(tablename, new String[]{dbInstrumentsHandler.COL_INSTNAME}, null, null, null, null, null)) {
+        for (int j = 0; j < TableNames.length; j++) {
+            try (Cursor instrumentsFromDBList = MainActivity.dbInstrumentsHandler.getWritableDatabase().query(TableNames[j], new String[]{dbInstrumentsHandler.COL_INSTNAME}, null, null, null, null, null)) {
                 int c = instrumentsFromDBList.getCount();
                 recyclerInstrumentsList = new String[c];
                 instrumentsFromDBList.moveToFirst();

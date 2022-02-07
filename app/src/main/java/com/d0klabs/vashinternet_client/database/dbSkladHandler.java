@@ -72,7 +72,7 @@ public class dbSkladHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase itemsVI) {
 
         String q = "CREATE TABLE " + TABLE_NAME
-                    + " (" + COL_IDEX + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + " (" + COL_IDEX + " INTEGER, "
                     + COL_NAME + " TEXT,"
                     + COL_DESCRIPTION + " TEXT,"
                     + COL_CRTIN + " TEXT,"
