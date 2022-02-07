@@ -22,6 +22,8 @@ public class dbInstrumentsHandler extends SQLiteOpenHelper {
     public static String COL_CRTIN = "CRTIN"; // time of input
     public static String COL_CRTLUPD = "CRTLUPD"; // time of expiration (00:00 if none)
     public static String COL_INPUTIN = "INPUTIN"; // time of adding to sql
+    public static String COL_PRICE = "PRICE";
+    public static String COL_REPCOST = "REPCOST";
     public static int ID = 0;
     public static String INSTNAME;
     public static String DESCRIPTION;
@@ -29,6 +31,9 @@ public class dbInstrumentsHandler extends SQLiteOpenHelper {
     public static String CRTIN;
     public static String CRTLUPD;
     public static String INPUTIN;
+    public static Integer PRICE;
+    public static Integer REPCOST;
+
 
     public dbInstrumentsHandler(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -46,7 +51,9 @@ public class dbInstrumentsHandler extends SQLiteOpenHelper {
                     + COL_DESCRIPTION + " TEXT,"
                     + COL_CRTIN + " TEXT,"
                     + COL_CRTLUPD + " TEXT,"
-                    + COL_INPUTIN + " TEXT)";
+                    + COL_INPUTIN + " TEXT,"
+                    + COL_PRICE + " INTEGER,"
+                    + COL_REPCOST + " INTEGER)";
             sqLiteDatabase.execSQL(query);
         }
 
@@ -60,6 +67,8 @@ public class dbInstrumentsHandler extends SQLiteOpenHelper {
         CRTIN = currTime.toString();
         CRTLUPD = "00:00:00";
         INPUTIN = "00:00:00";
+        PRICE = 0;
+        REPCOST = 0;
 
         for (int j = 0; j < TableNames.length; j++) {
             for (int i = 1; i < 10; i++) { //FOR TESTING ONLY!
@@ -70,6 +79,8 @@ public class dbInstrumentsHandler extends SQLiteOpenHelper {
                 rowfor.put("CRTIN", CRTIN);
                 rowfor.put("CRTLUPD", CRTLUPD);
                 rowfor.put("INPUTIN", CRTIN);
+                rowfor.put("PRICE", PRICE);
+                rowfor.put("REPCOST", REPCOST);
                 MainActivity.dbInstrumentsHandler.getWritableDatabase().insert(TableNames[j], null, rowfor);
             }
         }
