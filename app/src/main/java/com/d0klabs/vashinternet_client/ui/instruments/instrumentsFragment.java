@@ -95,23 +95,11 @@ public class instrumentsFragment extends Fragment implements LifecycleFragment{
 
     public  List<instruments> getListData() {
         List<instruments> list = new ArrayList<instruments>();
-        for (int i = 0; i < recyclerInstrumentsList.length; i++) {
-            list.add(new instruments(recyclerInstrumentsList[i],"res"));
+        for (int b = 0; b <recyclerInstrumentsList.length ; b++) {
+            for (int i = 0; i < recyclerInstrumentsList[b].length; i++) {
+                list.add(new instruments(recyclerInstrumentsList[b][i], "res"));
+            }
         }
-        /*
-        instruments vietnam = new instruments("Vietnam", "vn");
-        instruments usa = new instruments("United States", "us");
-        instruments russia = new instruments("Russia", "ru");
-        instruments autraylia = new instruments("Autraylia", "au");
-        instruments japan = new instruments("Japan", "jp");
-
-        list.add(vietnam);
-        list.add(usa);
-        list.add(russia);
-        list.add(autraylia);
-        list.add(japan);
-
-         */
 
         return list;
     }

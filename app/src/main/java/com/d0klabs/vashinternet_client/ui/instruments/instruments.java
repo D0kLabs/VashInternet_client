@@ -8,9 +8,8 @@ import com.d0klabs.vashinternet_client.database.dbInstrumentsHandler;
 import static com.d0klabs.vashinternet_client.database.dbInstrumentsHandler.TableNames;
 
 public class instruments {
-    public static String[] recyclerInstrumentsList;
+    public static String[][] recyclerInstrumentsList;
     private static String Name;
-
     private static String ResName;
 
     public instruments(String Name, String ResName) {
@@ -27,15 +26,16 @@ public class instruments {
     }
     public static void initList() {
         for (int j = 0; j < TableNames.length; j++) {
+
             try (Cursor instrumentsFromDBList = MainActivity.dbInstrumentsHandler.getWritableDatabase().query(TableNames[j], new String[]{dbInstrumentsHandler.COL_INSTNAME}, null, null, null, null, null)) {
                 int c = instrumentsFromDBList.getCount();
-                recyclerInstrumentsList = new String[c];
+                recyclerInstrumentsList = new String[TableNames.length][c];
                 instrumentsFromDBList.moveToFirst();
-
-                for (int i = 0; i < c; i++) {
-                    recyclerInstrumentsList[i] = instrumentsFromDBList.getString(instrumentsFromDBList.getColumnIndex("INSTNAME"));
+                for (int m=0; m < c; m++) {
+                    recyclerInstrumentsList[j][m] = instrumentsFromDBList.getString(instrumentsFromDBList.getColumnIndex("INSTNAME"));
                     instrumentsFromDBList.moveToNext();
                 }
+
                 if (instrumentsFromDBList != null) instrumentsFromDBList.close();
             }
         }
