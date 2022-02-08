@@ -11,7 +11,7 @@ import java.sql.Time;
 public class dbCalendarHandler extends SQLiteOpenHelper {
     public static final String DB_NAME = "calendarVashInternet.db";
     public static final int DB_VERSION = 1;
-    public static String TABLE_NAME; //week
+    public static String TABLE_NAME = "testing"; //week
     public static String COL_ID = "ID";
     public static String COL_DATE = "DATE";
     public static String COL_DAYOFWEEK = "DAYOFWEEK";
@@ -46,6 +46,21 @@ public class dbCalendarHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        String query = "CREATE TABLE " + TABLE_NAME
+                + " (" + COL_ID + " INTEGER, "
+                + COL_DATE + " TEXT,"
+                + COL_DAYOFWEEK + " TEXT,"
+                + COL_DESCRIPTION + " TEXT,"
+                + COL_TASK + " TEXT,"
+                + COL_PLANTIMESTART + " TEXT,"
+                + COL_PLANTIMEEND + " TEXT,"
+                + COL_TIMESTART + " TEXT,"
+                + COL_TIMEEND + " TEXT,"
+                + COL_TOOLS + " TEXT,"
+                + COL_TASKUPDTIME + " TEXT,"
+                + COL_TIMEEND + " INTEGER,"
+                + COL_REPAIRCOST + " INTEGER)";
+        sqLiteDatabase.execSQL(query);
 
     }
 
