@@ -17,7 +17,7 @@ public class InstrumentsAdapter extends RecyclerView.Adapter<InstrumentsViewHold
     private Context context;
     private LayoutInflater mLayoutInflater;
     public int tab = instrumentsFragment.tabs.getTabCount();
-    public static int lenth = 0;
+    public int z;
     public InstrumentsAdapter(Context context) {
         this.context = context;
         this.mLayoutInflater = LayoutInflater.from(context);
@@ -42,16 +42,17 @@ public class InstrumentsAdapter extends RecyclerView.Adapter<InstrumentsViewHold
     public void onBindViewHolder(InstrumentsViewHolder holder, int position) {
         //imagResId = this.getDrawableResIdByName(instruments.getResName());
             holder.imgView.setImageResource(imagResId);
-            holder.instrumentNameView.setText(instruments.getName(tab, position));
-            holder.instrumentPrice.setText(instruments.getPrice(tab, position));
-            holder.instrumentRepairCost.setText(instruments.getRepCost(tab, position));
+            holder.instrumentNameView.setText(instruments.getName(tab-1, position));
+            holder.instrumentPrice.setText(""+instruments.getPrice(tab-1, position));
+            holder.instrumentRepairCost.setText(""+instruments.getRepCost(tab-1, position));
 
     }
 
     @Override
     public int getItemCount() {
         // перевірити які вюшки пусті і рахувати тільки заповнені
-        return lenth;
+         z =instrumentsFragment.getSize();
+        return z;
     }
 
     // Find Image ID corresponding to the name of the image (in the directory drawable).

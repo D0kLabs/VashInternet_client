@@ -1,6 +1,7 @@
 package com.d0klabs.vashinternet_client.ui.instruments;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,9 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.d0klabs.vashinternet_client.MainActivity;
 import com.d0klabs.vashinternet_client.R;
+import com.d0klabs.vashinternet_client.database.dbInstrumentsHandler;
 import com.d0klabs.vashinternet_client.databinding.InstrumentsFragmentBinding;
 import com.d0klabs.vashinternet_client.ui.sklad.ItemTouchHelperCallback;
 import com.google.android.gms.common.api.internal.LifecycleCallback;
@@ -24,19 +27,37 @@ import com.google.android.material.tabs.TabLayout;
 
 import org.jetbrains.annotations.NotNull;
 
+import static com.d0klabs.vashinternet_client.database.dbInstrumentsHandler.TableNames;
+
 public class instrumentsFragment extends Fragment implements LifecycleFragment{
     public static TabLayout tabs;
     private InstrumentsViewModel mViewModel;
     private InstrumentsFragmentBinding instrumentsFragmentBinding;
     public static String[][] recyclerInstrumentsList;
-    public static Integer[][] recyclerPriceList;
+    public static int[][] recyclerPriceList;
     public static Integer[][] recyclerRepCostList;
+    public static int sz = 0;
 
 
 
 
     public static instrumentsFragment newInstance() {
         return new instrumentsFragment();
+    }
+
+    public static void setSize(int count) {
+        sz = TableNames.length * count;
+    }
+    public static int getSize() {
+        for (int u = 0; u < TableNames.length; u++) {
+            try (Cursor instrumentsCount = MainActivity.dbInstrumentsHandler.getWritableDatabase().query(TableNames[u], new String[]{dbInstrumentsHandler.COL_INSTNAME}, null, null, null, null, null)) {
+                int count = instrumentsCount.getCount();
+                instrumentsFragment.setSize(count);
+                if (instrumentsCount != null) instrumentsCount.close();
+                sz = TableNames.length * count;
+            }
+        }
+        return sz;
     }
 
     @Override

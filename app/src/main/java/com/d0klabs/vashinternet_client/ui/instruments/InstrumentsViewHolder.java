@@ -14,8 +14,8 @@ public class InstrumentsViewHolder extends   RecyclerView.ViewHolder {
 
     ImageView imgView;
     TextView instrumentNameView;
-    EditText instrumentPrice;
-    EditText instrumentRepairCost;
+    TextView instrumentPrice;
+    TextView instrumentRepairCost;
 
 
     // @itemView: recyclerview_item_layout.xml
@@ -24,8 +24,8 @@ public class InstrumentsViewHolder extends   RecyclerView.ViewHolder {
 
         this.imgView = (ImageView) itemView.findViewById(R.id.imageView);
         this.instrumentNameView = (TextView) itemView.findViewById(R.id.textView_instrumentName);
-        this.instrumentPrice = (EditText) itemView.findViewById(R.id.textView_instrumentPrice);
-        this.instrumentRepairCost = (EditText) itemView.findViewById(R.id.textView_instrumentRepair);
+        this.instrumentPrice = (TextView) itemView.findViewById(R.id.textView_instrumentPrice);
+        this.instrumentRepairCost = (TextView) itemView.findViewById(R.id.textView_instrumentRepair);
 
     }
 }
