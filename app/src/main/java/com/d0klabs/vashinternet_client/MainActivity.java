@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         dbHandler.setTestData_toDB();
         dbInstrumentsHandler.setTestData_toDB();
         Items.initList();
-        instruments.initList();
+        instruments.updateInfoFromList();
     }
 
     protected void onStop(){

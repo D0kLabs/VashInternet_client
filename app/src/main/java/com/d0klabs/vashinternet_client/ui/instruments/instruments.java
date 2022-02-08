@@ -3,19 +3,15 @@ package com.d0klabs.vashinternet_client.ui.instruments;
 import android.database.Cursor;
 
 import com.d0klabs.vashinternet_client.MainActivity;
-import com.d0klabs.vashinternet_client.database.dbInstrumentsHandler;
-
-import java.util.List;
 
 import static com.d0klabs.vashinternet_client.database.dbInstrumentsHandler.TableNames;
 
 public class instruments {
-    public static String[][] recyclerInstrumentsList;
     private static String Name;
     private static String ResName;
     private static String Descr;
-    private static int Price;
-    private static int repCost;
+    private static Integer Price;
+    private static Integer repCost;
 
     public instruments(String Name) {
         this.Name= Name;
@@ -23,14 +19,11 @@ public class instruments {
     }
 
     public instruments(String name, String descr, int price, int repCost) {
-        setName(name);
-        setDescription(descr);
-        setPrice(price);
-        setRepCost(repCost);
+
     }
 
     public static String getName(int tab, int pos) {
-        Name = instrumentsFragment.instrumentsList[tab][pos].get(0).toString();
+        Name = instrumentsFragment.recyclerInstrumentsList[tab][pos];
         return Name;
     }
 
@@ -38,57 +31,43 @@ public class instruments {
         return ResName;
     }
     public static int getPrice(int tab, int pos){
-        Price = (int) instrumentsFragment.instrumentsList[tab][pos].get(2);
+        Price = Integer.valueOf(instrumentsFragment.recyclerPriceList[tab][pos]);
         return Price;
     }
     public static int getRepCost(int tab, int pos){
-        repCost = (int) instrumentsFragment.instrumentsList[tab][pos].get(3);
+        repCost = instrumentsFragment.recyclerRepCostList[tab][pos];
         return repCost;
     }
-    public static void setName(String name){
+    public static void setName(String name, int tab, int pos){
+        instrumentsFragment.recyclerInstrumentsList[tab][pos] = name;
         Name = name;
     }
-    public static void setDescription(String descr){
+    public static void setDescription(String descr, int tab, int pos){
         Descr = descr;
     }
-    public static void setPrice(int price){
-        Price = price;
+    public static void setPrice(Integer price, int tab, int pos){
+        instrumentsFragment.recyclerPriceList[tab][pos] = Integer.valueOf(price);
     }
-    public static void setRepCost(int repcost){
-        repCost = repcost;
+    public static void setRepCost(Integer repcost, int tab, int pos){
+        instrumentsFragment.recyclerRepCostList[tab][pos] = repcost;
     }
-    public static void initList() {
-        for (int j = 0; j < TableNames.length; j++) {
 
-            try (Cursor instrumentsFromDBList = MainActivity.dbInstrumentsHandler.getWritableDatabase().query(TableNames[j], new String[]{dbInstrumentsHandler.COL_INSTNAME}, null, null, null, null, null)) {
-                int c = instrumentsFromDBList.getCount();
-                recyclerInstrumentsList = new String[TableNames.length][c];
-                instrumentsFromDBList.moveToFirst();
-                for (int m=0; m < c; m++) {
-                    recyclerInstrumentsList[j][m] = instrumentsFromDBList.getString(instrumentsFromDBList.getColumnIndex("INSTNAME"));
-                    instrumentsFromDBList.moveToNext();
-                }
-
-                if (instrumentsFromDBList != null) instrumentsFromDBList.close();
-            }
-        }
-    }
-    public static List[][] updateInfoFromList(){
+    public static void updateInfoFromList(){
         for (int u = 0; u < TableNames.length; u++) {
             Cursor instrumentsInfoFromDB = MainActivity.dbInstrumentsHandler.getWritableDatabase().rawQuery("SELECT * FROM " + TableNames[u], null);
-            instrumentsInfoFromDB.moveToFirst();
             int count = instrumentsInfoFromDB.getCount();
+            InstrumentsAdapter.lenth = (TableNames.length * count);
+            instrumentsFragment.recyclerInstrumentsList = new String[TableNames.length][count];
+            instrumentsFragment.recyclerPriceList = new Integer[TableNames.length][count];
+            instrumentsFragment.recyclerRepCostList = new Integer[TableNames.length][count];
+            instrumentsInfoFromDB.moveToFirst();
             for (int i = 0; i < count; i++) {
-                Name = instrumentsInfoFromDB.getString(1);
-                Descr = instrumentsInfoFromDB.getString(2);
-                Price = instrumentsInfoFromDB.getInt(6);
-                repCost = instrumentsInfoFromDB.getInt(7);
+                instrumentsFragment.recyclerInstrumentsList[u][i] = instrumentsInfoFromDB.getString(instrumentsInfoFromDB.getColumnIndex("INSTNAME"));
+                instrumentsFragment.recyclerPriceList[u][i] = instrumentsInfoFromDB.getInt(instrumentsInfoFromDB.getColumnIndex("PRICE"));
+                instrumentsFragment.recyclerRepCostList[u][i] = instrumentsInfoFromDB.getInt(instrumentsInfoFromDB.getColumnIndex("REPCOST"));
                 instrumentsInfoFromDB.moveToNext();
-
-                instrumentsFragment.instrumentsList[u][i] = (List) new instruments(Name, Descr, Price, repCost);
             }
             if (instrumentsInfoFromDB != null) instrumentsInfoFromDB.close();
         }
-        return instrumentsFragment.instrumentsList;
     }
 }

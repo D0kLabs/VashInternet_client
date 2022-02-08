@@ -24,13 +24,14 @@ import com.google.android.material.tabs.TabLayout;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
 public class instrumentsFragment extends Fragment implements LifecycleFragment{
     public static TabLayout tabs;
     private InstrumentsViewModel mViewModel;
     private InstrumentsFragmentBinding instrumentsFragmentBinding;
-    public static List[][] instrumentsList;
+    public static String[][] recyclerInstrumentsList;
+    public static Integer[][] recyclerPriceList;
+    public static Integer[][] recyclerRepCostList;
+
 
 
 
@@ -49,7 +50,6 @@ public class instrumentsFragment extends Fragment implements LifecycleFragment{
         TabItem tabItem4 = (TabItem) rootView.findViewById(R.id.cardTab4);
         RecyclerView cardRecyclerView = (RecyclerView) rootView.findViewById(R.id.instrumentsRecyclerView);
         cardRecyclerView.setLayoutManager( new LinearLayoutManager(this.getContext()));
-        instruments.updateInfoFromList();
         InstrumentsAdapter instrumentsAdapter = new InstrumentsAdapter(this.getContext());
         cardRecyclerView.setAdapter(instrumentsAdapter);
         ItemTouchHelper.Callback instrumentsCallback = new ItemTouchHelperCallback(instrumentsAdapter);

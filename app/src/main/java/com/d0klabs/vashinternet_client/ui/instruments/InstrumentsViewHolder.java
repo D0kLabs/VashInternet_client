@@ -1,6 +1,7 @@
 package com.d0klabs.vashinternet_client.ui.instruments;
 
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,8 +14,8 @@ public class InstrumentsViewHolder extends   RecyclerView.ViewHolder {
 
     ImageView imgView;
     TextView instrumentNameView;
-    TextView instrumentPrice;
-    TextView instrumentRepairCost;
+    EditText instrumentPrice;
+    EditText instrumentRepairCost;
 
 
     // @itemView: recyclerview_item_layout.xml
@@ -23,8 +24,8 @@ public class InstrumentsViewHolder extends   RecyclerView.ViewHolder {
 
         this.imgView = (ImageView) itemView.findViewById(R.id.imageView);
         this.instrumentNameView = (TextView) itemView.findViewById(R.id.textView_instrumentName);
-        this.instrumentPrice = (TextView) itemView.findViewById(R.id.textView_instrumentPrice);
-        this.instrumentRepairCost = (TextView) itemView.findViewById(R.id.textView_instrumentRepair);
+        this.instrumentPrice = (EditText) itemView.findViewById(R.id.textView_instrumentPrice);
+        this.instrumentRepairCost = (EditText) itemView.findViewById(R.id.textView_instrumentRepair);
 
     }
 }
