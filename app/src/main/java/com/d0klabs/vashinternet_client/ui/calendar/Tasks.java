@@ -15,6 +15,7 @@ public class Tasks {
     public static void getTaskList(){
         Cursor taskList = MainActivity.dbCalendarHandler.getWritableDatabase().rawQuery("SELECT * FROM " + TABLE_NAME, null);
         int c = taskList.getCount();
+        taskList.moveToFirst();
         taskCalendar = new String[c][11];
         pricesTaskCalendar = new int[c][2];
         for (int i = 0; i < c; i++) {
@@ -31,6 +32,7 @@ public class Tasks {
             taskCalendar[i][11] = taskList.getString(taskList.getColumnIndex("TASKUPDTIME"));
             pricesTaskCalendar[i][1] = taskList.getInt(taskList.getColumnIndex("DAYPRICE"));
             pricesTaskCalendar[i][2] = taskList.getInt(taskList.getColumnIndex("REPAIRCOST"));
+            taskList.moveToNext(); // TODO: upgrade!!! maybe using positions
         }
         if(taskList != null) taskList.close();
     }
