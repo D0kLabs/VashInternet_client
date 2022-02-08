@@ -18,7 +18,7 @@ public class Tasks {
         taskList.moveToFirst();
         taskCalendar = new String[c][11];
         pricesTaskCalendar = new int[c][2];
-        for (int i = 0; i < c; i++) {
+        for (int i = 1; i < c; i++) {
            taskCalendar[i][1] = taskList.getString(taskList.getColumnIndex("ID"));
             taskCalendar[i][2] = taskList.getString(taskList.getColumnIndex("DATA"));
             taskCalendar[i][3] = taskList.getString(taskList.getColumnIndex("DAYOFWEEK"));

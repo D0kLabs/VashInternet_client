@@ -18,6 +18,7 @@ import com.d0klabs.vashinternet_client.database.dbCalendarHandler;
 import com.d0klabs.vashinternet_client.database.dbInstrumentsHandler;
 import com.d0klabs.vashinternet_client.database.dbSkladHandler;
 import com.d0klabs.vashinternet_client.databinding.ActivityMainBinding;
+import com.d0klabs.vashinternet_client.ui.calendar.Tasks;
 import com.d0klabs.vashinternet_client.ui.instruments.instruments;
 import com.d0klabs.vashinternet_client.ui.sklad.Items;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -110,8 +111,10 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         dbHandler.setTestData_toDB();
         dbInstrumentsHandler.setTestData_toDB();
+        dbCalendarHandler.setTestData_toDB();
         Items.initList();
         instruments.updateInfoFromDB();
+        Tasks.initTasks();
     }
 
     protected void onStop(){
