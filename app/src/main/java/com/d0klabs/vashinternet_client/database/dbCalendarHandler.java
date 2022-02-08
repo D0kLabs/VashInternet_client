@@ -1,10 +1,13 @@
 package com.d0klabs.vashinternet_client.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.d0klabs.vashinternet_client.MainActivity;
 
 import java.sql.Time;
 
@@ -30,6 +33,8 @@ public class dbCalendarHandler extends SQLiteOpenHelper {
     public static String DAYOFWEEK;
     public static String DESCRIPTION;
     public static String TASK;
+    public static String PLANTIMESTART;
+    public static String PLANTIMEEND;
     public static String TIMESTART;
     public static String TIMEEND;
     public static String TOOLS;
@@ -40,8 +45,8 @@ public class dbCalendarHandler extends SQLiteOpenHelper {
 
 
 
-    public dbCalendarHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public dbCalendarHandler(@Nullable Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override
@@ -62,6 +67,38 @@ public class dbCalendarHandler extends SQLiteOpenHelper {
                 + COL_REPAIRCOST + " INTEGER)";
         sqLiteDatabase.execSQL(query);
 
+    }
+
+    public void setTestData_toDB() {
+        DATE = "31/02/2022";
+        DAYOFWEEK = "Вівторок";
+        DESCRIPTION = "Зробити тестування календаря";
+        TASK = " Тестування";
+        PLANTIMESTART = "00:00:00";
+        PLANTIMEEND = "00:00:00";
+        TIMESTART = "00:00:00";
+        TIMEEND = "00:00:00";
+        TOOLS = "1,2,3,5";
+        TASKUPDTIME = "00:00:00";
+        DAYPRICE = 100;
+        REPAIRCOST = 20;
+
+        for (int i = 1; i < 10; i++) { //FOR TESTING ONLY!
+            ContentValues rowfor = new ContentValues();
+            rowfor.put("ID", i);
+            rowfor.put("DATE", DATE);
+            rowfor.put("DAYOFWEEK", DAYOFWEEK);
+            rowfor.put("DESCRIPTION", DESCRIPTION);
+            rowfor.put("TASK", TASK);
+            rowfor.put("PLANTIMESTART", PLANTIMESTART);
+            rowfor.put("PLANTIMEEND", PLANTIMEEND);
+            rowfor.put("TIMESTART", TIMESTART);
+            rowfor.put("TOOLS", TOOLS);
+            rowfor.put("TASKUPDTIME", TASKUPDTIME);
+            rowfor.put("DAYPRICE", DAYPRICE);
+            rowfor.put("REPAIRCOST", REPAIRCOST);
+            MainActivity.dbCalendarHandler.getWritableDatabase().insert(TABLE_NAME, null, rowfor);
+        }
     }
 
     @Override

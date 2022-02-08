@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.d0klabs.vashinternet_client.database.dbCalendarHandler;
 import com.d0klabs.vashinternet_client.database.dbInstrumentsHandler;
 import com.d0klabs.vashinternet_client.database.dbSkladHandler;
 import com.d0klabs.vashinternet_client.databinding.ActivityMainBinding;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public static FloatingActionButton skladAddButton;
     public static dbSkladHandler dbHandler;
     public static dbInstrumentsHandler dbInstrumentsHandler;
+    public static dbCalendarHandler dbCalendarHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         dbHandler.setWriteAheadLoggingEnabled(true);
         dbInstrumentsHandler = new dbInstrumentsHandler(MainActivity.this);
         dbInstrumentsHandler.setWriteAheadLoggingEnabled(true);
+        dbCalendarHandler = new dbCalendarHandler(MainActivity.this);
+        dbCalendarHandler.setWriteAheadLoggingEnabled(true);
 
     }
 
