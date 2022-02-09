@@ -50,7 +50,7 @@ public class dbCalendarHandler extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase calendarDBweek) {
         String query = "CREATE TABLE " + TABLE_NAME
                 + " (" + COL_ID + " INTEGER, "
                 + COL_DATE + " TEXT,"
@@ -63,9 +63,9 @@ public class dbCalendarHandler extends SQLiteOpenHelper {
                 + COL_TIMEEND + " TEXT,"
                 + COL_TOOLS + " TEXT,"
                 + COL_TASKUPDTIME + " TEXT,"
-                + COL_TIMEEND + " INTEGER,"
+                + COL_DAYPRICE + " INTEGER,"
                 + COL_REPAIRCOST + " INTEGER)";
-        sqLiteDatabase.execSQL(query);
+        calendarDBweek.execSQL(query);
 
     }
 
@@ -93,6 +93,7 @@ public class dbCalendarHandler extends SQLiteOpenHelper {
             rowfor.put("PLANTIMESTART", PLANTIMESTART);
             rowfor.put("PLANTIMEEND", PLANTIMEEND);
             rowfor.put("TIMESTART", TIMESTART);
+            rowfor.put("TIMEEND", TIMEEND);
             rowfor.put("TOOLS", TOOLS);
             rowfor.put("TASKUPDTIME", TASKUPDTIME);
             rowfor.put("DAYPRICE", DAYPRICE);
