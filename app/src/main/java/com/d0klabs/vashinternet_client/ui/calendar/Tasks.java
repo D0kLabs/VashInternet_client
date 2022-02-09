@@ -1,16 +1,30 @@
 package com.d0klabs.vashinternet_client.ui.calendar;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
+import android.os.SystemClock;
+
+import androidx.annotation.RequiresApi;
 
 import com.d0klabs.vashinternet_client.MainActivity;
 import com.d0klabs.vashinternet_client.database.dbCalendarHandler;
 
+import static android.location.LocationManager.GPS_PROVIDER;
+import static android.location.LocationManager.NETWORK_PROVIDER;
+import static android.location.LocationManager.PASSIVE_PROVIDER;
 import static com.d0klabs.vashinternet_client.database.dbCalendarHandler.TABLE_NAME;
+
 
 public class Tasks {
     public static String[] initCalendarID;
     public static String[][] taskCalendar;
     public static int[][] pricesTaskCalendar;
+    private LocationManager mManager;
+    private Context mContext;
 
     public static void getTaskList(){
         Cursor taskList = MainActivity.dbCalendarHandler.getWritableDatabase().rawQuery("SELECT * FROM " + TABLE_NAME, null);
@@ -47,5 +61,39 @@ public class Tasks {
             initList.moveToNext();
         }
         if(initList != null) initList.close();
+    }
+    public static void updateCalendarView(){
+
+    }
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+
+    public void testGnssProvidedClock(Context mContext) throws Exception {
+        mManager = mContext.getSystemService(LocationManager.class);
+        mManager.addTestProvider(GPS_PROVIDER,
+                true,
+                true,
+                true,
+                false,
+                true,
+                true,
+                true,
+                Criteria.POWER_LOW,
+                Criteria.ACCURACY_COARSE);
+        mManager.setTestProviderEnabled(GPS_PROVIDER, true);
+        Location location = new Location(GPS_PROVIDER);
+        long elapsed = SystemClock.elapsedRealtimeNanos();
+        location.setLatitude(0);
+        location.setLongitude(0);
+        location.setAccuracy(0);
+        location.setElapsedRealtimeNanos(elapsed);
+        location.setTime(1);
+        mManager.setTestProviderLocation(NETWORK_PROVIDER, location);
+        assertTrue(SystemClock.currentGnssTimeClock().millis() < 1000);
+        location.setTime(java.lang.System.currentTimeMillis());
+        location.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());
+        mManager.setTestProviderLocation(PASSIVE_PROVIDER, location);
+        Thread.sleep(200);
+        long clockms = SystemClock.currentGnssTimeClock().millis();
+        assertTrue(System.currentTimeMillis() - clockms < 1000);
     }
 }

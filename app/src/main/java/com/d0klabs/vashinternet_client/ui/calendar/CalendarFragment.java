@@ -32,6 +32,7 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static View root;
 
     // Rename and change types of parameters
     private String mParam1;
@@ -77,40 +78,15 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
        calendarViewModel = new ViewModelProvider(this).get(CalendarViewModel.class);
         fragmentCalendarBinding = ContentCalendarBinding.inflate(inflater, container, false);
-        View root = fragmentCalendarBinding.getRoot();
+        root = fragmentCalendarBinding.getRoot();
         calendarViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 Toast.makeText(getContext(), "Ця херня без кнопки", Toast.LENGTH_SHORT).show();
             }
         });
-        MaterialCardView btnLostWeek = (MaterialCardView) root.findViewById(R.id.undoneForLastWeek);
-        TextView lostWeekBrief = (TextView) root.findViewById(R.id.undoneLastWeekBrief);
-        MaterialCardView btn1 = (MaterialCardView) root.findViewById(R.id.motion_button1);
-        TextView btn1DoW = (TextView) root.findViewById(R.id.button1dayofweek);
-        TextView btn1Date = (TextView) root.findViewById(R.id.button1date);
-        ProgressBar btn1ProgBar = root.findViewById(R.id.button1ProgresBar);
-        TextView btn1Brief = (TextView) root.findViewById(R.id.button1brief);
-        MaterialCardView btn2 = (MaterialCardView) root.findViewById(R.id.motion_button2);
-        TextView btn2DoW = (TextView) root.findViewById(R.id.button2dayofweek);
-        TextView btn2Date = (TextView) root.findViewById(R.id.button2date);
-        ProgressBar btn2ProgBar = root.findViewById(R.id.button2ProgresBar);
-        TextView btn2Brief = (TextView) root.findViewById(R.id.button2brief);
-        MaterialCardView btn3 = (MaterialCardView) root.findViewById(R.id.motion_button3);
-        TextView btn3DoW = (TextView) root.findViewById(R.id.button3dayofweek);
-        TextView btn3Date = (TextView) root.findViewById(R.id.button3date);
-        ProgressBar btn3ProgBar = root.findViewById(R.id.button3ProgresBar);
-        TextView btn3Brief = (TextView) root.findViewById(R.id.button3brief);
-        MaterialCardView btn4 = (MaterialCardView) root.findViewById(R.id.motion_button4);
-        TextView btn4DoW = (TextView) root.findViewById(R.id.button4dayofweek);
-        TextView btn4Date = (TextView) root.findViewById(R.id.button4date);
-        ProgressBar btn4ProgBar = root.findViewById(R.id.button4ProgresBar);
-        TextView btn4Brief = (TextView) root.findViewById(R.id.button4brief);
-        MaterialCardView btn5 = (MaterialCardView) root.findViewById(R.id.motion_button5);
-        TextView btn5DoW = (TextView) root.findViewById(R.id.button5dayofweek);
-        TextView btn5Date = (TextView) root.findViewById(R.id.button5date);
-        ProgressBar btn5ProgBar = root.findViewById(R.id.button5ProgresBar);
-        TextView btn5Brief = (TextView) root.findViewById(R.id.button5brief);
+
+
         //return inflater.inflate(R.layout.content_calendar, container, false);
         return root;
     }
