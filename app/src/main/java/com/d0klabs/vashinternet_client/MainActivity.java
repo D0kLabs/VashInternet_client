@@ -63,11 +63,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mbutton1 = (Button) findViewById(R.id.motion_button1);
-        mbutton2 = (Button) findViewById(R.id.motion_button2);
-        mbutton3 = (Button) findViewById(R.id.motion_button3);
-        mbutton4 = (Button) findViewById(R.id.motion_button4);
-        mbutton5 = (Button) findViewById(R.id.motion_button5);
         skladAddButton = (FloatingActionButton) findViewById(R.id.floatingRecycleAddButton);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
