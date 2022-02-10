@@ -17,29 +17,30 @@ public class Tasks {
     private LocationManager mManager;
     private Context mContext;
 
-    public static void getTaskList(){
+    public static String[][] getTaskList(){
         Cursor taskList = MainActivity.dbCalendarHandler.getWritableDatabase().rawQuery("SELECT * FROM " + TABLE_NAME, null);
         int c = taskList.getCount();
         taskList.moveToFirst();
         taskCalendar = new String[c][11];
         pricesTaskCalendar = new int[c][2];
         for (int i = 1; i < c; i++) {
-           taskCalendar[i][1] = taskList.getString(taskList.getColumnIndex("ID"));
-            taskCalendar[i][2] = taskList.getString(taskList.getColumnIndex("DATA"));
-            taskCalendar[i][3] = taskList.getString(taskList.getColumnIndex("DAYOFWEEK"));
-            taskCalendar[i][4] = taskList.getString(taskList.getColumnIndex("DESCRIPTION"));
-            taskCalendar[i][5] = taskList.getString(taskList.getColumnIndex("TASK"));
-            taskCalendar[i][6] = taskList.getString(taskList.getColumnIndex("PLANTIMESTART"));
-            taskCalendar[i][7] = taskList.getString(taskList.getColumnIndex("PLANTIMEEND"));
-            taskCalendar[i][8] = taskList.getString(taskList.getColumnIndex("TIMESTART"));
-            taskCalendar[i][9] = taskList.getString(taskList.getColumnIndex("TIMEEND"));
-            taskCalendar[i][10] = taskList.getString(taskList.getColumnIndex("TOOLS"));
-            taskCalendar[i][11] = taskList.getString(taskList.getColumnIndex("TASKUPDTIME"));
-            pricesTaskCalendar[i][1] = taskList.getInt(taskList.getColumnIndex("DAYPRICE"));
-            pricesTaskCalendar[i][2] = taskList.getInt(taskList.getColumnIndex("REPAIRCOST"));
+           taskCalendar[i][0] = taskList.getString(taskList.getColumnIndex("ID"));
+            taskCalendar[i][1] = taskList.getString(taskList.getColumnIndex("DATE"));
+            taskCalendar[i][2] = taskList.getString(taskList.getColumnIndex("DAYOFWEEK"));
+            taskCalendar[i][3] = taskList.getString(taskList.getColumnIndex("DESCRIPTION"));
+            taskCalendar[i][4] = taskList.getString(taskList.getColumnIndex("TASK"));
+            taskCalendar[i][5] = taskList.getString(taskList.getColumnIndex("PLANTIMESTART"));
+            taskCalendar[i][6] = taskList.getString(taskList.getColumnIndex("PLANTIMEEND"));
+            taskCalendar[i][7] = taskList.getString(taskList.getColumnIndex("TIMESTART"));
+            taskCalendar[i][8] = taskList.getString(taskList.getColumnIndex("TIMEEND"));
+            taskCalendar[i][9] = taskList.getString(taskList.getColumnIndex("TOOLS"));
+            taskCalendar[i][10] = taskList.getString(taskList.getColumnIndex("TASKUPDTIME"));
+            pricesTaskCalendar[i][0] = taskList.getInt(taskList.getColumnIndex("DAYPRICE"));
+            pricesTaskCalendar[i][1] = taskList.getInt(taskList.getColumnIndex("REPAIRCOST"));
             taskList.moveToNext(); // TODO: upgrade!!! maybe using positions
         }
         if(taskList != null) taskList.close();
+        return taskCalendar;
     }
 
     public static void initTasks(){

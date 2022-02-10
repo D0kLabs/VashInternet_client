@@ -83,7 +83,6 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
        calendarViewModel = new ViewModelProvider(this).get(CalendarViewModel.class);
         fragmentCalendarBinding = ContentCalendarBinding.inflate(inflater, container, false);
         root = fragmentCalendarBinding.getRoot();
-        Tasks.updateCalendarView();
         btnLostWeek = (MaterialCardView) root.findViewById(R.id.undoneForLastWeek);
         lostWeekBrief = (TextView) root.findViewById(R.id.undoneLastWeekBrief);
         btn1 = (MaterialCardView) root.findViewById(R.id.motion_button1);
@@ -111,14 +110,69 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
         btn5Date = (TextView) root.findViewById(R.id.button5date);
         btn5ProgBar = root.findViewById(R.id.button5ProgresBar);
         btn5Brief = (TextView) root.findViewById(R.id.button5brief);
-        calendarViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String[][]>() {
+        calendarViewModel.getBtn1DayOfWeek().observe(getViewLifecycleOwner(), new Observer<String>() {
 
             @Override
-            public void onChanged(String[][] strings) {
-                btn1DoW.setText(strings[1][1]);
+            public void onChanged(String s1) {
+                btn1DoW.setText(s1);
             }
 
         });
+        calendarViewModel.getBtn2DayOfWeek().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s2) {
+                btn2DoW.setText(s2);
+            }
+        });
+        calendarViewModel.getBtn3DayOfWeek().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s3) {
+                btn3DoW.setText(s3);
+            }
+        });
+        calendarViewModel.getBtn4DayOfWeek().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s4) {
+                btn4DoW.setText(s4);
+            }
+        });
+        calendarViewModel.getBtn5DayOfWeek().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s5) {
+                btn5DoW.setText(s5);
+            }
+        });
+        calendarViewModel.getBtn1Date().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String sd1) {
+                btn1Date.setText(sd1);
+            }
+        });
+        calendarViewModel.getBtn2Date().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String sd2) {
+                btn2Date.setText(sd2);
+            }
+        });
+        calendarViewModel.getBtn3Date().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String sd3) {
+                btn3Date.setText(sd3);
+            }
+        });
+        calendarViewModel.getBtn4Date().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String sd4) {
+                btn4Date.setText(sd4);
+            }
+        });
+        calendarViewModel.getBtn5Date().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String sd5) {
+                btn5Date.setText(sd5);
+            }
+        });
+
 
 
         //return inflater.inflate(R.layout.content_calendar, container, false);
