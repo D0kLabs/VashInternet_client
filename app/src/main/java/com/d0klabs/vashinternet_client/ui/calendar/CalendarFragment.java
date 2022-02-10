@@ -83,6 +83,7 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
        calendarViewModel = new ViewModelProvider(this).get(CalendarViewModel.class);
         fragmentCalendarBinding = ContentCalendarBinding.inflate(inflater, container, false);
         root = fragmentCalendarBinding.getRoot();
+        Tasks.updateCalendarView();
         btnLostWeek = (MaterialCardView) root.findViewById(R.id.undoneForLastWeek);
         lostWeekBrief = (TextView) root.findViewById(R.id.undoneLastWeekBrief);
         btn1 = (MaterialCardView) root.findViewById(R.id.motion_button1);

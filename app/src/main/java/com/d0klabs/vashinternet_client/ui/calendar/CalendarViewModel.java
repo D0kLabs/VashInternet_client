@@ -1,15 +1,7 @@
 package com.d0klabs.vashinternet_client.ui.calendar;
 
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.d0klabs.vashinternet_client.R;
-import com.google.android.material.card.MaterialCardView;
-
-import static com.d0klabs.vashinternet_client.ui.calendar.CalendarFragment.root;
 
 public class CalendarViewModel extends ViewModel {
     public static MutableLiveData<String[][]> calendarBox;
