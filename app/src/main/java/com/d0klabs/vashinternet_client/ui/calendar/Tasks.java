@@ -2,20 +2,11 @@ package com.d0klabs.vashinternet_client.ui.calendar;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.location.Criteria;
-import android.location.Location;
 import android.location.LocationManager;
-import android.os.Build;
-import android.os.SystemClock;
-
-import androidx.annotation.RequiresApi;
 
 import com.d0klabs.vashinternet_client.MainActivity;
 import com.d0klabs.vashinternet_client.database.dbCalendarHandler;
 
-import static android.location.LocationManager.GPS_PROVIDER;
-import static android.location.LocationManager.NETWORK_PROVIDER;
-import static android.location.LocationManager.PASSIVE_PROVIDER;
 import static com.d0klabs.vashinternet_client.database.dbCalendarHandler.TABLE_NAME;
 
 
@@ -65,6 +56,7 @@ public class Tasks {
     public static void updateCalendarView(){
 
     }
+    /*
     @RequiresApi(api = Build.VERSION_CODES.Q)
 
     public void testGnssProvidedClock(Context mContext) throws Exception {
@@ -96,4 +88,6 @@ public class Tasks {
         long clockms = SystemClock.currentGnssTimeClock().millis();
         assertTrue(System.currentTimeMillis() - clockms < 1000);
     }
+
+     */
 }

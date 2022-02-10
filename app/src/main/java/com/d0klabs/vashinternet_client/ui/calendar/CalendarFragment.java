@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.motion.widget.MotionLayout;
@@ -39,6 +38,10 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
     private String mParam2;
     private CalendarViewModel calendarViewModel;
     public ContentCalendarBinding fragmentCalendarBinding;
+    MaterialCardView btnLostWeek, btn1, btn2, btn3, btn4, btn5;
+    TextView lostWeekBrief, btn1DoW, btn1Date, btn1Brief, btn2DoW, btn2Date, btn2Brief, btn3DoW, btn3Date, btn3Brief, btn4DoW, btn4Date, btn4Brief, btn5DoW, btn5Date, btn5Brief;
+    ProgressBar btn1ProgBar, btn2ProgBar, btn3ProgBar, btn4ProgBar, btn5ProgBar;
+
 
     public static MotionLayout calendarMotion;
 
@@ -71,6 +74,33 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        MaterialCardView btnLostWeek = (MaterialCardView) root.findViewById(R.id.undoneForLastWeek);
+        TextView lostWeekBrief = (TextView) root.findViewById(R.id.undoneLastWeekBrief);
+        MaterialCardView btn1 = (MaterialCardView) root.findViewById(R.id.motion_button1);
+        TextView btn1DoW = (TextView) root.findViewById(R.id.button1dayofweek);
+        TextView btn1Date = (TextView) root.findViewById(R.id.button1date);
+        ProgressBar btn1ProgBar = root.findViewById(R.id.button1ProgresBar);
+        TextView btn1Brief = (TextView) root.findViewById(R.id.button1brief);
+        MaterialCardView btn2 = (MaterialCardView) root.findViewById(R.id.motion_button2);
+        TextView btn2DoW = (TextView) root.findViewById(R.id.button2dayofweek);
+        TextView btn2Date = (TextView) root.findViewById(R.id.button2date);
+        ProgressBar btn2ProgBar = root.findViewById(R.id.button2ProgresBar);
+        TextView btn2Brief = (TextView) root.findViewById(R.id.button2brief);
+        MaterialCardView btn3 = (MaterialCardView) root.findViewById(R.id.motion_button3);
+        TextView btn3DoW = (TextView) root.findViewById(R.id.button3dayofweek);
+        TextView btn3Date = (TextView) root.findViewById(R.id.button3date);
+        ProgressBar btn3ProgBar = root.findViewById(R.id.button3ProgresBar);
+        TextView btn3Brief = (TextView) root.findViewById(R.id.button3brief);
+        MaterialCardView btn4 = (MaterialCardView) root.findViewById(R.id.motion_button4);
+        TextView btn4DoW = (TextView) root.findViewById(R.id.button4dayofweek);
+        TextView btn4Date = (TextView) root.findViewById(R.id.button4date);
+        ProgressBar btn4ProgBar = root.findViewById(R.id.button4ProgresBar);
+        TextView btn4Brief = (TextView) root.findViewById(R.id.button4brief);
+        MaterialCardView btn5 = (MaterialCardView) root.findViewById(R.id.motion_button5);
+        TextView btn5DoW = (TextView) root.findViewById(R.id.button5dayofweek);
+        TextView btn5Date = (TextView) root.findViewById(R.id.button5date);
+        ProgressBar btn5ProgBar = root.findViewById(R.id.button5ProgresBar);
+        TextView btn5Brief = (TextView) root.findViewById(R.id.button5brief);
 
     }
 
@@ -79,11 +109,13 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
        calendarViewModel = new ViewModelProvider(this).get(CalendarViewModel.class);
         fragmentCalendarBinding = ContentCalendarBinding.inflate(inflater, container, false);
         root = fragmentCalendarBinding.getRoot();
-        calendarViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        calendarViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String[][]>() {
+
             @Override
-            public void onChanged(String s) {
-                Toast.makeText(getContext(), "Ця херня без кнопки", Toast.LENGTH_SHORT).show();
+            public void onChanged(String[][] strings) {
+                btn1DoW
             }
+
         });
 
 
