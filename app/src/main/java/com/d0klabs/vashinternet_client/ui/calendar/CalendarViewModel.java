@@ -14,6 +14,11 @@ public class CalendarViewModel extends ViewModel {
     public static MutableLiveData<String> btn3Date;
     public static MutableLiveData<String> btn4Date;
     public static MutableLiveData<String> btn5Date;
+    public static MutableLiveData<String> btn1Brief;
+    public static MutableLiveData<String> btn2Brief;
+    public static MutableLiveData<String> btn3Brief;
+    public static MutableLiveData<String> btn4Brief;
+    public static MutableLiveData<String> btn5Brief;
 
     public CalendarViewModel() { //Clear CalendarMotion Fragment
         Tasks.getTaskList();
@@ -37,6 +42,16 @@ public class CalendarViewModel extends ViewModel {
         btn4Date.setValue(Tasks.taskCalendar[4][1]);
         btn5Date = new MutableLiveData<>();
         btn5Date.setValue(Tasks.taskCalendar[5][1]);
+        btn1Brief = new MutableLiveData<>();
+        btn1Brief.setValue(Tasks.taskCalendar[1][3]);
+        btn2Brief = new MutableLiveData<>();
+        btn2Brief.setValue(Tasks.taskCalendar[2][3]);
+        btn3Brief = new MutableLiveData<>();
+        btn3Brief.setValue(Tasks.taskCalendar[3][3]);
+        btn4Brief = new MutableLiveData<>();
+        btn4Brief.setValue(Tasks.taskCalendar[4][3]);
+        btn5Brief = new MutableLiveData<>();
+        btn5Brief.setValue(Tasks.taskCalendar[5][3]);
     }
 
     public static Object getState(){
@@ -109,6 +124,37 @@ public class CalendarViewModel extends ViewModel {
         }
         return btn5Date;
     }
+    public MutableLiveData<String> getBtn1Brief(){
+        if(btn1Brief == null){
+            btn1Brief = new MutableLiveData<>();
+        }
+        return  btn1Brief;
+    }
+    public MutableLiveData<String> getBtn2Brief(){
+        if(btn2Brief == null){
+            btn2Brief = new MutableLiveData<>();
+        }
+        return  btn2Brief;
+    }
+    public MutableLiveData<String> getBtn3Brief(){
+        if(btn3Brief == null){
+            btn3Brief = new MutableLiveData<>();
+        }
+        return  btn3Brief;
+    }
+    public MutableLiveData<String> getBtn4Brief(){
+        if(btn4Brief == null){
+            btn4Brief = new MutableLiveData<>();
+        }
+        return  btn4Brief;
+    }
+    public MutableLiveData<String> getBtn5Brief(){
+        if(btn5Brief == null){
+            btn5Brief = new MutableLiveData<>();
+        }
+        return  btn5Brief;
+    }
+
     /*
     void doAction() {
         // userLiveData.

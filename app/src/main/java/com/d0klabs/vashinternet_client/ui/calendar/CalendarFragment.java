@@ -172,6 +172,36 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
                 btn5Date.setText(sd5);
             }
         });
+        calendarViewModel.getBtn1Brief().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String b1) {
+                btn1Brief.setText(b1);
+            }
+        });
+        calendarViewModel.getBtn2Brief().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String b2) {
+                btn2Brief.setText(b2);
+            }
+        });
+        calendarViewModel.getBtn3Brief().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String b3) {
+                btn3Brief.setText(b3);
+            }
+        });
+        calendarViewModel.getBtn4Brief().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String b4) {
+                btn4Brief.setText(b4);
+            }
+        });
+        calendarViewModel.getBtn5Brief().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String b5) {
+                btn5Brief.setText(b5);
+            }
+        });
 
 
 
