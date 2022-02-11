@@ -25,7 +25,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 
@@ -44,10 +48,23 @@ public class MainActivity extends AppCompatActivity {
     public static dbSkladHandler dbHandler;
     public static dbInstrumentsHandler dbInstrumentsHandler;
     public static dbCalendarHandler dbCalendarHandler;
+    public static Date currentDate;
+    public static DateFormat dateFormat, timeFormat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Текущее время
+        currentDate = new Date();
+// Форматирование времени как "день.месяц.год"
+        dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+        String dateText = dateFormat.format(currentDate);
+// Форматирование времени как "часы:минуты:секунды"
+        timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        String timeText = timeFormat.format(currentDate);
+
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
         Intent intent = getIntent();

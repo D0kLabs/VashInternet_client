@@ -20,6 +20,9 @@ import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
 import com.google.android.material.card.MaterialCardView;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CalendarFragment#newInstance} factory method to
@@ -41,7 +44,6 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
     MaterialCardView btnLostWeek, btn1, btn2, btn3, btn4, btn5;
     TextView lostWeekBrief, btn1DoW, btn1Date, btn1Brief, btn2DoW, btn2Date, btn2Brief, btn3DoW, btn3Date, btn3Brief, btn4DoW, btn4Date, btn4Brief, btn5DoW, btn5Date, btn5Brief;
     ProgressBar btn1ProgBar, btn2ProgBar, btn3ProgBar, btn4ProgBar, btn5ProgBar;
-
 
     public static MotionLayout calendarMotion;
 
