@@ -9,8 +9,6 @@ import androidx.annotation.Nullable;
 
 import com.d0klabs.vashinternet_client.MainActivity;
 
-import java.sql.Time;
-
 public class dbCalendarHandler extends SQLiteOpenHelper {
     public static final String DB_NAME = "calendarVashInternet.db";
     public static final int DB_VERSION = 1;
@@ -41,7 +39,6 @@ public class dbCalendarHandler extends SQLiteOpenHelper {
     public static String TASKUPDTIME;
     public static Integer DAYPRICE;
     public static Integer REPAIRCOST;
-    public static Time currTime;
 
 
 

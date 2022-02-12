@@ -20,9 +20,6 @@ import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.common.api.internal.LifecycleFragment;
 import com.google.android.material.card.MaterialCardView;
 
-import java.text.DateFormat;
-import java.util.Date;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CalendarFragment#newInstance} factory method to
@@ -41,9 +38,9 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
     private String mParam2;
     private CalendarViewModel calendarViewModel;
     public ContentCalendarBinding fragmentCalendarBinding;
-    MaterialCardView btnLostWeek, btn1, btn2, btn3, btn4, btn5;
-    TextView lostWeekBrief, btn1DoW, btn1Date, btn1Brief, btn2DoW, btn2Date, btn2Brief, btn3DoW, btn3Date, btn3Brief, btn4DoW, btn4Date, btn4Brief, btn5DoW, btn5Date, btn5Brief;
-    ProgressBar btn1ProgBar, btn2ProgBar, btn3ProgBar, btn4ProgBar, btn5ProgBar;
+    public static MaterialCardView btnLostWeek, btn1, btn2, btn3, btn4, btn5;
+    public static TextView lostWeekBrief, btn1DoW, btn1Date, btn1Brief, btn2DoW, btn2Date, btn2Brief, btn3DoW, btn3Date, btn3Brief, btn4DoW, btn4Date, btn4Brief, btn5DoW, btn5Date, btn5Brief;
+    public static ProgressBar btn1ProgBar, btn2ProgBar, btn3ProgBar, btn4ProgBar, btn5ProgBar;
 
     public static MotionLayout calendarMotion;
 
@@ -112,38 +109,6 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
         btn5Date = (TextView) root.findViewById(R.id.button5date);
         btn5ProgBar = root.findViewById(R.id.button5ProgresBar);
         btn5Brief = (TextView) root.findViewById(R.id.button5brief);
-        calendarViewModel.getBtn1DayOfWeek().observe(getViewLifecycleOwner(), new Observer<String>() {
-
-            @Override
-            public void onChanged(String s1) {
-                btn1DoW.setText(s1);
-            }
-
-        });
-        calendarViewModel.getBtn2DayOfWeek().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s2) {
-                btn2DoW.setText(s2);
-            }
-        });
-        calendarViewModel.getBtn3DayOfWeek().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s3) {
-                btn3DoW.setText(s3);
-            }
-        });
-        calendarViewModel.getBtn4DayOfWeek().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s4) {
-                btn4DoW.setText(s4);
-            }
-        });
-        calendarViewModel.getBtn5DayOfWeek().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s5) {
-                btn5DoW.setText(s5);
-            }
-        });
         calendarViewModel.getBtn1Date().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String sd1) {
@@ -204,7 +169,6 @@ public class CalendarFragment<FragmentCalendarBining> extends Fragment implement
                 btn5Brief.setText(b5);
             }
         });
-
 
 
         //return inflater.inflate(R.layout.content_calendar, container, false);

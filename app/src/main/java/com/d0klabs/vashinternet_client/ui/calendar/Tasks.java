@@ -14,6 +14,16 @@ public class Tasks {
     public static String[] initCalendarID;
     public static String[][] taskCalendar;
     public static int[][] pricesTaskCalendar;
+    public static String sPonedilokDate;
+    public static String sVivtotkDate;
+    public static String sSeredaDate;
+    public static String sChetverDate;
+    public static String sPuatnycaDate;
+    public static String sPonedilkBrief;
+    public static String sVivtotrokBrief;
+    public static String sSeredaBrief;
+    public static String sChetverBrief;
+    public static String sPuatnycaBrief;
     private LocationManager mManager;
     private Context mContext;
 
@@ -91,4 +101,38 @@ public class Tasks {
     }
 
      */
+    public static void setTaskToCalendar(){
+            StringBuilder briefPnBuilder = new StringBuilder();
+            StringBuilder briefVtBuilder = new StringBuilder();
+            StringBuilder briefSrBuilder = new StringBuilder();
+            StringBuilder briefChBuilder = new StringBuilder();
+            StringBuilder briefPtBuilder = new StringBuilder();
+            for (int i = 1; i < taskCalendar.length; i++) {
+                if (taskCalendar[i][2].contains("Понеділок")) {
+                    sPonedilokDate = taskCalendar[i][1];
+                    briefPnBuilder.append(String.valueOf(taskCalendar[i][4]) + "\n");
+                }
+                if (taskCalendar[i][2].contains("Вівторок")) {
+                    sVivtotkDate = taskCalendar[i][1];
+                    briefVtBuilder.append(String.valueOf(taskCalendar[i][4]) + "\n");
+                }
+                if (taskCalendar[i][2].contains("Середа")) {
+                    sSeredaDate = taskCalendar[i][1];
+                    briefSrBuilder.append(String.valueOf(taskCalendar[i][4])+ "\n");
+                }
+                if (taskCalendar[i][2].contains("Четвер")) {
+                    sChetverDate = taskCalendar[i][1];
+                    briefChBuilder.append(String.valueOf(taskCalendar[i][4]) + "\n");
+                }
+                if (taskCalendar[i][2].contains("П'ятниця")) {
+                    sPuatnycaDate = taskCalendar[i][1];
+                    briefPtBuilder.append(String.valueOf(taskCalendar[i][4]) + "\n");
+                }
+            }
+            sPonedilkBrief = briefPnBuilder.toString();
+            sVivtotrokBrief = briefVtBuilder.toString();
+            sSeredaBrief = briefSrBuilder.toString();
+            sChetverBrief = briefChBuilder.toString();
+            sPuatnycaBrief = briefPtBuilder.toString();
+    }
 }

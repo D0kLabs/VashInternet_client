@@ -54,6 +54,29 @@
         app:layout_constraintLeft_toRightOf="@id/progressBar"
         app:layout_constraintRight_toRightOf="@id/ratingBar"
         app:layout_constraintTop_toBottomOf="@id/textView2" />
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/progressBar"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:contextClickable="true"
+    android:isScrollContainer="true"
+    android:nestedScrollingEnabled="true"
+    android:overScrollMode="always"
+    android:persistentDrawingCache="all"
+    android:scrollIndicators="right"
+    android:scrollbarAlwaysDrawHorizontalTrack="false"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:scrollbarSize="10dp"
+    android:scrollbarStyle="insideInset"
+    android:scrollbars="vertical"
+    android:verticalScrollbarPosition="right"
+    android:visibility="visible"
+    android:orientation="vertical"
+    >
 
+</androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

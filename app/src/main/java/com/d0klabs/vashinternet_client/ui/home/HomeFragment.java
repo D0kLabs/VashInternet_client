@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.RatingBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +22,10 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
+    public static SeekBar homeSeekBar;
+    public static ProgressBar homeProgBar;
+    public static RatingBar homeRatingBar;
+    public static TextView homeCurrentTaskTextVw;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -27,12 +34,13 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        homeCurrentTaskTextVw = (TextView) root.findViewById(R.id.textView2);
 
         //final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                //textView.setText(s);
+            public void onChanged(@Nullable String ct) {
+                homeCurrentTaskTextVw.setText(ct);
             }
         });
         return root;

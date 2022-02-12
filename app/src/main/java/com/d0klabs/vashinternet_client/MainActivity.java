@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public static dbCalendarHandler dbCalendarHandler;
     public static Date currentDate;
     public static DateFormat dateFormat, timeFormat;
+    public static String dateText;
 
 
     @Override
@@ -59,10 +60,7 @@ public class MainActivity extends AppCompatActivity {
         currentDate = new Date();
 // Форматирование времени как "день.месяц.год"
         dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-        String dateText = dateFormat.format(currentDate);
-// Форматирование времени как "часы:минуты:секунды"
-        timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-        String timeText = timeFormat.format(currentDate);
+        dateText = dateFormat.format(currentDate);
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -121,12 +119,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        dbHandler.setTestData_toDB();
-        dbInstrumentsHandler.setTestData_toDB();
-        dbCalendarHandler.setTestData_toDB();
+        //dbHandler.setTestData_toDB();
+        //dbInstrumentsHandler.setTestData_toDB();
+        //dbCalendarHandler.setTestData_toDB();
         Items.initList();
         instruments.updateInfoFromDB();
-        Tasks.initTasks();
+        //   Tasks.initTasks();
+        Tasks.getTaskList();
+        Tasks.setTaskToCalendar();
     }
 
     protected void onStop(){
