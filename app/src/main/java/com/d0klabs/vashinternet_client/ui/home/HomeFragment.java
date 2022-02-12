@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.d0klabs.vashinternet_client.R;
 import com.d0klabs.vashinternet_client.databinding.FragmentHomeBinding;
@@ -34,8 +36,12 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        homeCurrentTaskTextVw = (TextView) root.findViewById(R.id.textView2);
 
+        homeCurrentTaskTextVw = (TextView) root.findViewById(R.id.textView2);
+        RecyclerView homeRecyclerView = (RecyclerView) root.findViewById(R.id.homeRecycler);
+        homeRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        TasksAdapter homeTaskAdapter = new TasksAdapter(this.getContext());
+        homeRecyclerView.setAdapter(homeTaskAdapter);
         //final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

@@ -18,6 +18,7 @@ import com.d0klabs.vashinternet_client.database.dbCalendarHandler;
 import com.d0klabs.vashinternet_client.database.dbInstrumentsHandler;
 import com.d0klabs.vashinternet_client.database.dbSkladHandler;
 import com.d0klabs.vashinternet_client.databinding.ActivityMainBinding;
+import com.d0klabs.vashinternet_client.event.EventRepo;
 import com.d0klabs.vashinternet_client.ui.calendar.Tasks;
 import com.d0klabs.vashinternet_client.ui.instruments.instruments;
 import com.d0klabs.vashinternet_client.ui.sklad.Items;
@@ -124,9 +125,10 @@ public class MainActivity extends AppCompatActivity {
         //dbCalendarHandler.setTestData_toDB();
         Items.initList();
         instruments.updateInfoFromDB();
-        //   Tasks.initTasks();
+        //Tasks.initTasks();
         Tasks.getTaskList();
         Tasks.setTaskToCalendar();
+        EventRepo.initCurrentDay();
     }
 
     protected void onStop(){

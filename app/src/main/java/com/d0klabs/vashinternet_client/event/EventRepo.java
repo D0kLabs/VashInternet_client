@@ -18,7 +18,7 @@ public class EventRepo {
         int c =0;
         List<String> l = new ArrayList<String>();
         for (int i = 0; i < Tasks.taskCalendar.length; i++) {
-            if(Tasks.taskCalendar[i][1].contains(String.valueOf(MainActivity.dateText))){
+            if(Tasks.taskCalendar[i][1].contains((MainActivity.dateText.subSequence(0,MainActivity.dateText.lastIndexOf(MainActivity.dateText))))){
                 l.add(String.valueOf(Tasks.taskCalendar[i][1]));
                 }
             }
@@ -40,7 +40,6 @@ public class EventRepo {
                 currentDay[i] = Tasks.taskCalendar[m];
             }
         }
-
 
     }
 
