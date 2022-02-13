@@ -47,7 +47,8 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull TasksAdapter.ViewHolder holder, int position) {
-        holder.taskName.setText(String.valueOf(EventRepo.currentDay[position+1][1]));
+        holder.taskName.setText(String.valueOf(EventRepo.currentDay[position+1][4]));
+        holder.taskDuration.setText(String.valueOf("початок: " + EventRepo.currentDay[position+1][5])+ "; тривалість: 01:00; закінчення: " + (EventRepo.currentDay[position+1][6]) );// TODO: tmp only!!!
         //TODO: write taskPrice and taskDuration
 
     }
