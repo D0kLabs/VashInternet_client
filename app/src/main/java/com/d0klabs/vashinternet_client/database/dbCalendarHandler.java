@@ -67,11 +67,11 @@ public class dbCalendarHandler extends SQLiteOpenHelper {
     }
 
     public void setTestData_toDB() {
-        DATE = "31/02/2022";
+        DATE = "13.02.2022";
         DAYOFWEEK = "Вівторок";
-        DESCRIPTION = "Зробити тестування календаря";
-        TASK = " Тестування";
-        PLANTIMESTART = "00:00:00";
+        DESCRIPTION = "Зробити тестування таскера";
+        TASK = "Програмування";
+        PLANTIMESTART = "03:00:00";
         PLANTIMEEND = "00:00:00";
         TIMESTART = "00:00:00";
         TIMEEND = "00:00:00";
@@ -80,7 +80,7 @@ public class dbCalendarHandler extends SQLiteOpenHelper {
         DAYPRICE = 100;
         REPAIRCOST = 20;
 
-        for (int i = 1; i < 10; i++) { //FOR TESTING ONLY!
+        for (int i = 1; i < 2; i++) { //FOR TESTING ONLY!
             ContentValues rowfor = new ContentValues();
             rowfor.put("ID", i);
             rowfor.put("DATE", DATE);

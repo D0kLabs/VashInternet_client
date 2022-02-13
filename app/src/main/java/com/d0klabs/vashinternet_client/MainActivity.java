@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         //dbHandler.setTestData_toDB();
         //dbInstrumentsHandler.setTestData_toDB();
-        //dbCalendarHandler.setTestData_toDB();
+        dbCalendarHandler.setTestData_toDB();
         Items.initList();
         instruments.updateInfoFromDB();
         //Tasks.initTasks();
