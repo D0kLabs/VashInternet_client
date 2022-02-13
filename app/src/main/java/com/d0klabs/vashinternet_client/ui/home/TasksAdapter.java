@@ -47,13 +47,13 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull TasksAdapter.ViewHolder holder, int position) {
-        holder.taskName.setText(String.valueOf(EventRepo.currentDay[position][1]));
+        holder.taskName.setText(String.valueOf(EventRepo.currentDay[position+1][1]));
         //TODO: write taskPrice and taskDuration
 
     }
 
     @Override
     public int getItemCount() {
-        return EventRepo.currentDay.length;
+        return EventRepo.currentDay.length-1;
     }
 }

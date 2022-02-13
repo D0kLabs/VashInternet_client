@@ -19,8 +19,10 @@ public class EventRepo {
         List<String> l = new ArrayList<String>();
         for (int i = 1; i < Tasks.taskCalendar.length; i++) {
             if(Tasks.taskCalendar[i][1].contains(String.valueOf(MainActivity.dateText))){
-                l.add(String.valueOf(Tasks.taskCalendar[i][5]));
+                if (!l.contains(String.valueOf(Tasks.taskCalendar[i][5]))) {
+                    l.add(String.valueOf(Tasks.taskCalendar[i][5]));
                 }
+            }
             }
         Collections.sort(l, new Comparator<String>() {
 
@@ -34,11 +36,11 @@ public class EventRepo {
             }
         });
         currentDay = new String [l.size()][11];
-        for (int i = 0; i < l.size(); i++) {
-            int m=1;
-            while (Tasks.taskCalendar[m][5].contains(l.get(i))){
-                currentDay[i] = Tasks.taskCalendar[m];
-                m++;
+        for (int i = 1; i < l.size(); i++) {
+            for (int m = 1; m < Tasks.taskCalendar.length; m++) {
+                if (Tasks.taskCalendar[m][5].contains(l.get(i))) {
+                    currentDay[i] = Tasks.taskCalendar[m];
+                }
             }
         }
 

@@ -71,7 +71,7 @@ public class dbCalendarHandler extends SQLiteOpenHelper {
         DAYOFWEEK = "Вівторок";
         DESCRIPTION = "Зробити тестування таскера";
         TASK = "Програмування";
-        PLANTIMESTART = "03:00:00";
+        PLANTIMESTART = "01:00:00";
         PLANTIMEEND = "00:00:00";
         TIMESTART = "00:00:00";
         TIMEEND = "00:00:00";
