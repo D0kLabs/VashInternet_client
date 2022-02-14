@@ -1,12 +1,14 @@
 package com.d0klabs.vashinternet_client;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -26,11 +28,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 
@@ -49,19 +51,17 @@ public class MainActivity extends AppCompatActivity {
     public static dbSkladHandler dbHandler;
     public static dbInstrumentsHandler dbInstrumentsHandler;
     public static dbCalendarHandler dbCalendarHandler;
-    public static Date currentDate;
-    public static DateFormat dateFormat, timeFormat;
-    public static String dateText;
+    public static DateTimeFormatter dateFormat, timeFormat;
+    public static String dateText, timeText;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Текущее время
-        currentDate = new Date();
-// Форматирование времени как "день.месяц.год"
-        dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-        dateText = dateFormat.format(currentDate);
+       // dateText = DateTimeFormatter.ISO_LOCAL_DATE.format(LocalDate.now());
+       // timeText = DateTimeFormatter.ISO_LOCAL_TIME.format(LocalTime.now());
+
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
